@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+.env.*
+.env.local
+venv/
+.venv/
+
+# Large binaries & installers
+exe full/
+pdf SEPEHRYAR/
+dist/
+dist_wpf/
+build/
+bin/
+obj/
+src_wpf/bin/
+src_wpf/obj/
+*.exe
+*.spec
+scratch/
+tailscale-setup.exe
+cloudflared.exe
+
+# Logs & temp
+logs/
+*.log
+data/exports/
+data/*.db
+*.db

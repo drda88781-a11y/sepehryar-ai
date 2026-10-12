@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: sepehryar-ai
+    env: python
+    region: frankfurt
+    plan: free
+    buildCommand: "pip install -r requirements-cloud.txt"
+    startCommand: "python start_production.py"
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: APP_ENV
+        value: production

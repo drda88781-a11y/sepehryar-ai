@@ -40,41 +40,9 @@ class LocalEngineProvider(LLMProvider):
         )
 
     def _synthesize_response(self, query: str) -> str:
-        q_lower = query.lower()
-
-        # 1. Product/Inventory Queries
-        if any(w in q_lower for w in ["تعداد کالا", "چند تا کالا", "تعداد کل کالاها", "کالاها چندتاست"]):
-            return "بر اساس تحلیل ساختار پایگاه داده سپهریار، برای محاسبه تعداد کل کالاها، جدول `TblKala` مورد بررسی قرار گرفت."
-
-        if any(w in q_lower for w in ["موجودی", "موجودی کالا", "انبار"]):
-            return "جهت استخراج موجودی کالاها در انبار سپهریار، فیلد `Mogodi` از جدول `TblKala` و تراکنش‌های جدول `TR` تحلیل شدند."
-
-        # 2. Customers / Debtors Queries
-        if any(w in q_lower for w in ["بدهکار", "بدهکارترین", "مانده حساب", "مشتری"]):
-            return "در سیستم مالی سپهریار، وضعیت بدهکاری و بستانکاری طرف‌حساب‌ها در جدول `TblPerson` نگهداری می‌شود (مانده منفی به معنای بدهکار و مانده مثبت بستانکار است)."
-
-        # 3. Relationship Queries
-        if "ارتباط" in q_lower and "tblkala" in q_lower and "tr" in q_lower:
-            return "جدول `TR` (ریز اقلام فاکتورها) از طریق کلید خارجی `IDKala` به کلید اصلی جدول `TblKala` متصل است. این رابطه نشان می‌دهد هر سطر از فاکتور به کدام کالا اشاره دارد."
-
-        if "ارتباط" in q_lower and "tblperson" in q_lower and "tr" in q_lower:
-            return "جدول `TR` از طریق فیلد `IdPerson` به جدول `TblPerson.IDPerson` متصل است که مشخص‌کننده خریدار یا فروشنده در تراکنش مربوطه است."
-
-        # 4. Troubleshooting / Connection Queries
-        if any(w in q_lower for w in ["چرا وصل نمیشه", "خطای اتصال", "وصل نمیشه", "sql"]):
-            return (
-                "برای رفع مشکل عدم اتصال به SQL Server در سپهریار:\n"
-                "۱. وضعیت سرویس ویندوزی `MSSQL$SEPEHRYAR2019` را بررسی فرمایید که در حالت Running باشد.\n"
-                "۲. پورت TCP/IP (معمولاً 1433) و پروتکل Named Pipes را در SQL Configuration Manager فعال نمایید.\n"
-                "۳. از صحت نام Instance و مجوزهای دسترسی کاربر ویندوز اطمینان حاصل فرمایید."
-            )
-
-        # 5. System Health
-        if any(w in q_lower for w in ["سلامت سیستم", "وضعیت سرور", "رم", "سی پی یو"]):
-            return "سامانه پایش سلامت سپهریار در حال حاضر سرویس پایگاه داده، مصرف پردازنده، حافظه RAM و فضای آزاد دیسک را پایش می‌کند."
-
-        # General fallback
-        return f"پرسش شما در ارتباط با «{query}» تحلیل شد. در صورت نیاز به اطلاعات آماری دقیق، لطفاً نام جدول یا گزارش مورد نظر را مشخص فرمایید."
+        from app.agent.cognitive_engine import cognitive_engine
+        cog_res = cognitive_engine.reason_and_solve(query)
+        return cog_res.to_formatted_markdown()
 
     def get_model_info(self) -> dict[str, Any]:
         return {

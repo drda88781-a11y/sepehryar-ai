@@ -20,12 +20,32 @@ class KnowledgeIndexer:
     def __init__(self, manager=sqlite_manager) -> None:
         self.manager = manager
 
+    def index_all_sources(self, force_refresh: bool = False) -> dict[str, int]:
+        """Index all knowledge directories (knowledge_base and pdf SEPEHRYAR)."""
+        total_stats = {"indexed": 0, "skipped": 0, "total_chunks": 0}
+        paths_to_index = [settings.knowledge_path]
+        if hasattr(settings, "docs_path") and settings.docs_path.exists():
+            paths_to_index.append(settings.docs_path)
+
+        for d in paths_to_index:
+            if d.exists():
+                s = self._index_single_directory(d, force_refresh=force_refresh)
+                total_stats["indexed"] += s["indexed"]
+                total_stats["skipped"] += s["skipped"]
+                total_stats["total_chunks"] += s["total_chunks"]
+        return total_stats
+
     def index_directory(self, directory_path: Optional[Path] = None, force_refresh: bool = False) -> dict[str, int]:
         """
         Scan directory, compare hashes against SQLite, and update documents/chunks.
         Returns dict with statistics on indexed, skipped, and total chunks.
         """
-        target_dir = directory_path or settings.knowledge_path
+        if directory_path is None:
+            return self.index_all_sources(force_refresh=force_refresh)
+        return self._index_single_directory(directory_path, force_refresh=force_refresh)
+
+    def _index_single_directory(self, target_dir: Path, force_refresh: bool = False) -> dict[str, int]:
+        """Index a single directory path."""
         if not target_dir.exists():
             logger.warning(f"Knowledge path does not exist: {target_dir}")
             return {"indexed": 0, "skipped": 0, "total_chunks": 0}

@@ -34,11 +34,27 @@ def initialize_application() -> None:
     # 4. Synchronize Offline Knowledge Base
     try:
         from app.knowledge.indexer import knowledge_indexer
-        k_stats = knowledge_indexer.index_directory()
+        k_stats = knowledge_indexer.index_directory(settings.knowledge_path)
+        if hasattr(settings, "docs_path") and settings.docs_path.exists():
+            d_stats = knowledge_indexer.index_directory(settings.docs_path)
+            k_stats["indexed"] += d_stats["indexed"]
+            k_stats["skipped"] += d_stats["skipped"]
+            k_stats["total_chunks"] += d_stats["total_chunks"]
         app_logger.info("Knowledge base synchronized: %d indexed, %d skipped (%d total chunks)",
                         k_stats["indexed"], k_stats["skipped"], k_stats["total_chunks"])
     except Exception as e:
         app_logger.warning("Knowledge base sync warning: %s", e)
+
+    # 5. Automatically connect to configured SQL Server if reachable
+    try:
+        from app.database.connection import db_connection_manager
+        success, msg, _ = db_connection_manager.set_connection_state(True)
+        if success:
+            app_logger.info("Connected to default database: %s", db_connection_manager.get_active_database())
+        else:
+            app_logger.warning("Could not auto-connect to SQL Server: %s", msg)
+    except Exception as ex:
+        app_logger.debug("Initial database connection skipped: %s", ex)
 
     app_logger.info("Initialization complete. Running in mode: %s", settings.app_env)
 

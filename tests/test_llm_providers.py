@@ -36,3 +36,25 @@ def test_llm_manager_fallback():
     response = llm_manager.generate("ارتباط TblKala با TR چیه؟")
     assert response is not None
     assert len(response.content) > 0
+
+
+def test_gemini_provider_metadata():
+    """Verify GeminiProvider initial state, metadata and zero-load configuration."""
+    from app.llm.gemini import GeminiProvider
+    provider = GeminiProvider(api_key="test_dummy_key_123456789")
+    info = provider.get_model_info()
+    assert info["provider"] == "gemini"
+    assert info["cloud_free"] is True
+    assert info["local_load"] == "0% CPU / 0MB RAM"
+    assert provider.is_available() is True
+
+
+def test_openrouter_provider_metadata():
+    """Verify OpenRouterProvider initial state and free model configuration."""
+    from app.llm.openrouter import OpenRouterProvider
+    provider = OpenRouterProvider(api_key="sk-or-dummy-key-123456789")
+    info = provider.get_model_info()
+    assert info["provider"] == "openrouter"
+    assert info["cloud_free"] is True
+    assert provider.is_available() is True
+

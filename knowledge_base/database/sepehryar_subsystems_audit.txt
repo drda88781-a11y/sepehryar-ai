@@ -1,0 +1,135 @@
+=== SUB-SYSTEM TABLES AUDIT IN SEPEHRYAR ERP ===
+
+Payroll (حقوق و دستمزد): 58 tables found
+  PayRol_TblContract, PayRol_TblContractBank, PayRol_TblContractParam, PayRol_TblDefaultMab, PayRol_TblDefinitions, PayRol_TblDefultHesab, PayRol_TblDefultHesabPerson, PayRol_TblDefultHesabWorkPlace, PayRol_TblDetiels, PayRol_TblDiskBankSetting, PayRol_TblExcelSetting, PayRol_TblFormula, Payrol_TblGov_tblMazayaKosorat, PayRol_TblGroupItem, PayRol_TblHesabKasr, PayRol_TblItems, PayRol_TblItemsDefaultInfo, PayRol_TblItemsInfo, PayRol_TblJob, PayRol_TblJobGroupSetting, PayRol_TblKarkardRozane, PayRol_TblKosorat, PayRol_TblMaliyat, PayRol_TblMaliyatInfo, PayRol_TblMazaya, PayRol_TblMK, PayRol_TblMKParam, PayRol_TblMonthKasr, PayRol_TblOnvanExcelSetting, PayRol_TblPersonal, PayRol_TblPersonalBank, PayRol_TblRest, PayRol_TblRestMazaya, PayRol_TblRestSetting, Payrol_TblRptConf, Payrol_TblsettingFishSite, PayRol_TblSettingKarkard, PayRol_TblSettingRest, Payrol_tblSharhContract, PayRol_TblSing, PayRol_TblTaghvim, PayRol_TblTanzimatMohasebati, PayRol_TblTasviye, PayRol_TblTasviyeMande, Payrol_TblTaxGovSetting, PayRol_TblTR, PayRol_TblTR_Deleted, PayRol_TblTR_Updated, PayRol_TblTRParam, PayRol_TblTRParam_Deleted, PayRol_TblTRParam_Updated, PayRol_TblTypeSettingBank, PayRol_TblWorkPlace, PayRol_TblWorkPlaceUnit, PayRol_TblWorkPlaceUnit0, PayRol_TRDetiels, PayRol_TRDetiels_Deleted, PayRol_TRDetiels_Updated
+
+Insurance (بیمه): 27 tables found
+  Bime_Alarm, Bime_Avamel, Bime_BaseHesab, Bime_DocType, Bime_Excel, Bime_Excel_vosool, Bime_Export, Bime_ExtraInfo, Bime_Group, Bime_Hesab, Bime_MarketerPercent, Bime_MarketerWage, Bime_PanelType, Bime_Parameters, Bime_PaymentType, Bime_Policy, Bime_PolicyExtraInfo, Bime_PolicyId, Bime_SaveSMS, Bime_SellBuy, Bime_SMSAccount, Bime_SMSERROR, Bime_SMSFormat, Bime_SMSReminder, Bime_SMSStatus, Bime_Type, Bime_WageDetails
+
+Hotel (هتلداری): 47 tables found
+  Hotel_Date, Hotel_TblAgent, Hotel_TblAmaken, Hotel_TblAmakenResult, Hotel_tblAmakenTitle, Hotel_TblBasic, Hotel_tblBedBes, Hotel_TblConflict, Hotel_TblConflict2, Hotel_TblCustomerType, Hotel_TblDefultHesab, Hotel_TblEquipment, Hotel_TblEquipmentLink, Hotel_TblEquipmentLinkLog, Hotel_TblEscort, Hotel_TblEscortDetail, Hotel_TblEscortDetailLog, Hotel_TblEscortLog, Hotel_TblFirstCharge, Hotel_TblGroup, Hotel_TblLinkId, Hotel_TblPatternDetail, Hotel_TblPatternTitle, Hotel_TblPerson, Hotel_TblPrice, Hotel_TblReceptionSanad, Hotel_TblRoom, Hotel_TblRoomHesab, Hotel_TblRoomPrice, Hotel_TblRoomStatus, Hotel_TblRoomType, Hotel_TblSecurity, Hotel_TblSetting, Hotel_TblSettingLog, Hotel_TblStates, Hotel_TblSystem, Hotel_TblTime, Hotel_TblTypeFactor, Hotel_TR, Hotel_TRAgent, Hotel_TRAgentLog, Hotel_TRDetail, Hotel_TRDetailLog, Hotel_TRLog, Hotel_TRs_EndYear, Hotel_TRTitle, Hotel_TRTitleLog
+
+Talar (تالار و تشریفات): 15 tables found
+  Talar_Monasebat, Talar_TblAgent, Talar_TblDefualtHesab, Talar_TblDetail, Talar_TblMenu, Talar_TblMenuAgent, Talar_TblSalon, Talar_TblSalonHesab, Talar_TblSetting, Talar_TblShift, Talar_TblShiftUser, Talar_TblStates, Talar_TblSubMenu, Talar_TblTitle, Talar_TRAgent
+
+Customer Club (باشگاه مشتریان): 5 tables found
+  CustomerClub_CardNumber, CustomerClub_Factor, CustomerClub_FactorDetail, CustomerClub_PersonGroup, CustomerClub_TakhfifatGroup
+
+CRM (ارتباط با مشتری): 2 tables found
+  Crm_EventPerson, Crm_EventType
+
+Tax (مالیات و سامانه مودیان): 15 tables found
+  Payrol_TblTaxGovSetting, TblDetailsFactorTaxGov, TblErorrFactorTax, TblInfoTax, TblItemTaxGov, TblKalaTaxGov, TblMiddelFactorDetailTaxGov, TblMiddelFactorTaxGov, TblMiddelFactorTaxGov_Log, TblMiddelKalaTaxGov, TblMiddelUnitTaxGov, TblParameterTax, TblSettingsTax, TblUnitTaxGov, TblWorkbookTax
+
+Vam (وام و تسهیلات): 20 tables found
+  Bime_Avamel, Day_AvamelFactor, Day_AvamelFactor_Deleted, Day_AvamelFactor_Log, Day_Vam, Day_Vam_Deleted, Day_Vam_Log, Day_VamDetail, Day_VamDetail_Deleted, Day_VamDetail_Log, TblAvamelKhadamat, TblAvamelPakhsh, TblAvamelTolid, TblFactorAvamel, TblFactorAvamelKharid, TblFactorAvamelNasiye_CShobe, TblFactorAvamelNasiye_User, TblFactorAvamelNasiyeForush, TblVamP, TblVamPDetail
+
+Tolid (تولید و بهای تمام شده): 7 tables found
+  TblAvamelTolid, TblSefareshTolid, TblTolid, TblTolidOnline, TblTolidRevision, TblTRTolid, TblTRTolid2
+
+FastFood & Restaurant (رستوران و سفارشگیر): 0 tables found
+  
+
+=== PAYROLL ITEMS (PayRol_TblItems) ===
+Cols: Id, GroupItem_Id, Name, Type, State, MaxCharacter, Description, ErrorMsg, EnName, ProcedureName, Query
+  {"Id": "1", "GroupItem_Id": "1", "Name": "از تاریخ:", "Type": "6", "State": "0", "MaxCharacter": "50", "Description": "تاریخ شروع بازه گزارش (فرمت: 1403/01/01)", "ErrorMsg": "", "EnName": "@FromDate", "ProcedureName": ""}
+  {"Id": "2", "GroupItem_Id": "1", "Name": "تا تاریخ:", "Type": "6", "State": "0", "MaxCharacter": "50", "Description": "تاریخ پایان بازه گزارش", "ErrorMsg": "", "EnName": "@ToDate", "ProcedureName": ""}
+  {"Id": "3", "GroupItem_Id": "1", "Name": "انبار مورد نظر:", "Type": "5", "State": "0", "MaxCharacter": "50", "Description": "انتخاب انبار مشخص یا تمام انبارها (0 = تمام انبارها)", "ErrorMsg": "", "EnName": "@IDAnbar", "ProcedureName": "TblAnbar"}
+  {"Id": "4", "GroupItem_Id": "1", "Name": "کالای مورد نظر:", "Type": "5", "State": "0", "MaxCharacter": "50", "Description": "انتخاب کالای خاص یا تمام کالاها (0 = تمام کالاها)", "ErrorMsg": "", "EnName": "@IDKala", "ProcedureName": "TblKala"}
+  {"Id": "5", "GroupItem_Id": "2", "Name": "از تاریخ:", "Type": "3", "State": "0", "MaxCharacter": "50", "Description": "", "ErrorMsg": "", "EnName": "@FromDate", "ProcedureName": ""}
+  {"Id": "6", "GroupItem_Id": "2", "Name": "تا تاریخ:", "Type": "3", "State": "0", "MaxCharacter": "50", "Description": "", "ErrorMsg": "", "EnName": "@ToDate", "ProcedureName": ""}
+  {"Id": "7", "GroupItem_Id": "2", "Name": "انبار مورد نظر:", "Type": "2", "State": "0", "MaxCharacter": "50", "Description": "", "ErrorMsg": "", "EnName": "@IDAnbar", "ProcedureName": ""}
+  {"Id": "8", "GroupItem_Id": "2", "Name": "کالای مورد نظر:", "Type": "2", "State": "0", "MaxCharacter": "50", "Description": "", "ErrorMsg": "", "EnName": "@IDKala", "ProcedureName": ""}
+  {"Id": "9", "GroupItem_Id": "3", "Name": "از تاریخ", "Type": "3", "State": "0", "MaxCharacter": "10", "Description": "تاریخ شروع بازه شمسی", "ErrorMsg": "فرمت تاریخ صحیح نیست", "EnName": "@DFrom", "ProcedureName": ""}
+  {"Id": "10", "GroupItem_Id": "3", "Name": "تا تاریخ", "Type": "3", "State": "0", "MaxCharacter": "10", "Description": "تاریخ پایان بازه شمسی", "ErrorMsg": "فرمت تاریخ صحیح نیست", "EnName": "@DTo", "ProcedureName": ""}
+  {"Id": "11", "GroupItem_Id": "3", "Name": "انتخاب شعبه", "Type": "4", "State": "0", "MaxCharacter": "10", "Description": "فیلتر بر اساس شعبه خاص یا تمام شعب", "ErrorMsg": "", "EnName": "@CShobe", "ProcedureName": "TblCompanyShobe"}
+  {"Id": "12", "GroupItem_Id": "3", "Name": "انتخاب کالا", "Type": "4", "State": "0", "MaxCharacter": "10", "Description": "فیلتر بر اساس کالای خاص یا تمام کالاها", "ErrorMsg": "", "EnName": "@IdKala", "ProcedureName": "TblKala"}
+  {"Id": "13", "GroupItem_Id": "100", "Name": "از تاریخ", "Type": "3", "State": "0", "MaxCharacter": "10", "Description": "تاریخ شروع بازه شمسی", "ErrorMsg": "فرمت تاریخ صحیح نیست", "EnName": "@DFrom", "ProcedureName": ""}
+  {"Id": "14", "GroupItem_Id": "100", "Name": "تا تاریخ", "Type": "3", "State": "0", "MaxCharacter": "10", "Description": "تاریخ پایان بازه شمسی", "ErrorMsg": "فرمت تاریخ صحیح نیست", "EnName": "@DTo", "ProcedureName": ""}
+  {"Id": "15", "GroupItem_Id": "100", "Name": "انتخاب شعبه", "Type": "4", "State": "0", "MaxCharacter": "10", "Description": "فیلتر بر اساس شعبه خاص یا تمام شعب", "ErrorMsg": "", "EnName": "@CShobe", "ProcedureName": "TblCompanyShobe"}
+  {"Id": "16", "GroupItem_Id": "100", "Name": "انتخاب کالا", "Type": "4", "State": "0", "MaxCharacter": "10", "Description": "فیلتر بر اساس کالای خاص یا تمام کالاها", "ErrorMsg": "", "EnName": "@IdKala", "ProcedureName": "TblKala"}
+  {"Id": "17", "GroupItem_Id": "9101", "Name": "از تاریخ", "Type": "6", "State": "0", "MaxCharacter": "50", "Description": "تاریخ شروع بازه شمسی", "ErrorMsg": "", "EnName": "DFrom", "ProcedureName": ""}
+  {"Id": "18", "GroupItem_Id": "9101", "Name": "تا تاریخ", "Type": "6", "State": "0", "MaxCharacter": "50", "Description": "تاریخ پایان بازه شمسی", "ErrorMsg": "", "EnName": "DTo", "ProcedureName": ""}
+  {"Id": "19", "GroupItem_Id": "9101", "Name": "انتخاب کالا", "Type": "4", "State": "0", "MaxCharacter": "50", "Description": "فیلتر بر اساس کالای مشخص یا همه کالاها", "ErrorMsg": "", "EnName": "IdKala", "ProcedureName": "TblKala"}
+  {"Id": "20", "GroupItem_Id": "9101", "Name": "انتخاب انبار", "Type": "4", "State": "0", "MaxCharacter": "50", "Description": "فیلتر انبار مشخص یا همه انبارها", "ErrorMsg": "", "EnName": "IdAnbar", "ProcedureName": "TblAnbar"}
+  {"Id": "21", "GroupItem_Id": "9101", "Name": "انتخاب طرف حساب", "Type": "4", "State": "0", "MaxCharacter": "50", "Description": "فیلتر شخص، مشتری یا تامین‌کننده مشخص", "ErrorMsg": "", "EnName": "IdShakhs", "ProcedureName": "TblPerson"}
+  {"Id": "22", "GroupItem_Id": "9101", "Name": "وضعیت چک", "Type": "4", "State": "0", "MaxCharacter": "50", "Description": "فیلتر وضعیت چک (3=برگشتی، 0=همه)", "ErrorMsg": "", "EnName": "State", "ProcedureName": "TblCheck_State"}
+
+=== PAYROLL JOBS (PayRol_TblJob) ===
+Cols: Code, Name
+  {"Code": "000000", "Name": "نامشخص "}
+  {"Code": "000001", "Name": "آب بندكار"}
+  {"Code": "000002", "Name": "آب شور"}
+  {"Code": "000003", "Name": "آباژورساز"}
+  {"Code": "000004", "Name": "آببان "}
+  {"Code": "000005", "Name": "آببر"}
+  {"Code": "000006", "Name": "آبدارچي "}
+  {"Code": "000007", "Name": "آبرسان "}
+  {"Code": "000008", "Name": "آب كار"}
+  {"Code": "000009", "Name": "آبگرمكن ساز"}
+
+=== TAX SETTINGS (Payrol_TblTaxGovSetting) ===
+Cols: id, IdGov, NameGov
+  {"id": "1463", "IdGov": "7", "NameGov": "مبلغ جمع ناخالص حقوق و مزایا ی مستمر نقدی ماه جاری - ریالی"}
+  {"id": "1464", "IdGov": "8", "NameGov": "مبلغ حقوق و مزایای مستمر نقدی معوق که مالی ات ی برای آنها محاسبه نشده است - ریال ی"}
+  {"id": "1465", "IdGov": "9", "NameGov": "مسکن )نحوه استفاده از مسکن("}
+  {"id": "1466", "IdGov": "10", "NameGov": "مبلغ کسر شده از حقوق کارمند بابت مسکن ماه جاری- ریالی"}
+  {"id": "1467", "IdGov": "11", "NameGov": "اتومبی ل اختصاصی )نحوه استفاده از اتومبیل("}
+  {"id": "1468", "IdGov": "12", "NameGov": "مبلغ کسر شده از حقوق کارمند بابت اتومبیل اختصاصی ماه جار ی- ریالی"}
+  {"id": "1469", "IdGov": "13", "NameGov": "مبلغ قی مت تمام شده سایر مزایا ی مستمرغی رنقدی- ریالی"}
+  {"id": "1470", "IdGov": "14", "NameGov": "مبلغ حقوق و مزایای مستمر غی ر نقدی معوق که مال ی ات ی برای آنها محاسبه نشده است- ریال ی"}
+  {"id": "1471", "IdGov": "15", "NameGov": "مبلغ حق الزحمه/حق مشاوره/حق حضور/حق نظارت/حق التالیف/ حق فنی/ پاداش شورای عددیحل اختالف"}
+  {"id": "1472", "IdGov": "16", "NameGov": "مبلغ قراردادهای پژوهشی - ریال ی"}
+
+=== INSURANCE (Bime) TABLES ===
+Table: Bime_Alarm (6 cols) -> Id, PersonId, DateEnd, DateSMS, Text, SendTime
+Table: Bime_Avamel (12 cols) -> Id, Title, Sarfasl1, Moin1, Hesab1, Sarfasl2, Moin2, Hesab2, Darsad, IncDec
+Table: Bime_BaseHesab (5 cols) -> Id, Name, Sarfasl, Moin, Hesab
+Table: Bime_DocType (2 cols) -> Id, Name
+  {"Id": "0", "Name": "بيمه"}
+  {"Id": "1", "Name": "اضافي"}
+  {"Id": "2", "Name": "برگشتي"}
+  {"Id": "3", "Name": "اصلاحي"}
+Table: Bime_Excel (22 cols) -> Id, Name, PathFile, SheetName, FromRow, ToRow, ColCount, ExcelType, CodeMeli, Tel
+Table: Bime_Excel_vosool (8 cols) -> Id, PathFile, Sheet, FromRow, ToRow, ColCount, ShPerseneli, GhestPardakhti
+Table: Bime_Export (9 cols) -> Id, InsurerId, RepresentationId, InsureFieldId, InsureTypeId, Optional, Name, IsLastLevel, IsSales
+Table: Bime_ExtraInfo (4 cols) -> Id, ExportId, Name, Type
+Table: Bime_Group (2 cols) -> Id, Name
+Table: Bime_Hesab (6 cols) -> Id, SBId, TypeId, Sarfasl, Moin, Hesab
+Table: Bime_MarketerPercent (4 cols) -> Id, MarketerId, ExportId, MarketerPercent
+Table: Bime_MarketerWage (10 cols) -> Id, MarketerId, PolicyId, Sodor, Mab, MarketerPercent, Type, Date, Description, Vosol
+Table: Bime_PanelType (2 cols) -> Id, TypeName
+  {"Id": "0", "TypeName": "پیشخوان دولت"}
+  {"Id": "1", "TypeName": "اس ام اس نیاز 1"}
+  {"Id": "2", "TypeName": "اس ام اس نگار نفیس"}
+  {"Id": "3", "TypeName": "اس ام اس نیاز 2"}
+  {"Id": "4", "TypeName": "اس ام اس نگار قاصدک"}
+Table: Bime_Parameters (7 cols) -> Id, Wage, NasiyeDaryaft, TasviyeMessage, CodeMeli, Mobile, NasiyeAvamel
+Table: Bime_PaymentType (2 cols) -> Id, Type
+Table: Bime_Policy (34 cols) -> Id, DocTypeId, MarketerId, SubGroupId, PersonId, PersonName, InsuredId, ExportDate, StartDate, EndDate
+Table: Bime_PolicyExtraInfo (4 cols) -> Id, PolicyId, ExtraId, Value
+Table: Bime_PolicyId (6 cols) -> Id, PolicyId, Year, ExportId, JoinedNo, Sh_sanad
+Table: Bime_SaveSMS (15 cols) -> Id, PersonId, AccountId, PhoneNo, MessageText, SendDate, SendTime, Status, Created, Sent
+Table: Bime_SellBuy (6 cols) -> Id, WagePercent, ExportPercent, WagePercent2, ExportPercent2, Duration
+Table: Bime_SMSAccount (11 cols) -> Id, PanelName, SendNo, RecieveNo, UserName, Password, Repeat, IsDefault, Mobile, PanelType
+Table: Bime_SMSERROR (4 cols) -> Id, PanelId, Code, Error
+  {"Id": "1", "PanelId": "6", "Code": "0", "Error": "عملیات با موفقیت انجام شده است."}
+  {"Id": "2", "PanelId": "6", "Code": "1", "Error": "متن پیام خالی می باشد."}
+  {"Id": "3", "PanelId": "6", "Code": "2", "Error": "کاربر محدود گردیده است."}
+  {"Id": "4", "PanelId": "6", "Code": "3", "Error": "خط به شما تعلق ندارد."}
+  {"Id": "5", "PanelId": "6", "Code": "4", "Error": "گیرندگان خالی است."}
+Table: Bime_SMSFormat (6 cols) -> Id, FormatName, Description, IsDefault, Type, Patern
+Table: Bime_SMSReminder (6 cols) -> Id, RecieveCheck, PayCheck, Day, RecieveGhest, PayGhest
+Table: Bime_SMSStatus (2 cols) -> Id, Name
+  {"Id": "0", "Name": "در حال ارسال"}
+  {"Id": "1", "Name": "ارسال شده"}
+  {"Id": "2", "Name": "زمانبندي شده"}
+  {"Id": "3", "Name": "معلق"}
+  {"Id": "4", "Name": "دريافت شده توسط گوشي"}
+Table: Bime_Type (3 cols) -> Id, Name, Ejbari
+  {"Id": "11", "Name": "حساب فروش", "Ejbari": "1"}
+  {"Id": "12", "Name": "حساب خرید", "Ejbari": "1"}
+  {"Id": "13", "Name": "حساب برگشت از فروش", "Ejbari": "0"}
+  {"Id": "14", "Name": "حساب برگشت ار خرید", "Ejbari": "0"}
+  {"Id": "15", "Name": "حساب شرکت بیمه", "Ejbari": "1"}
+Table: Bime_WageDetails (18 cols) -> TotalId, Id, SanadM, DateR, PolicyId, MabWage, MabExport, DarsadMaliat, MabWageMaliat, MabExportMalit

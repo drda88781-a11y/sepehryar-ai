@@ -10,4 +10,8 @@ def test_main_window_initialization(qapp):
     window = MainWindow()
     assert window is not None
     assert "Sepehryar" in window.windowTitle()
-    assert window.pages_stack.count() == 7
+    assert window.pages_stack.count() == 4
+    assert window.spotlight_bar is not None
+    assert "chat" in window.pages_map
+    assert "integration" in window.pages_map
+    assert "docs" in window.pages_map

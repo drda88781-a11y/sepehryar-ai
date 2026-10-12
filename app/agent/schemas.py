@@ -64,5 +64,11 @@ class AgentResponse(BaseModel):
     tools_used: list[ToolCallLog] = Field(default_factory=list)
     sources: list[str] = Field(default_factory=list)
     duration_ms: float = 0.0
+    thinking_duration_ms: float = 0.0
+    thinking_summary: Optional[str] = None
+    thinking_mode: str = "balanced"
     success: bool = True
     error_details: Optional[str] = None
+    master_solution: Optional[str] = None
+    critic_verdict: Optional[str] = None
+    reasoning_steps: list[str] = Field(default_factory=list)

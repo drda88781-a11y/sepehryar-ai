@@ -14,22 +14,22 @@ QMainWindow, QWidget {
 #SidebarFrame {
     background-color: #0E131D;
     border-left: 1px solid #1E293B;
-    min-width: 220px;
-    max-width: 240px;
+    min-width: 270px;
+    max-width: 290px;
 }
 
 #SidebarTitle {
     color: #FFFFFF;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
-    padding: 18px 12px;
+    padding: 16px 8px 4px 8px;
 }
 
 #SidebarSubtitle {
-    color: #00A86B;
+    color: #10B981;
     font-size: 11px;
     font-weight: bold;
-    padding-bottom: 12px;
+    padding: 0 8px 12px 8px;
 }
 
 QPushButton.nav-btn {

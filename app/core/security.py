@@ -139,6 +139,11 @@ def mask_cell_value(col_name: str, value: Any) -> Any:
     if PHONE_PATTERN.search(val_str):
         return PHONE_PATTERN.sub(r'\1****\2', val_str)
 
+    # Financial amounts and balances should not be masked as national IDs
+    FINANCIAL_EXCLUSIONS = ("bed", "bes", "mab", "mande", "fee", "price", "balance", "amount", "total", "sum", "گردش", "مانده", "بدهکار", "بستانکار", "مبلغ", "فی", "قیمت")
+    if any(k in col_lower for k in FINANCIAL_EXCLUSIONS):
+        return value
+
     # Mask 10-digit National ID (leave first 3 and last 2)
     if len(val_str) == 10 and val_str.isdigit():
         return f"{val_str[:3]}*****{val_str[-2:]}"

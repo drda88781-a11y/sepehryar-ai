@@ -1,0 +1,256 @@
+<Window x:Class="SepehryarWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="موتور هوش مصنوعی و معمار سپهریار"
+        Width="1100" Height="720"
+        MinWidth="850" MinHeight="550"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        FlowDirection="RightToLeft">
+
+    <Window.Resources>
+        <ResourceDictionary Source="Theme.xaml" />
+    </Window.Resources>
+
+    <!-- Outer Window Border with Glow -->
+    <Border Margin="10" Style="{StaticResource GlassCard}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="46" /> <!-- Custom Title Bar -->
+                <RowDefinition Height="*" />  <!-- Main Body (Sidebar + Content) -->
+            </Grid.RowDefinitions>
+
+            <!-- 1. Title Bar -->
+            <Border Grid.Row="0" Background="#161B22" BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1" CornerRadius="12,12,0,0" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+                <Grid Margin="16,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- App Title -->
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="🧠" FontSize="16" Margin="0,0,8,0" VerticalAlignment="Center" />
+                        <TextBlock Text="موتور هوش مصنوعی سپهریار (Sepehryar AI)" 
+                                   FontFamily="{StaticResource MainFont}" 
+                                   FontWeight="Bold" FontSize="13" 
+                                   Foreground="{StaticResource BrushTextPrimary}" 
+                                   VerticalAlignment="Center" />
+                        <Border Background="#1A00E5FF" CornerRadius="4" Padding="6,2" Margin="10,0,0,0" VerticalAlignment="Center">
+                            <TextBlock Text="نسخه اختصاصی WPF" FontSize="10" Foreground="{StaticResource BrushCyan}" />
+                        </Border>
+                    </StackPanel>
+
+                    <!-- Center Status -->
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="● سرویس محلی آماده: 127.0.0.1:8080" FontSize="11" Foreground="#4ADE80" Margin="0,0,14,0" />
+                        <Button x:Name="BtnOpenSpotlight" Content="🚀 نوار شناور (Ctrl+Space)" Style="{StaticResource OutlineBtn}" Padding="10,3" FontSize="11" Click="BtnOpenSpotlight_Click" />
+                    </StackPanel>
+
+                    <!-- Window Control Buttons -->
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Button Content="—" Style="{StaticResource OutlineBtn}" Width="32" Height="28" Padding="0" Margin="0,0,4,0" Click="BtnMinimize_Click" />
+                        <Button Content="✕" Style="{StaticResource OutlineBtn}" Width="32" Height="28" Padding="0" Click="BtnClose_Click" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- 2. Main Body Grid -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="230" /> <!-- Right Sidebar -->
+                    <ColumnDefinition Width="*" />   <!-- Content Pages -->
+                </Grid.ColumnDefinitions>
+
+                <!-- Right Sidebar Navigation -->
+                <Border Grid.Column="0" Background="#10151C" BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,1,0" Padding="12,16">
+                    <DockPanel>
+                        <!-- Top Navigation Items -->
+                        <StackPanel DockPanel.Dock="Top">
+                            <TextBlock Text="بخش‌های اصلی" FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource BrushTextMuted}" Margin="6,0,0,12" />
+
+                            <RadioButton x:Name="NavChat" Content="💬  گفت‌وگو با دستیار" IsChecked="True" 
+                                         GroupName="Nav" Style="{StaticResource NavRadioBtn}" 
+                                         Click="Nav_Click" Tag="0" />
+
+                            <RadioButton x:Name="NavHub" Content="🔌  مرکز یکپارچه‌سازی" 
+                                         GroupName="Nav" Style="{StaticResource NavRadioBtn}" 
+                                         Click="Nav_Click" Tag="1" />
+
+                            <RadioButton x:Name="NavReports" Content="📊  کاتالوگ گزارشات (۴۷۱)" 
+                                         GroupName="Nav" Style="{StaticResource NavRadioBtn}" 
+                                         Click="Nav_Click" Tag="2" />
+
+                            <RadioButton x:Name="NavSettings" Content="⚙️  تنظیمات و وضعیت" 
+                                         GroupName="Nav" Style="{StaticResource NavRadioBtn}" 
+                                         Click="Nav_Click" Tag="3" />
+                        </StackPanel>
+
+                        <!-- Bottom Info Card -->
+                        <Border DockPanel.Dock="Bottom" Background="#131B26" BorderBrush="#203042" BorderThickness="1" CornerRadius="8" Padding="12,10" Margin="0,16,0,0">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                    <TextBlock Text="💡" FontSize="11" Margin="0,0,6,0" VerticalAlignment="Center" />
+                                    <TextBlock Text="کلید میانبر سراسری" FontSize="10.5" FontWeight="SemiBold" Foreground="{StaticResource BrushCyan}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <TextBlock Text="در هر برنامه‌ای کلید Ctrl+Space را فشار دهید تا نوار هوشمند باز شود." 
+                                           FontSize="10" Foreground="{StaticResource BrushTextMuted}" LineHeight="16" TextWrapping="Wrap" />
+                            </StackPanel>
+                        </Border>
+                    </DockPanel>
+                </Border>
+
+                <!-- Left Content Pages -->
+                <Grid Grid.Column="1" Margin="20">
+                    
+                    <!-- PAGE 0: Chat Copilot -->
+                    <Grid x:Name="PageChat" Visibility="Visible">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />    <!-- Conversation History -->
+                            <RowDefinition Height="Auto" /> <!-- Quick Chips -->
+                            <RowDefinition Height="Auto" /> <!-- Input & Send -->
+                        </Grid.RowDefinitions>
+
+                        <!-- Conversation Area -->
+                        <Border Grid.Row="0" Background="#10151C" BorderBrush="{StaticResource BrushBorder}" BorderThickness="1" CornerRadius="10" Padding="14" Margin="0,0,0,12">
+                            <ScrollViewer x:Name="ScrollChat" VerticalScrollBarVisibility="Auto">
+                                <StackPanel x:Name="PanelChatHistory">
+                                    <Border Background="#161E28" CornerRadius="8" Padding="12" Margin="0,0,0,10">
+                                        <TextBlock Text="سلام! من معمار و دستیار هوشمند محلی سیستم سپهریار هستم. می‌توانید سوالات فنی، معماری دیتابیس، ساختار سرفصل‌ها یا گزارشات استیمول‌سافت را بپرسید." 
+                                                   Foreground="{StaticResource BrushTextPrimary}" TextWrapping="Wrap" />
+                                    </Border>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Border>
+
+                        <!-- Quick Chips -->
+                        <WrapPanel Grid.Row="1" Margin="0,0,0,10">
+                            <Button Content="📦 راهنمای تعریف کالا" Style="{StaticResource OutlineBtn}" Margin="0,0,6,6" Click="ChipChat_Click" />
+                            <Button Content="🏬 راهنمای تعریف انبار" Style="{StaticResource OutlineBtn}" Margin="0,0,6,6" Click="ChipChat_Click" />
+                            <Button Content="📝 باجه ثبت سند" Style="{StaticResource OutlineBtn}" Margin="0,0,6,6" Click="ChipChat_Click" />
+                            <Button Content="🔗 مسیر join بین شخص و فاکتور" Style="{StaticResource OutlineBtn}" Margin="0,0,6,6" Click="ChipChat_Click" />
+                            <Button Content="📋 ستون‌های جدول TblSanad" Style="{StaticResource OutlineBtn}" Margin="0,0,6,6" Click="ChipChat_Click" />
+                            <Button Content="💻 پروسیجر مشتریان بدهکار" Style="{StaticResource OutlineBtn}" Margin="0,0,6,6" Click="ChipChat_Click" />
+                            <Button Content="🏦 مغایرت بانکی" Style="{StaticResource OutlineBtn}" Margin="0,0,6,6" Click="ChipChat_Click" />
+                            <Button Content="🔒 رفع خطای قفل و Deadlock" Style="{StaticResource OutlineBtn}" Margin="0,0,6,6" Click="ChipChat_Click" />
+                        </WrapPanel>
+
+                        <!-- Input Box & Send Button -->
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox x:Name="TxtChatInput" Style="{StaticResource ModernTextBox}" 
+                                     Height="42" FontSize="13" Padding="12,10" 
+                                     KeyDown="TxtChatInput_KeyDown" />
+
+                            <Button Grid.Column="1" x:Name="BtnChatSend" Content="⏎ ارسال پرسش" 
+                                    Style="{StaticResource PrimaryBtn}" Margin="8,0,0,0" 
+                                    Click="BtnChatSend_Click" />
+                        </Grid>
+                    </Grid>
+
+                    <!-- PAGE 1: Integration Hub -->
+                    <Grid x:Name="PageHub" Visibility="Collapsed">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel>
+                                <TextBlock Text="مرکز یکپارچه‌سازی با نرم‌افزارهای تبدیل داده و گزارش‌ساز سپهریار" 
+                                           FontWeight="Bold" FontSize="16" Foreground="{StaticResource BrushCyan}" Margin="0,0,0,8" />
+                                <TextBlock Text="این کلاس آماده C# را کپی کنید و در پروژه SEPEHRYAR.CONVERTER یا ابزارهای تبدیل خود قرار دهید تا مستقیماً به هوش متصل شوید:" 
+                                           Foreground="{StaticResource BrushTextMuted}" Margin="0,0,0,14" TextWrapping="Wrap" />
+
+                                <Border Background="#10151C" BorderBrush="{StaticResource BrushBorder}" BorderThickness="1" CornerRadius="8" Padding="14" Margin="0,0,0,14">
+                                    <StackPanel>
+                                        <DockPanel Margin="0,0,0,8">
+                                            <TextBlock Text="کد سی‌شارپ کلاینت (SepehryarBrainClient.cs)" Foreground="{StaticResource BrushCyan}" FontSize="12" />
+                                            <Button x:Name="BtnCopyClientCode" Content="📋 کپی کامل کد C#" HorizontalAlignment="Left" Style="{StaticResource OutlineBtn}" Click="BtnCopyClientCode_Click" />
+                                        </DockPanel>
+                                        <TextBox x:Name="TxtClientSnippet" Height="280" IsReadOnly="True" 
+                                                 Background="Transparent" BorderThickness="0" 
+                                                 Foreground="#A5D6FF" FontFamily="Consolas, Courier New" FontSize="12" 
+                                                 VerticalScrollBarVisibility="Auto" FlowDirection="LeftToRight" />
+                                    </StackPanel>
+                                </Border>
+
+                                <!-- Test Action Button -->
+                                <StackPanel Orientation="Horizontal">
+                                    <Button x:Name="BtnTestPing" Content="⚡ تست اتصال زنده به سرویس هوش" Style="{StaticResource PrimaryBtn}" Click="BtnTestPing_Click" />
+                                    <TextBlock x:Name="TxtPingResult" Margin="14,0,0,0" VerticalAlignment="Center" Foreground="#4ADE80" />
+                                </StackPanel>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+
+                    <!-- PAGE 2: Reports Catalog (Stimulsoft) -->
+                    <Grid x:Name="PageReports" Visibility="Collapsed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Search Bar -->
+                        <Grid Grid.Row="0" Margin="0,0,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox x:Name="TxtReportSearch" Style="{StaticResource ModernTextBox}" 
+                                     Padding="12,9" TextChanged="TxtReportSearch_TextChanged" />
+                            <TextBlock x:Name="TxtReportCount" Grid.Column="1" VerticalAlignment="Center" 
+                                       Margin="12,0,0,0" Foreground="{StaticResource BrushCyan}" Text="۴۷۱ قالب گزارش" />
+                        </Grid>
+
+                        <!-- Reports List -->
+                        <Border Grid.Row="1" Background="#10151C" BorderBrush="{StaticResource BrushBorder}" BorderThickness="1" CornerRadius="8">
+                            <ListBox x:Name="ListReports" Background="Transparent" BorderThickness="0" 
+                                     Foreground="{StaticResource BrushTextPrimary}" 
+                                     SelectionChanged="ListReports_SelectionChanged">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderBrush="#203040" BorderThickness="0,0,0,1" Padding="10,8">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Text="{Binding FileName}" FontWeight="Bold" Foreground="{StaticResource BrushCyan}" />
+                                                <TextBlock Grid.Row="1" Text="{Binding DataSourcesSummary}" Foreground="{StaticResource BrushTextMuted}" FontSize="11" Margin="0,4,0,0" />
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Border>
+                    </Grid>
+
+                    <!-- PAGE 3: Settings -->
+                    <Grid x:Name="PageSettings" Visibility="Collapsed">
+                        <StackPanel MaxWidth="600" HorizontalAlignment="Right">
+                            <TextBlock Text="تنظیمات سیستم و ارتباط با دیتابیس" FontWeight="Bold" FontSize="16" Foreground="{StaticResource BrushCyan}" Margin="0,0,0,14" />
+
+                            <Border Background="#10151C" BorderBrush="{StaticResource BrushBorder}" BorderThickness="1" CornerRadius="8" Padding="16" Margin="0,0,0,12">
+                                <StackPanel>
+                                    <TextBlock Text="پایگاه داده پیش‌فرض سپهریار:" FontSize="12" Foreground="{StaticResource BrushTextMuted}" Margin="0,0,0,4" />
+                                    <TextBox Text="Sepehr_hesabico_1403" Style="{StaticResource ModernTextBox}" IsReadOnly="True" Margin="0,0,0,10" />
+
+                                    <TextBlock Text="سرور SQL Server:" FontSize="12" Foreground="{StaticResource BrushTextMuted}" Margin="0,0,0,4" />
+                                    <TextBox Text=".\SEPEHRYAR2019" Style="{StaticResource ModernTextBox}" IsReadOnly="True" Margin="0,0,0,10" />
+
+                                    <TextBlock Text="پورت سرویس هوش مصنوعی محلی:" FontSize="12" Foreground="{StaticResource BrushTextMuted}" Margin="0,0,0,4" />
+                                    <TextBox Text="8080 (http://127.0.0.1:8080)" Style="{StaticResource ModernTextBox}" IsReadOnly="True" />
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

@@ -1,17 +1,21 @@
-"""
-Configuration and settings management using Pydantic Settings.
-"""
+import sys
 from pathlib import Path
 from typing import Optional
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-# Base directory of the repository
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+# Base directory of the repository or frozen executable
+if getattr(sys, "frozen", False):
+    EXE_DIR = Path(sys.executable).parent
+    BUNDLE_DIR = Path(getattr(sys, "_MEIPASS", EXE_DIR))
+    BASE_DIR = EXE_DIR
+else:
+    BASE_DIR = Path(__file__).resolve().parent.parent.parent
+    BUNDLE_DIR = BASE_DIR
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=str(BASE_DIR / ".env"),
+        env_file=str(BASE_DIR / ".env") if (BASE_DIR / ".env").exists() else (str(BUNDLE_DIR / ".env") if (BUNDLE_DIR / ".env").exists() else None),
         env_file_encoding="utf-8",
         extra="ignore"
     )
@@ -24,8 +28,8 @@ class Settings(BaseSettings):
     offline_strict: bool = True
 
     # Local REST API
-    api_host: str = "127.0.0.1"
-    api_port: int = 8765
+    api_host: str = "0.0.0.0"
+    api_port: int = 8080
     api_token: str = "sepehryar-local-token-change-in-prod"
 
     # SQL Server Settings
@@ -38,18 +42,29 @@ class Settings(BaseSettings):
     sql_timeout: int = 15
     sql_max_rows: int = 100
 
-    # Local LLM Runtime (Reserved for Phase 4)
-    model_provider: str = "llama_cpp"
+    # LLM Runtime (Free Cloud & Lightweight Local)
+    model_provider: str = "auto"
     model_path: str = "models/default/model.gguf"
     model_context_size: int = 4096
     model_temperature: float = 0.2
-    model_max_tokens: int = 1024
+    model_max_tokens: int = 1500
     model_gpu_layers: int = 0
+    
+    # Free Cloud Providers (Zero RAM/CPU load)
+    gemini_api_key: Optional[str] = ""
+    gemini_model: str = "gemini-3.5-flash-lite"
+    openrouter_api_key: Optional[str] = ""
+    openrouter_model: str = "deepseek/deepseek-r1:free"
+    
+    # Lightweight Local Provider (Ollama)
+    ollama_host: str = "http://127.0.0.1:11434"
+    ollama_model: str = "qwen2.5:1.5b"
 
     # System Paths
     data_dir: Path = BASE_DIR / "data"
     log_dir: Path = BASE_DIR / "logs"
-    knowledge_path: Path = BASE_DIR / "knowledge_base"
+    knowledge_path: Path = BUNDLE_DIR / "knowledge_base" if (BUNDLE_DIR / "knowledge_base").exists() else BASE_DIR / "knowledge_base"
+    docs_path: Path = BASE_DIR / "pdf SEPEHRYAR"
 
     @property
     def sqlite_db_path(self) -> Path:

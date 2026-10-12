@@ -40,9 +40,25 @@ class SafeSQLValidator:
         without_comments = re.sub(r'/\*.*?\*/', ' ', without_comments, flags=re.DOTALL)
         normalized = " ".join(without_comments.split())
 
-        # 1. Must start with SELECT or WITH (for Common Table Expressions)
+        # 1. Must start with SELECT, WITH, or EXEC for approved read-only reporting procedures
         first_token = normalized.split()[0].upper()
-        if first_token not in ("SELECT", "WITH"):
+        is_sp_exec = False
+
+        if first_token in ("EXEC", "EXECUTE"):
+            sp_match = re.match(r"^EXEC(?:UTE)?\s+(?:dbo\.)?(_ssp_\w+)", clean_sql, re.IGNORECASE)
+            if sp_match:
+                sp_name = sp_match.group(1).lower()
+                allowed_sps = {
+                    "_ssp_listmanfikala", "_ssp_gardeshsood", "_ssp_amalkardforosh",
+                    "_ssp_moghayeratanbar", "_ssp_factornotaraz", "_ssp_factortekrari",
+                    "_ssp_ekhtelafcheckvam", "_ssp_listkala", "_ssp_listmandehesabnopishfactor"
+                }
+                if sp_name in allowed_sps:
+                    is_sp_exec = True
+
+            if not is_sp_exec:
+                return False, f"دستور باید فقط با SELECT یا WITH آغاز شود؛ دستور با '{first_token}' مجاز نیست."
+        elif first_token not in ("SELECT", "WITH"):
             return False, f"دستور باید فقط با SELECT یا WITH آغاز شود؛ دستور با '{first_token}' مجاز نیست."
 
         # 2. Disallow multiple statements separated by semicolon
@@ -55,6 +71,8 @@ class SafeSQLValidator:
         tokens = re.findall(r'\b[A-Za-z_]+\b', without_comments)
         for token in tokens:
             upper_token = token.upper()
+            if is_sp_exec and upper_token in ("EXEC", "EXECUTE"):
+                continue
             if upper_token in FORBIDDEN_SQL_KEYWORDS:
                 return False, f"کلمه کلیدی غیرمجاز '{upper_token}' در کوئری شناسایی شد."
 
@@ -131,6 +149,12 @@ class SafeSQLExecutor:
             }
 
         # Step 3: Real SQL Server execution
+        if not self.conn_mgr.is_connection_active():
+            raise QueryExecutionError(
+                user_message="اتصال به پایگاه داده در حال حاضر قطع است. لطفاً ابتدا دکمه «اتصال به دیتابیس» را فعال کنید.",
+                technical_details="Database connection is currently inactive (disconnected by default/user)."
+            )
+
         try:
             with self.conn_mgr.get_connection(server=target_server, database=target_db) as conn:
                 cursor = conn.cursor()
@@ -178,6 +202,8 @@ class SafeSQLExecutor:
                 technical_details=str(e),
                 original_exception=e
             )
+
+    execute_query = execute_readonly_query
 
 
 safe_sql_executor = SafeSQLExecutor()

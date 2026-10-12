@@ -44,9 +44,10 @@ class ChatMemoryManager:
         with self.manager.get_connection() as conn:
             row = conn.execute("SELECT messages_json FROM chat_sessions WHERE id = ?;", (session_id,)).fetchone()
             if not row:
-                # Auto-create session if not found
                 messages = []
+                is_new = True
             else:
+                is_new = False
                 try:
                     messages = json.loads(row["messages_json"])
                 except Exception:
@@ -65,10 +66,20 @@ class ChatMemoryManager:
                 messages = messages[-20:]
 
             json_str = json.dumps(messages, ensure_ascii=False)
-            conn.execute(
-                "UPDATE chat_sessions SET messages_json = ?, updated_at = ? WHERE id = ?;",
-                (json_str, now, session_id)
-            )
+            if is_new:
+                title = content[:50].replace("\n", " ").strip() or "گفت‌وگوی جدید"
+                conn.execute(
+                    """
+                    INSERT INTO chat_sessions (id, title, created_at, updated_at, database_context, messages_json)
+                    VALUES (?, ?, ?, ?, ?, ?);
+                    """,
+                    (session_id, title, now, now, "", json_str)
+                )
+            else:
+                conn.execute(
+                    "UPDATE chat_sessions SET messages_json = ?, updated_at = ? WHERE id = ?;",
+                    (json_str, now, session_id)
+                )
 
     def get_messages(self, session_id: str) -> list[dict[str, Any]]:
         """Retrieve recent messages for a session."""

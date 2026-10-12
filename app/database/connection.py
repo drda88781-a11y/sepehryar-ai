@@ -18,6 +18,39 @@ class DBConnectionManager:
 
     def __init__(self) -> None:
         self.cached_driver: Optional[str] = None
+        self._is_connected: bool = False
+        self._active_database: Optional[str] = None
+
+    def is_connection_active(self) -> bool:
+        """Check if connection to SQL Server has been explicitly enabled."""
+        return self._is_connected
+
+    def get_active_database(self) -> Optional[str]:
+        """Returns the currently active database name if connected."""
+        return self._active_database
+
+    def set_connection_state(
+        self,
+        connected: bool,
+        database: Optional[str] = None
+    ) -> tuple[bool, str, list[str]]:
+        """Connect or disconnect from SQL Server database."""
+        if not connected:
+            self._is_connected = False
+            self._active_database = None
+            logger.info("SQL Server connection manually disconnected by user.")
+            return True, "اتصال به دیتابیس با موفقیت قطع شد.", []
+
+        target_db = database or settings.sql_database
+        success, msg, dbs = self.test_connection(database=target_db)
+        if success:
+            self._is_connected = True
+            self._active_database = target_db
+            logger.info(f"SQL Server connection enabled by user. Active DB: {target_db}")
+        else:
+            self._is_connected = False
+            self._active_database = None
+        return success, msg, dbs
 
     def get_best_driver(self) -> str:
         """Find the most modern SQL Server ODBC driver installed on the Windows host."""

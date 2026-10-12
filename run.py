@@ -88,8 +88,8 @@ def main() -> None:
     parser.add_argument("--demo", action="store_true", help="Load offline Sepehryar demo schema into SQLite")
     parser.add_argument("--diagnose", action="store_true", help="Run system and SQL service health diagnostics")
     parser.add_argument("--ask", type=str, help="Ask a Persian question from Sepehryar AI Agent directly")
-    parser.add_argument("--server", action="store_true", help="Start local REST API server on 127.0.0.1")
-    parser.add_argument("--port", type=int, default=8765, help="Port for local REST API (default: 8765)")
+    parser.add_argument("--server", "--serve", dest="server", action="store_true", help="Start local REST API server")
+    parser.add_argument("--port", type=int, default=settings.api_port, help=f"Port for local REST API (default: {settings.api_port})")
     parser.add_argument("--version", action="store_true", help="Show application version")
 
     args = parser.parse_args()

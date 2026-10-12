@@ -1,0 +1,4027 @@
+{
+  "version": "1.0.0",
+  "source": "Hesabdari.exe (Sepehryar ERP)",
+  "subsystems": {
+    "anbardari": {
+      "title": "سیستم انبارداری، کالا و کنترل موجودی",
+      "db_tables": [
+        "TblKala",
+        "TblAnbar",
+        "TblKardexKala",
+        "TblMojodiKala",
+        "TblFactorKala",
+        "TblBarcode"
+      ],
+      "accounting_nature": "دارایی جاری (موجودی مواد و کالا - کد کل ۱۰۳) / قیمت تمام‌شده کالای فروش‌رفته (کد کل ۸۰۱)",
+      "images": [
+        "anbar_15597b8b32120735a70aeca5ee10dc15e5432ece.png",
+        "anbar_58a61357a64857703a76cf925514cead25803c56.png",
+        "anbar_62d46145d5bdf4bd9a8c7a32729a6700fcd30b58.png",
+        "anbar_6e8a145a3f0f8cec8e004779c78dc743215fa023.png",
+        "anbar_990e2240cfbc4fb0405b41a8f60ae133e42ab034.png",
+        "anbar_b1d7f5ca8643f6e3b10a0fbde5458397d19aa82c.png",
+        "anbar_b816d286d3b45bfb048c0a5d808bd52c59004381.png",
+        "anbar_d66973f351114cf2202da47b0a46d431e330c7ca.png",
+        "anbar_efe2231b8761b41bd8e6e7f84d28051088d515a0.png",
+        "anbar_img1_menu.png",
+        "anbar_img2_taarife_anbar.png",
+        "anbar_img3_form_anbar.png",
+        "anbar_img4_taarife_kala.png",
+        "anbar_img5_tab_vahed.png",
+        "anbar_img6_tab_gorouh.png",
+        "anbar_img7_tab_moshakhasat.png",
+        "anbar_img8_tab_tanzimat.png"
+      ],
+      "forms": [
+        {
+          "id": "tsmLastMandeTahlil.Text",
+          "title": "گزارش تحلیلی کالا",
+          "raw": "گزارش تحلیلی کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptDetailAnbar.Text",
+          "title": "لیست مشخصات انبارها",
+          "raw": "لیست مشخ&صات انبارها",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmBarcod.Text",
+          "title": "تعریف بارکد کالا",
+          "raw": "تعریف &بارکد کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmPrintEdiket.Text",
+          "title": "چاپ اتیکت و بارکد کالا",
+          "raw": "چاپ اتیکت و بارکد کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmDeleteAllKala.Text",
+          "title": "حذف دسته جمعی کالاها",
+          "raw": "حذف دسته جمعی کالاها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmKalayeTolidShode.Text",
+          "title": "لیست کالاهای تولید شده",
+          "raw": "لیست کالاهای &تولید شده",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmMoghayeratShobeFactorByAnbar.Text",
+          "title": "مغایرت شعبه فاکتور با شعبه انبار",
+          "raw": "مغایرت شعبه فاکتور با شعبه انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmJabejayiKala.Text",
+          "title": "جابجایی کالا",
+          "raw": "&جابجایی کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "mnuItmRptChangeKala.Text",
+          "title": "گزارش تغییرات کالا",
+          "raw": "گزارش تغییرات کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "MnuPrice.Text",
+          "title": "قیمت گذاری سریع کالا",
+          "raw": "&قیمت گذاری سریع کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSortAnbarFactor.Text",
+          "title": "مرتب سازی فاکتور های انبار",
+          "raw": "مرتب سازی فاکتور های انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBakMasrafKala.Text",
+          "title": "صدور فاکتور برگشت مصرف کالا",
+          "raw": "صدور فاکتور &برگشت مصرف کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmKardexKalaTagmi.Text",
+          "title": "کاردکس کالا تجمیعی",
+          "raw": "کاردکس کالا تجمیعی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmPrintBarcode.Text",
+          "title": "چاپ بارکد سفارشات تولید",
+          "raw": "چاپ بارکد سفارشات تولید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBaravord.Text",
+          "title": "برآورد و ثبت تولید کالا",
+          "raw": "&برآورد و ثبت تولید کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmKardexTedadi.Text",
+          "title": "کاردکس تعدادی",
+          "raw": "کاردکس تعدادی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRasidAnbargardani.Text",
+          "title": "رسید انبارگردانی",
+          "raw": "رسید انبارگردانی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmManagAnbar.Text",
+          "title": "مدیریت انبار",
+          "raw": "مدیریت &انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmTajmieKalaAnabar.Text",
+          "title": "گزارش تجمیعی دوره ای کالاها در همه انبارها",
+          "raw": "گزارش تجمیعی دوره ای کالاها در همه انبارها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBakOut.Text",
+          "title": "برگشت حواله انبار",
+          "raw": "برگشت حواله انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "mnuitmkalabarg.Text",
+          "title": "تعریف بارکد کالابرگ",
+          "raw": "تعریف بارکد کالابرگ",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmPakhshBeduneFormul.Text",
+          "title": "تفکیک کالا بدون فرمول",
+          "raw": "تفکیک کالا بدون فرمول",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptKharidForosh.Text",
+          "title": "گزارش خرید و فروش یک کالا",
+          "raw": "گزارش خرید و فروش یک کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptAsnad1Roz.Text",
+          "title": "گزارش اسناد یک روز واحد انبار",
+          "raw": "گزارش اسناد یک روز وا&حد انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptLastMandeKala.Text",
+          "title": "گزارش آخرین مانده کل کالاها",
+          "raw": "گزارش &آخرین مانده کل کالاها",
+          "shortcut": ""
+        },
+        {
+          "id": "Tsmjozeyatkala.Text",
+          "title": "جزئیات کالا",
+          "raw": "جزئیات کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptTahlilAnbar.Text",
+          "title": "گزارشات تحلیلی انبار",
+          "raw": "گزارشات تحلیلی انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBaravordPakhshBySerial.Text",
+          "title": "تفکیک کالا بر اساس سریال",
+          "raw": "تفکیک کالا بر اساس سریال",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmSumAsnadDoure.Text",
+          "title": "گزارش جمع کالاهای یک دوره",
+          "raw": "گزارش جمع کالاهای یک دوره",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptOutKala.Text",
+          "title": "چاپ حواله انبار",
+          "raw": "چاپ حواله انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBaravordSquareMeter.Text",
+          "title": "برآورد و ثبت تولید کالا با طول و عرض",
+          "raw": "برآورد و ثبت تولید کالا با طول و عرض",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptListKhameAnbar.Text",
+          "title": "گزارش لیست خام انبار",
+          "raw": "گزارش لیست خا&م انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmNonTaeidAsnadAnbar.Text",
+          "title": "لغو تایید اسناد انبار",
+          "raw": "لغو تایید اسناد انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmKardexArzi.Text",
+          "title": "کاردکس ارزی",
+          "raw": "کاردکس ارزی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTafkik.Text",
+          "title": "عملیات تفکیک کالا",
+          "raw": "عملیات تفکیک کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmAnbardari.Text",
+          "title": "انبارداری",
+          "raw": "&انبارداری",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTolidGroupBaravord.Text",
+          "title": "برآورد گروهی کالاها",
+          "raw": "برآورد گروهی کالاها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTypeForoshKala.Text",
+          "title": "تعریف انواع فروش کالا",
+          "raw": "تعریف انواع &فروش کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmUpdateIdKala.Text",
+          "title": "تغییر کد کالا",
+          "raw": "تغییر کد کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmUpdateOnvanFactorAnbar.Text",
+          "title": "ویرایش اطلاعات عنوان فاکتور های انبار",
+          "raw": "ویرایش اطلاعات عنوان فاکتور های انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmHavaleAnbargardani.Text",
+          "title": "حواله انبارگردانی",
+          "raw": "حواله انبارگردانی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRequestKala.Text",
+          "title": "فرم درخواست کالا از انبار",
+          "raw": "فرم درخواست کالا از انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSabtPakhsh.Text",
+          "title": "برآورد و ثبت تفکیک کالا",
+          "raw": "&برآورد و ثبت تفکیک کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmChartComparisonGardeshGroupKala.Text",
+          "title": "نمودار مقایسه گردش گروه کالا",
+          "raw": "نمودار مقایسه گردش گروه کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmUpdateCodeAnbar.Text",
+          "title": "تغییر کد انبار",
+          "raw": "تغییر کد انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptKalaTolid.Text",
+          "title": "گزارش کالاهای تولید شده (بر اساس تاریخ)",
+          "raw": "&گزارش کالاهای تولید شده (بر اساس تاریخ)",
+          "shortcut": ""
+        },
+        {
+          "id": "mnuItmRptPriceKala.Text",
+          "title": "گزارش تغییر قیمت کالا",
+          "raw": "گزارش تغییر قیمت کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptAsnadAnbar.Text",
+          "title": "گزارش اسناد انبار بر اساس نوع سند",
+          "raw": "گزارش اسناد ان&بار بر اساس نوع سند",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptRizeKalaTafkik.Text",
+          "title": "آخرین مانده کالا به تفکیک انبار",
+          "raw": "آخرین مانده کالا به تفکیک انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptInKala.Text",
+          "title": "چاپ رسید انبار",
+          "raw": "چاپ رسید انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptRezerv.Text",
+          "title": "گزارش کالا های رزرو شده",
+          "raw": "گزارش کالا های رزرو شده",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptAsnadFactorAnabr.Text",
+          "title": "گزارش اسناد انبار",
+          "raw": "گزارش اسناد انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmTanzimatAnbar.Text",
+          "title": "تنظیمات انبار",
+          "raw": "تنظیمات انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmInputKala.Text",
+          "title": "رسید انبار",
+          "raw": "رسید انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmOutPutKala.Text",
+          "title": "حواله انبار",
+          "raw": "حواله انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmDeletePakhsh.Text",
+          "title": "نمایش و حذف سند تفکیک کالا",
+          "raw": "&نمایش و حذف سند تفکیک کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmbarcodeSnappInsert.Text",
+          "title": "تعریف بارکد اسنپ",
+          "raw": "تعریف بارکد  اسنپ",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmPrintEdiketBarcode.Text",
+          "title": "چاپ اتیکت و بارکد کالا با بارکد",
+          "raw": "چاپ اتیکت و بارکد کالا با بارکد",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmImportMojodiKala.Text",
+          "title": "شارژ روزانه کالا",
+          "raw": "شارژ روزانه کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRasidKala.Text",
+          "title": "انواع رسید (ورود) کالا",
+          "raw": "انواع رسید (ورود) کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmListFactorMasraf.Text",
+          "title": "لیست فاکتور مصرف کالا",
+          "raw": "لیست فاکتور مصرف کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "mnuMandeKalaByForoshande.Text",
+          "title": "لیست کالا ها بر اساس تامین کننده",
+          "raw": "لیست کالا ها بر اساس تامین کننده",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmRptInOutAnbar.Text",
+          "title": "گزارش جمع ورود و خروج کالا",
+          "raw": "گزارش جمع ورود و خروج کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSlideKalaUseFull.Text",
+          "title": "اسلاید کالاهای پرکاربرد",
+          "raw": "اسلاید کالاهای پرکاربرد",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmListUpdatedAsnadAnbar.Text",
+          "title": "لیست فاکتورهای ویرایش شده انبار",
+          "raw": "لیست فاکتورهای ویرایش شده انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmChangMab.Text",
+          "title": "گزارش تغییر قیمت کالا",
+          "raw": "گزارش تغییر قیمت کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmKalaUseFull.Text",
+          "title": "تعریف انواع کالاهای پرکاربرد",
+          "raw": "تعریف انواع کالاهای پرکاربرد",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmSetIdKalaTaxGov.Text",
+          "title": "انتصاب شناسه به کالا",
+          "raw": "انتصاب شناسه به کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmShakhesKala.Text",
+          "title": "شاخص کالا",
+          "raw": "شاخص کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "mnuitmGrpKalaMande.Text",
+          "title": "مانده گروه کالا",
+          "raw": "مانده گروه کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmListDeletedAsnadAnbar.Text",
+          "title": "لیست فاکتورهای حذف شده انبار",
+          "raw": "لیست فاکتورهای حذف شده انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTarifAnbar.Text",
+          "title": "تعریف انبار",
+          "raw": "تعریف &انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmSerialKala.Text",
+          "title": "ثبت سریال کالا",
+          "raw": "&ثبت سریال کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmHavaleKala.Text",
+          "title": "انواع حواله (خروج) کالا",
+          "raw": "انواع حواله (خروج) کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tmsExcelBarcode.Text",
+          "title": "تعریف بارکد با اکسل",
+          "raw": "تعریف بارکد با اکسل",
+          "shortcut": ""
+        },
+        {
+          "id": "MnuShakhesKoli.Text",
+          "title": "گزارش شاخص کلی کالاها",
+          "raw": "گزارش شاخص کلی کالاها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmGroupKala.Text",
+          "title": "تعریف گروه های کالا",
+          "raw": "تعریف گروه های کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptKalaDetails.Text",
+          "title": "گزارش ریز اطلاعات کالا",
+          "raw": "گزارش ریز اطلاعات کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "mnuMosavabKharid2.Text",
+          "title": "مصوب خرید بر اساس کالا",
+          "raw": "مصوب خرید بر اساس کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMiyanginGardeshKala.Text",
+          "title": "نمایش گردش کالا",
+          "raw": "نمایش گردش کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmMororAnbar.Text",
+          "title": "مرور انبار",
+          "raw": "مرور انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "mnuEditKala.Text",
+          "title": "ویرایش دسته جمعی کالاها",
+          "raw": "ویرایش دسته جمعی کالاها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmPakhshTolid.Text",
+          "title": "تهیه فرمول تفکیک کالا",
+          "raw": "تهیه &فرمول تفکیک کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmMandeKoleKala.Text",
+          "title": "گزارش مانده تاریخی کالاها",
+          "raw": "گزارش مانده &تاریخی کالاها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmGroupPrint.Text",
+          "title": "چاپ رسید و حواله انبار",
+          "raw": "چاپ رسید و حواله انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmJabejayiTarazo.Text",
+          "title": "جابجایی کالا با بارکد ترازو",
+          "raw": "جابجایی کالا با بارکد ترازو",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmAvamelPakhsh.Text",
+          "title": "تعریف عوامل تفکیک کالا",
+          "raw": "تعریف عوامل تفکیک کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "mnuRptPorsoodtarinKala.Text",
+          "title": "پر سود ترین کالا قبل از فروش",
+          "raw": "پر سود ترین کالا قبل از فروش",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmNewGenerateBarcode.Text",
+          "title": "تعریف بارکد کالای بسته بندی",
+          "raw": "تعریف بارکد کالای بسته بندی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCopyKalaAdvanced.Text",
+          "title": "کپی کالای انبار",
+          "raw": "کپی کالای انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmKalaDescription.Text",
+          "title": "تعریف شرح کالا",
+          "raw": "تعریف شرح کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmSumKalaPishfactor.Text",
+          "title": "جمع کالاهای پیش فاکتور",
+          "raw": "جمع کالاهای پیش فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmSabtSariPriceDarsad.Text",
+          "title": "قیمت گذاری سریع کالا به صورت درصد سود",
+          "raw": "قیمت گذاری سریع کالا به صورت درصد سود",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMasrafKala.Text",
+          "title": "صدور فاکتور مصرف کالا",
+          "raw": "صدور فاکتور &مصرف کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmChartComparisonGardeshKala.Text",
+          "title": "نمودار مقایسه گردش کالا",
+          "raw": "نمودار مقایسه گردش کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmUpdateIDAnbar.Text",
+          "title": "تغییر کد انبار یک کالا",
+          "raw": "تغییر کد انبار یک کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBakInsert.Text",
+          "title": "برگشت رسید انبار",
+          "raw": "برگشت رسید انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptKambodKala.Text",
+          "title": "لیست کمبود کالا بر اساس نقطه سفارش",
+          "raw": "لیست کمبود کالا بر اساس &نقطه سفارش",
+          "shortcut": ""
+        },
+        {
+          "id": "mnuItmRptBarcod.Text",
+          "title": "گزارش بارکد کالا",
+          "raw": "گزارش بارکد کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTaeidAsnadAnbar.Text",
+          "title": "تایید اسناد انبار",
+          "raw": "تایید اسناد انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptBaseAnbar.Text",
+          "title": "گزارشات پایه انبار",
+          "raw": "گزارشات پایه انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmMandeKoleKalaTed.Text",
+          "title": "گزارش مانده تاریخی کالاها",
+          "raw": "گزارش مانده &تاریخی کالاها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptLastMandeKalaTed.Text",
+          "title": "گزارش آخرین مانده کل کالاها",
+          "raw": "گزارش &آخرین مانده کل کالاها",
+          "shortcut": ""
+        },
+        {
+          "id": "mnuAnbargardani.Text",
+          "title": "انبارگردانی",
+          "raw": "انبارگردانی",
+          "shortcut": ""
+        },
+        {
+          "id": "MnuRptSumKala.Text",
+          "title": "گزارش جمع کالای انبارها",
+          "raw": "گزارش جمع کالای انبارها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptSefareshKala.Text",
+          "title": "گزارش سفارش تولید یک کالا",
+          "raw": "گزارش سفارش تولید یک &کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSamaneAnbar.Text",
+          "title": "سامانه جامع انبارها",
+          "raw": "سامانه جامع انبارها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptBakInsert.Text",
+          "title": "چاپ رسید برگشت کالا",
+          "raw": "چاپ رسید برگشت کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptKardexKala.Text",
+          "title": "کاردکس کالا",
+          "raw": "&کاردکس کالا                              Ctrl+F3",
+          "shortcut": "CTRL+F"
+        },
+        {
+          "id": "TsmSefareshKharidkala.Text",
+          "title": "سفارش خرید کالا",
+          "raw": "سفارش خرید کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSefareshKala.Text",
+          "title": "سفارش کالا",
+          "raw": "&سفارش کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmKalayeMasraf.Text",
+          "title": "لیست کالاهای مصرف شده در تولید",
+          "raw": "لیست کالاهای &مصرف شده در تولید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTarifKala.Text",
+          "title": "تعریف کالا",
+          "raw": "تعریف &کالا                Ctrl+K",
+          "shortcut": "CTRL+K"
+        },
+        {
+          "id": "tsmRptAsnad1RozTed.Text",
+          "title": "گزارش اسناد یک روز واحد انبار",
+          "raw": "گزارش اسناد یک روز وا&حد انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptRakedKala.Text",
+          "title": "گزارش کالاهای راکد (بدون گردش)",
+          "raw": "گزارش کالاهای راکد (بدون گردش)",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmListFactorBakMasraf.Text",
+          "title": "لیست فاکتور برگشت مصرف کالا",
+          "raw": "لیست فاکتور برگشت مصرف کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptAnbarByMatrixGroup.Text",
+          "title": "گزارش بر اساس گروه کالا های ماتریسی",
+          "raw": "گزارش بر اساس گروه کالا های ماتریسی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmJabejayiKalaManual.Text",
+          "title": "جابجایی کالا",
+          "raw": "جابجایی کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "mnuitmprrptlastmandekalahaEngheza.Text",
+          "title": "گزارش آخرین مانده کل کالاها بر اساس تاریخ انقضا",
+          "raw": "گزارش آخرین مانده کل کالاها بر اساس تاریخ انقضا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmKalaGroupOnvan.Text",
+          "title": "تعریف عنوان گروه های کالا",
+          "raw": "تعریف عنوان گروه های کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmGhimatSotoni.Text",
+          "title": "نمایش ستونی قیمت های کالا",
+          "raw": "نمایش ستونی قیمت های کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptAnbarTed.Text",
+          "title": "گزارشات تعدادی انبار",
+          "raw": "گزارشات تعدادی انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMoveAsnadKala.Text",
+          "title": "انتقال اسناد یک کالا به کالای دیگر",
+          "raw": "انتقال اسناد یک کالا به کالای دیگر",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptAnbar.Text",
+          "title": "گزارشات انبار",
+          "raw": "&گزارشات انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmAdvanceSearchAnbar.Text",
+          "title": "جستجوی پیشرفته انبار",
+          "raw": "جستجوی پیشرفته انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmChangeCodAnbarKala.Text",
+          "title": "تغییر تراکنش یک کالا در انبار",
+          "raw": "تغییر تراکنش یک کالا در انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMojoodiManfiTeyDore.Text",
+          "title": "لیست کالاهای منفی شده طی دوره",
+          "raw": "لیست کالاهای منفی شده طی دوره",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmPersonTakhfif.Text",
+          "title": "تخفیف کالا به مشتری",
+          "raw": "تخفیف کالا به مشتری",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmEstelamKala.Text",
+          "title": "استعلام کالا",
+          "raw": "است&علام کالا",
+          "shortcut": ""
+        },
+        {
+          "id": "RptControlAnbar.Text",
+          "title": "گزارشات کنترلی انبار",
+          "raw": "گزارشات کنترلی انبار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmGroupMojodiKala.Text",
+          "title": "گزارشات موجودی انبار",
+          "raw": "گزارشات موجودی  انبار",
+          "shortcut": ""
+        }
+      ]
+    },
+    "forush": {
+      "title": "سیستم فروش، فاکتورها و طرف‌حساب‌ها",
+      "db_tables": [
+        "TblFactor",
+        "TblFactorDetail",
+        "TblPerson",
+        "TblPishFactor",
+        "TblForooshPrice"
+      ],
+      "accounting_nature": "بستانکار: فروش (کد ۷۰۱) و ارزش افزوده پرداختی (کد ۳۰۲/۲) | بدهکار: بدهکاران تجاری (کد ۱۱۰/۱) یا نقد/بانک",
+      "images": [
+        "factor_img_1.png",
+        "factor_img_10.png",
+        "factor_img_2.png",
+        "factor_img_3.png",
+        "factor_img_4.png",
+        "factor_img_5.png",
+        "factor_img_6.png",
+        "factor_img_7.png",
+        "factor_img_8.png",
+        "factor_img_9.png"
+      ],
+      "forms": [
+        {
+          "id": "menuItemPro15.Text",
+          "title": "حذف کلی اطلاعات اشخاص",
+          "raw": "حذف کلی اطلاعات اشخاص",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmPersonalInformation.Text",
+          "title": "اطلاعات اشخاص",
+          "raw": "اطلاعات &اشخاص                     Ctrl+Y",
+          "shortcut": "CTRL+Y"
+        },
+        {
+          "id": "tsmForoshZirKharid.Text",
+          "title": "لیست فروش های زیر قیمت خرید",
+          "raw": "لیست فروش های &زیر قیمت خرید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptSaham.Text",
+          "title": "گزارش سهام اشخاص",
+          "raw": "گزارش سهام اشخاص",
+          "shortcut": ""
+        },
+        {
+          "id": "RptMoshtariFactor.Text",
+          "title": "ریز فاکتورهای یک مشتری",
+          "raw": "ریز فاکتورهای یک مشتری",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmForushAndBarghasht.Text",
+          "title": "گزارش مرور فروش",
+          "raw": "گزارش مرور فروش",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmGroupPerson.Text",
+          "title": "تعریف گروه های اشخاص",
+          "raw": "تعریف گروه های اشخا&ص",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCustomerClub.Text",
+          "title": "باشگاه مشتریان",
+          "raw": "باشگاه مشتریان",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRizeFactor.Text",
+          "title": "ریز فاکتور مشتریان",
+          "raw": "ریز فاکتور مشتریان",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmForoshFasliPro.Text",
+          "title": "گزارش فروش فصلی پیشرفته",
+          "raw": "گزارش فروش فصلی پیشرفته",
+          "shortcut": ""
+        },
+        {
+          "id": "mnuListFactorPhoton.Text",
+          "title": "لیست فاکتورهای فروش",
+          "raw": "لیست فاکتورهای فروش",
+          "shortcut": ""
+        },
+        {
+          "id": "buttonItem33.Text",
+          "title": "صدور فاکتور فروش",
+          "raw": "صدور فاکتور فروش",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmForoshUsers.Text",
+          "title": "لیست فروش کاربران",
+          "raw": "لیست فروش کاربران",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSaleFactor.Text",
+          "title": "فاکتور فروش",
+          "raw": "فاکتور فروش",
+          "shortcut": ""
+        },
+        {
+          "id": "mnuPersonEdit.Text",
+          "title": "ویرایش دسته جمعی اشخاص",
+          "raw": "ویرایش دسته جمعی اشخاص",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmFactorForoshCallerID.Text",
+          "title": "فاکتور فروش ویژه مشترکین",
+          "raw": "فاکتور فروش ویژه مشترکین",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmForoshFasli.Text",
+          "title": "گزارش فروش فصلی",
+          "raw": "گزارش فروش فصلی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmFactorForoshLamsi.Text",
+          "title": "فاکتور فروش لمسی",
+          "raw": "فاکتور فروش لمسی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptAmarForosh.Text",
+          "title": "گزارش آمار فروش (بر اساس تعداد و سود و مبلغ)",
+          "raw": "گزارش آمار فروش (بر اساس تعداد و سود و مبل&غ)",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmListFactorForosh.Text",
+          "title": "لیست فاکتور فروش",
+          "raw": "لیست فاکتور فروش",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmPersonMande.Text",
+          "title": "لیست مانده های اشخاص",
+          "raw": "لیست مانده های اشخاص                  Ctrl+L",
+          "shortcut": "CTRL+L"
+        },
+        {
+          "id": "tmsChartGardeshKaridForush.Text",
+          "title": "نمودار مقایسه گردش خرید و فروش",
+          "raw": "نمودار مقایسه گردش خرید و فروش",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptSuratForosh.Text",
+          "title": "گزارش صورت فروش",
+          "raw": "گزارش صورت فروش",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptDoreyi.Text",
+          "title": "گزارش آمار دوره ای ( خرید و فروش)",
+          "raw": "گزارش آمار دوره ا&ی ( خرید و فروش)",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmAvamelForush.Text",
+          "title": "تعریف عوامل فاکتور فروش",
+          "raw": "تعریف عوامل فاکتور فروش",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmPishFactor.Text",
+          "title": "صدور پیش فاکتور",
+          "raw": "صدور &پیش فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmDimensionalFactorForosh.Text",
+          "title": "فاکتور فروش ابعادی",
+          "raw": "فاکتور فروش ابعادی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmForoshZirGheymatForosh.Text",
+          "title": "لیست فروش های مغایر با قیمت فروش",
+          "raw": "لیست فروش های م&غایر با قیمت فروش",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmFactorForush.Text",
+          "title": "صدور فاکتور فروش",
+          "raw": "صدور فاکتور &فروش                             Ctrl+F4",
+          "shortcut": "CTRL+F"
+        },
+        {
+          "id": "tsmListPishFactor.Text",
+          "title": "لیست پیش فاکتور",
+          "raw": "لیست پیش فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "TMIMinPerson.Text",
+          "title": "ثبت سریع اشخاص",
+          "raw": "ثبت سریع اشخاص                  ALT+M",
+          "shortcut": "ALT+M"
+        },
+        {
+          "id": "tmsPishFactotrToFactoForushBulk.Text",
+          "title": "دسته جمعی پیش فاکتور به فاکتور فروش",
+          "raw": "دسته جمعی پیش فاکتور به فاکتور فروش",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptListPishFactor.Text",
+          "title": "لیست پیش فاکتورها",
+          "raw": "لیست پیش فاکتورها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmFactorBakForush.Text",
+          "title": "صدور فاکتور برگشت از فروش",
+          "raw": "صدور فاکتور &برگشت از فروش",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmListFactorBakForosh.Text",
+          "title": "لیست فاکتور برگشت فروش",
+          "raw": "لیست فاکتور برگشت فروش",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMainFactorForoshLamsi.Text",
+          "title": "فروش لمسی",
+          "raw": "فروش لمسی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptPerson.Text",
+          "title": "گزارش اطلاعات اشخاص",
+          "raw": "گزارش اطلاعات اشخاص",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCustomerPayments.Text",
+          "title": "ثبت پرداختی های مشتریان",
+          "raw": "ثبت پرداختی های مشتریان",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptForoshDarayi.Text",
+          "title": "لیست فروش به مشتریان جهت دارایی",
+          "raw": "لیست فروش به مشتریان جهت &دارایی",
+          "shortcut": ""
+        },
+        {
+          "id": "tmsExcelFactorForushes.Text",
+          "title": "فراخوانی فاکتور فروش ها از اکسل",
+          "raw": "فراخوانی فاکتور فروش ها از اکسل",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmHotelFactorForoshLamsi.Text",
+          "title": "فاکتور فروش ویژه هتل",
+          "raw": "فاکتور فروش ویژه هتل",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmAshkhas.Text",
+          "title": "گزارشات اشخاص",
+          "raw": "گزارشات اشخاص",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmForoshFasli1.Text",
+          "title": "گزارش فروش فصلی",
+          "raw": "گزارش فروش فصلی",
+          "shortcut": ""
+        },
+        {
+          "id": "menuItemPro11.Text",
+          "title": "مصوب خرید بر اساس تامین کننده و مقدار فروش",
+          "raw": "مصوب خرید بر اساس تامین کننده و مقدار فروش",
+          "shortcut": ""
+        },
+        {
+          "id": "Tsmghk.Text",
+          "title": "قرعه کشی فاکتور فروش",
+          "raw": "قرعه کشی فاکتور فروش",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmFactorPerson.Text",
+          "title": "لیست فاکتورهای مشتریان",
+          "raw": "لیست فاکتورهای مشتریان",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptPersonCity.Text",
+          "title": "گزارش لیست اشخاص بر اساس کد شهر",
+          "raw": "گزارش لیست اشخاص بر اساس کد شهر",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmForoshByCustom.Text",
+          "title": "گزارش خرید و فروش",
+          "raw": "گزارش خرید و فروش",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCreateGhestFactor.Text",
+          "title": "تقسیط بندی فاکتور فروش",
+          "raw": "تقسیط بندی فاکتور فروش",
+          "shortcut": ""
+        },
+        {
+          "id": "tmsPishFactorDeleted.Text",
+          "title": "پیش فاکتورهای حذف شده",
+          "raw": "پیش فاکتورهای حذف شده",
+          "shortcut": ""
+        },
+        {
+          "id": "tmsNemudarPersonMande.Text",
+          "title": "نمودار مقایسه مانده اشخاص",
+          "raw": "نمودار مقایسه مانده اشخاص",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptBrowsePishFactor.Text",
+          "title": "مرور پیش فاکتور",
+          "raw": "مرور پیش فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmReportPishFactor.Text",
+          "title": "گزارشات پیش فاکتور",
+          "raw": "گزارشات پیش فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptFactorKhadamatCustomer.Text",
+          "title": "گزارش کارکرد مشتری به تفکیک احکام",
+          "raw": "گزارش کارکرد مشتری به تفکیک احکام",
+          "shortcut": ""
+        },
+        {
+          "id": "mipPersonHesab.Text",
+          "title": "تعیین حساب های اشخاص",
+          "raw": "تعیین حساب های اشخاص",
+          "shortcut": ""
+        },
+        {
+          "id": "tmsNemudarPersonGardesh.Text",
+          "title": "نمودار مقایسه گردش اشخاص",
+          "raw": "نمودار مقایسه گردش اشخاص",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmEventPerson.Text",
+          "title": "مدیریت و ارتباط با مشتریان",
+          "raw": "مدیریت و ارتباط با مشتریان",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmbakFactorForoshIn.Text",
+          "title": "فاکتور برگشت از فروش",
+          "raw": "فاکتور برگشت از فروش",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmFactorForoshIn.Text",
+          "title": "فاکتور فروش",
+          "raw": "فاکتور فروش",
+          "shortcut": ""
+        }
+      ]
+    },
+    "kharid": {
+      "title": "سیستم خرید، تدارکات و تامین‌کنندگان",
+      "db_tables": [
+        "TblFactorKharid",
+        "TblFactorKharidDetail",
+        "TblPerson",
+        "TblSefareshKharid"
+      ],
+      "accounting_nature": "بدهکار: خرید/موجودی کالا (کد ۱۰۳) و اعتبار ارزش افزوده (کد ۱۰۸/۱) | بستانکار: بستانکاران تجاری (کد ۲۰۱/۱)",
+      "images": [],
+      "forms": [
+        {
+          "id": "tsmFactorBakKharid.Text",
+          "title": "صدور فاکتور برگشت از خرید",
+          "raw": "صدور فاکتور برگشت از خرید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmKharidAndBarghasht.Text",
+          "title": "گزارش مرور خرید",
+          "raw": "گزارش مرور خرید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmOrderBuyCreate.Text",
+          "title": "ثبت درخواست خرید",
+          "raw": "ثبت درخواست خرید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBakFactorKharidIn.Text",
+          "title": "فاکتور برگشت از خرید",
+          "raw": "فاکتور برگشت از خرید",
+          "shortcut": ""
+        },
+        {
+          "id": "tmsExcelFactorKharid.Text",
+          "title": "فراخوانی فاکتور خرید ها از اکسل",
+          "raw": "فراخوانی فاکتور خرید ها از اکسل",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmFactorKharidIn.Text",
+          "title": "فاکتور خرید",
+          "raw": "فاکتور خرید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMosavabKharid.Text",
+          "title": "مصوب خرید بر اساس تامین کننده",
+          "raw": "مصوب خرید بر اساس تامین کننده",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTaghsimSood.Text",
+          "title": "تقسیم سود به خریداران",
+          "raw": "تقسیم سود به خریداران",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmOrderBuyReport.Text",
+          "title": "گزارش درخواست خرید",
+          "raw": "گزارش درخواست خرید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmListFactorKharid.Text",
+          "title": "لیست فاکتور خرید",
+          "raw": "لیست فاکتور خرید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSefarshKharid.Text",
+          "title": "ثبت سفارش خرید",
+          "raw": "ثبت سفارش خرید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBon.Text",
+          "title": "بن خرید",
+          "raw": "بن خرید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmListFactorBakKharid.Text",
+          "title": "لیست فاکتور برگشت خرید",
+          "raw": "لیست فاکتور برگشت خرید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmOrderBuy.Text",
+          "title": "درخواست خرید",
+          "raw": "درخواست خرید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptSuratKharid.Text",
+          "title": "گزارش صورت خرید",
+          "raw": "گزارش صورت خرید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSupplierPayments.Text",
+          "title": "ثبت پرداختی های تامین کنندگان",
+          "raw": "ثبت پرداختی های تامین کنندگان",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmFactorKharid.Text",
+          "title": "صدور فاکتور خرید",
+          "raw": "صدور فاکتور &خرید                              Ctrl+F5",
+          "shortcut": "CTRL+F"
+        },
+        {
+          "id": "tsmAvamelKharid.Text",
+          "title": "تعریف عوامل فاکتور خرید",
+          "raw": "تعریف عوامل فاکتور خرید",
+          "shortcut": ""
+        }
+      ]
+    },
+    "hesabdari": {
+      "title": "سیستم حسابداری مالی، اسناد و دفاتر قانونی",
+      "db_tables": [
+        "TblSanad",
+        "TblSanadDetail",
+        "TblHesabKol",
+        "TblHesabMoien",
+        "TblHesabTafsili",
+        "TblDoreMali"
+      ],
+      "accounting_nature": "رعایت تراز دوطرفه (جمع بدهکار = جمع بستانکار) در سطح کل، معین و تفصیلی",
+      "images": [
+        "payeh_img_10_17.jpeg",
+        "payeh_img_11_18.jpeg",
+        "payeh_img_12_19.jpeg",
+        "payeh_img_12_20.png",
+        "payeh_img_13_21.jpeg",
+        "payeh_img_14_22.jpeg",
+        "payeh_img_15_23.jpeg",
+        "payeh_img_15_24.jpeg",
+        "payeh_img_15_25.png",
+        "payeh_img_16_26.jpeg",
+        "payeh_img_16_27.jpeg",
+        "payeh_img_16_28.png",
+        "payeh_img_17_29.jpeg",
+        "payeh_img_17_30.jpeg",
+        "payeh_img_17_31.jpeg",
+        "payeh_img_18_1.png",
+        "payeh_img_18_32.jpeg",
+        "payeh_img_18_33.png",
+        "payeh_img_19_34.jpeg",
+        "payeh_img_19_35.png",
+        "payeh_img_1_1.jpeg",
+        "payeh_img_1_2.jpeg",
+        "payeh_img_20_36.jpeg",
+        "payeh_img_20_37.png",
+        "payeh_img_21_38.jpeg",
+        "payeh_img_21_39.jpeg",
+        "payeh_img_21_40.jpeg",
+        "payeh_img_22_41.jpeg",
+        "payeh_img_22_42.png",
+        "payeh_img_23_43.jpeg",
+        "payeh_img_23_44.png",
+        "payeh_img_24_45.jpeg",
+        "payeh_img_24_46.png",
+        "payeh_img_2_3.jpeg",
+        "payeh_img_2_4.png",
+        "payeh_img_3_5.jpeg",
+        "payeh_img_3_6.jpeg",
+        "payeh_img_4_1.png",
+        "payeh_img_4_7.jpeg",
+        "payeh_img_4_8.png",
+        "payeh_img_5_10.png",
+        "payeh_img_5_9.jpeg",
+        "payeh_img_6_11.jpeg",
+        "payeh_img_7_1.png",
+        "payeh_img_7_12.jpeg",
+        "payeh_img_7_13.png",
+        "payeh_img_8_14.jpeg",
+        "payeh_img_8_15.png",
+        "payeh_img_9_16.jpeg"
+      ],
+      "forms": [
+        {
+          "id": "mnitmrptbon.Text",
+          "title": "گزارش بن",
+          "raw": "گزارش بن",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmVirayeshSanad.Text",
+          "title": "ویرایش اسناد حسابداری",
+          "raw": "ویرایش اسناد حسابداری",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmNemudarMande.Text",
+          "title": "نمودار مقایسه مانده حساب ها",
+          "raw": "نمودار مقایسه مانده حساب ها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmNewFilePayrollD3.Text",
+          "title": "تشکیل فایل کسر از حقوق3",
+          "raw": "تشکیل فایل کسر از حقوق3",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmGroupResume.Text",
+          "title": "لیست اسناد کاربران",
+          "raw": "لیست اسناد کاربران",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBrowseHesab6.Text",
+          "title": "مرور حساب 6 ستونی",
+          "raw": "مرور حساب 6 ستونی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmChangeMoin.Text",
+          "title": "تغییر کد معین",
+          "raw": "تغییر کد معین",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmAmarMoin.Text",
+          "title": "آمار معین(تعداد اسناد و مبلغ)",
+          "raw": "آمار معین(تعداد اسناد و مبلغ)",
+          "shortcut": ""
+        },
+        {
+          "id": "حسابداریToolStripMenuItem.Text",
+          "title": "حسابداری",
+          "raw": "حسابداری",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmNemudar.Text",
+          "title": "نمودارها",
+          "raw": "نمودارها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmDaftarRooznameSal.Text",
+          "title": "دفتر روزنامه سال",
+          "raw": "دفتر روزنامه سال",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTarif.Text",
+          "title": "تعاریف",
+          "raw": "تعاریف&",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCreateSarfasl.Text",
+          "title": "ایجاد سرفصل",
+          "raw": "ایجاد &سرفصل                          Ctrl+S",
+          "shortcut": "CTRL+S"
+        },
+        {
+          "id": "menuItemPro13.Text",
+          "title": "چاپ اسناد براساس بایگانی",
+          "raw": "چاپ اسناد براساس بایگانی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmModiriatSystem.Text",
+          "title": "مدیریت سیستم",
+          "raw": "&مدیریت سیستم",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmkoliRizeAsnadHesabdari.Text",
+          "title": "گزارش ریز کل اسناد",
+          "raw": "گزارش ریز کل اسناد",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBakHavaleMasraf.Text",
+          "title": "برگشت حواله مصرف",
+          "raw": "برگشت حواله مصرف",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmUpdateAsnadFactor.Text",
+          "title": "ویرایش اطلاعات عنوان فاکتور",
+          "raw": "ویرایش اطلاعات عنوان فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmViewSoratHesabKol.Text",
+          "title": "نمایش صورت حساب کل",
+          "raw": "نمایش صورت حساب کل",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCreateRegion.Text",
+          "title": "تعریف مناطق",
+          "raw": "تعریف مناطق",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptAsnadSal.Text",
+          "title": "گزارش اسناد سال به تفکیک نوع سند",
+          "raw": "گزارش اسناد سال به تفکیک نوع سند",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmNewMabBudget.Text",
+          "title": "تعیین حساب و مبلغ بودجه",
+          "raw": "تعیین حساب و مبلغ بودجه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptListHesabha.Text",
+          "title": "لیست حساب ها",
+          "raw": "لیست حساب ها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSefareshGhate.Text",
+          "title": "سفارش قطعه",
+          "raw": "سفارش قطعه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCreateSanadMali.Text",
+          "title": "ایجاد سال مالی جدید",
+          "raw": "ایجاد سال &مالی جدید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmPaziresh.Text",
+          "title": "پذیرش",
+          "raw": "پذیرش",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmDeletedHSBMoin.Text",
+          "title": "حذف تفضیلی های یک معین",
+          "raw": "حذف تفضیلی های یک معین",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmNewTaraz.Text",
+          "title": "تراز پیشرفته",
+          "raw": "تراز پیشرفته",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmChangeCodeHesab.Text",
+          "title": "تغییر شماره حساب",
+          "raw": "تغییر شماره حساب",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBaseInformationFromFile.Text",
+          "title": "خواندن اطلاعات پایه از فایل",
+          "raw": "خواندن اطلاعات پایه از فایل",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmAlarmSetting.Text",
+          "title": "تنظیمات آلارم",
+          "raw": "تن&ظیمات آلارم",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmJabjaeiSefaresh.Text",
+          "title": "جابجایی سفارش",
+          "raw": "جابجایی سفارش",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCntCost.Text",
+          "title": "تعریف مرکز هزینه",
+          "raw": "تعریف مرکز &هزینه                   Ctrl+D",
+          "shortcut": "CTRL+D"
+        },
+        {
+          "id": "TsmChangeDataBase.Text",
+          "title": "تغییر سالی مالی (",
+          "raw": "ت&غییر سالی مالی (Ctrl+X)",
+          "shortcut": "CTRL+X"
+        },
+        {
+          "id": "tsmCntProject.Text",
+          "title": "تعریف مرکز پروژه",
+          "raw": "تعریف مرکز &پروژه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSaham.Text",
+          "title": "سهام",
+          "raw": "سهام",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCalcBudget.Text",
+          "title": "محاسبه بودجه",
+          "raw": "محاسبه بودجه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmFactorBarname.Text",
+          "title": "فاکتور بارنامه",
+          "raw": "فاکتور بارنامه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmGadget.Text",
+          "title": "تنظیمات گجت",
+          "raw": "تنظیمات گجت",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSettingFactor.Text",
+          "title": "تنظیمات سیستم",
+          "raw": "&تنظیمات سیستم",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTraz4.Text",
+          "title": "ترازنامه 4ستونی",
+          "raw": "ترازنامه 4ستونی",
+          "shortcut": ""
+        },
+        {
+          "id": "Tsm_Tarazname.Text",
+          "title": "تراز نامه",
+          "raw": "تراز نامه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSanadSoodZian.Text",
+          "title": "ثبت سند سود وزیان",
+          "raw": "ثبت سند سود و&زیان",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptDaftarKol.Text",
+          "title": "دفتر کل",
+          "raw": "دفتر کل",
+          "shortcut": ""
+        },
+        {
+          "id": "menuItemPro17.Text",
+          "title": "نوع 1",
+          "raw": "نوع 1",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmDetail.Text",
+          "title": "مدیریت حساب ها و شناسه",
+          "raw": "مدیریت حساب ها و شناسه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmChangeSanadMali.Text",
+          "title": "مرتب سازی شماره سند مالی",
+          "raw": "مرتب سازی شماره سند مالی",
+          "shortcut": ""
+        },
+        {
+          "id": "mnuitmRptTararoo.Text",
+          "title": "گزارش اختلاف وزن ترازو",
+          "raw": "گزارش اختلاف وزن ترازو",
+          "shortcut": ""
+        },
+        {
+          "id": "menuItemPro7.Text",
+          "title": "menuItemPro7",
+          "raw": "menuItemPro7",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSanadEkhtetami.Text",
+          "title": "ثبت سند اختتامیه",
+          "raw": "ثبت سند ا&ختتامیه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSodorCheck.Text",
+          "title": "پیش بینی مانده حساب",
+          "raw": "پیش بینی &مانده حساب",
+          "shortcut": ""
+        },
+        {
+          "id": "mnuitmMoveShenaseFactor.Text",
+          "title": "تغییر شناسه یک فاکتور",
+          "raw": "تغییر شناسه یک فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmUpdateFromNet.Text",
+          "title": "بروزرسانی اینترنتی",
+          "raw": "بروزرسانی اینترنتی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmManageSMS.Text",
+          "title": "مدیریت پیامک",
+          "raw": "مدیریت &پیامک",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmDelKoliAsnad.Text",
+          "title": "حذف کلی اسناد",
+          "raw": "حذف کلی اسناد",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmTanzimatFileExcleVosoolGhest.Text",
+          "title": "تنظیمات فایل اکسل",
+          "raw": "تنظیمات فایل اکسل",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmbackupmenu.Text",
+          "title": "پشتیبان گیری و بروزرسانی",
+          "raw": "پشتیبان &گیری و بروزرسانی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmEstelamHesab.Text",
+          "title": "استعلام وضعیت حساب",
+          "raw": "است&علام وضعیت حساب",
+          "shortcut": ""
+        },
+        {
+          "id": "mnitmcreatebon.Text",
+          "title": "تعریف بن جدید",
+          "raw": "تعریف بن جدید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBimeName.Text",
+          "title": "نرم افزار بیمه",
+          "raw": "نرم افزار بیمه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmOldBrowseHesab4.Text",
+          "title": "مرور حساب 4 ستونی",
+          "raw": "مرور حساب 4 ستونی",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmArzi.Text",
+          "title": "عملیات ارزی",
+          "raw": "عملیات ارزی",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmShortKey.Text",
+          "title": "کلید های میانبر (",
+          "raw": "&کلید های میانبر (Ctrl+F1)",
+          "shortcut": "CTRL+F"
+        },
+        {
+          "id": "tsmColor3.Text",
+          "title": "نوع 3",
+          "raw": "نوع 3",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmKalaPriceExcel.Text",
+          "title": "قیمت گذاری با اکسل",
+          "raw": "قیمت گذاری با اکسل",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBrowseHesab4.Text",
+          "title": "مرور حساب 4ستونی",
+          "raw": "مرور حساب 4ستونی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmHavaleMasraf.Text",
+          "title": "حواله مصرف",
+          "raw": "حواله مصرف",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmOldBrowseHesab.Text",
+          "title": "مرور حساب",
+          "raw": "مرور حساب",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmAsnadHesabdariOld.Text",
+          "title": "چاپ اسناد حسابداری",
+          "raw": "چاپ اسناد حسابداری",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSendEmail.Text",
+          "title": "ارسال فایل پشتیبان به پشتیبانی نرم افزار",
+          "raw": "ارسال فایل پشتیبان به پشتیبانی نرم افزار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmViewNesbatSood.Text",
+          "title": "چاپ نسبت های مالی",
+          "raw": "چاپ نسبت های مالی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmReport.Text",
+          "title": "گزارشات",
+          "raw": "&گزارشات",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmState.Text",
+          "title": "تعریف استان",
+          "raw": "تعری&ف استان",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmShahinSaderat.Text",
+          "title": "سامانه شاهین صادرات",
+          "raw": "سامانه شاهین صادرات",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmSubMenu.Text",
+          "title": "زیر سیستم ها",
+          "raw": "زیر سیستم ها",
+          "shortcut": ""
+        },
+        {
+          "id": "btnOpBimeName.Text",
+          "title": "سند بیمه نامه",
+          "raw": "سند بیمه نامه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmUserLog.Text",
+          "title": "کارکرد کاربران",
+          "raw": "کارکرد کاربران",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmPardakhtVajhAuto.Text",
+          "title": "سند پرداخت",
+          "raw": "سند پرداخت",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmNewCost.Text",
+          "title": "تعریف هزینه و درآمدهای آتی",
+          "raw": "تعریف هزینه و درآمدهای آتی",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmCopySanadMali.Text",
+          "title": "کپی سند مالی",
+          "raw": "کپی سند مالی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptRizeMoin.Text",
+          "title": "گزارش ریز معین ها",
+          "raw": "گزارش ریز معین ها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmPayRol.Text",
+          "title": "نرم افزار حقوق و دستمزد",
+          "raw": "نرم افزار حقوق و دستمزد",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBakHavaleAmani.Text",
+          "title": "برگشت حواله امانی",
+          "raw": "برگشت حواله امانی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsm_TanzimatBackUp.Text",
+          "title": "تنظیمات نسخه پشتیبان",
+          "raw": "تن&ظیمات نسخه پشتیبان",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmAutoSanadSetting.Text",
+          "title": "تنظیمات سند اتوماتیک",
+          "raw": "تنظیمات سند اتوماتیک",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmDeletedFactor.Text",
+          "title": "لیست فاکتورهای حذف شده",
+          "raw": "لیست فاکتورهای حذف شده",
+          "shortcut": ""
+        },
+        {
+          "id": "reflectionLabel2.Text",
+          "title": "سپهریار",
+          "raw": "سپهریار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSoodDateToDate.Text",
+          "title": "صورت حساب دوره ای سود و زیان",
+          "raw": "صورت حساب دوره ای سود و زیان",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmListFactorha.Text",
+          "title": "گزارش لیست فاکتورها",
+          "raw": "گزارش لیست فاکتورها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmHavaleAmani.Text",
+          "title": "حواله امانی",
+          "raw": "حواله امانی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmEntry.Text",
+          "title": "ورودی کامیون ها",
+          "raw": "ورودی کامیون ها",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmMoin.Text",
+          "title": "گزارشات معین",
+          "raw": "گزارشات معین",
+          "shortcut": ""
+        },
+        {
+          "id": "Tsm_Tolid_Delete.Text",
+          "title": "نمایش و حذف سند تولید",
+          "raw": "نمایش و &حذف سند تولید",
+          "shortcut": ""
+        },
+        {
+          "id": "menuItemPro4.Text",
+          "title": "menuItemPro4",
+          "raw": "menuItemPro4",
+          "shortcut": ""
+        },
+        {
+          "id": "menuItemPro14.Text",
+          "title": "تقسیط بدهی با حواله",
+          "raw": "تقسیط بدهی با حواله",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmFactorKhadamat.Text",
+          "title": "فاکتور خدمات",
+          "raw": "فاکتور خدمات",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmFactorKharidForosh.Text",
+          "title": "فاکتور حق العمل کاری",
+          "raw": "فاکتور حق العمل کاری",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmManageHesabdari.Text",
+          "title": "مدیریت حسابداری",
+          "raw": "مدیریت &حسابداری",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmUpdateTblsanad.Text",
+          "title": "ویرایش اطلاعات سندمالی",
+          "raw": "ویرایش اطلاعات سندمالی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmDefaultHesab.Text",
+          "title": "تعیین حساب های پیش فرض",
+          "raw": "تعیین حساب های پیش فرض",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmFactor.Text",
+          "title": "صدور فاکتور",
+          "raw": "&صدور فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "menuItemPro3.Text",
+          "title": "menuItemPro3",
+          "raw": "menuItemPro3",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSerial.Text",
+          "title": "سریال",
+          "raw": "سریا&ل",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMohasebSoodSepord.Text",
+          "title": "محاسبه سود",
+          "raw": "محاسبه سود",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSalesTypePercentag.Text",
+          "title": "قیمت گذاری درصدی",
+          "raw": "قیمت گذاری درصدی",
+          "shortcut": ""
+        },
+        {
+          "id": "lblDatabase.Text",
+          "title": "toolStripStatusLabel1",
+          "raw": "toolStripStatusLabel1",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmColor2.Text",
+          "title": "نوع 2",
+          "raw": "نوع 2",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTasirArz.Text",
+          "title": "تسعیر ارز",
+          "raw": "تسعیر ارز",
+          "shortcut": ""
+        },
+        {
+          "id": "tmsControlFactror.Text",
+          "title": "کنترل فاکتور",
+          "raw": "کنترل فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmAdvancedReport.Text",
+          "title": "گزارش گیری پیشرفته",
+          "raw": "گزارش گیری پیشرفته",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptFactorKhadamat.Text",
+          "title": "گزارش فاکتور خدمات",
+          "raw": "گزارش فاکتور خدمات",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmcntproject_HSB.Text",
+          "title": "مرکز پروژه به ریز تفصیلی",
+          "raw": "مرکز پروژه به ریز تفصیلی",
+          "shortcut": ""
+        },
+        {
+          "id": "statusStrip1.Text",
+          "title": "statusStrip1",
+          "raw": "statusStrip1",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmcntProject_srfsl.Text",
+          "title": "مرکز پروژه به ریزسرفصل",
+          "raw": "مرکز پروژه به ریزسرفصل",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmNonTaeidAsnad.Text",
+          "title": "لغو تایید اسناد مالی",
+          "raw": "لغو تایید اسناد مالی",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmDeleteHesab.Text",
+          "title": "حذف تفصیلی",
+          "raw": "حذف تفصیلی",
+          "shortcut": ""
+        },
+        {
+          "id": "label1.Text",
+          "title": "نگارش",
+          "raw": "نگارش",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmColor1.Text",
+          "title": "نوع 1",
+          "raw": "نوع 1",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptListAsnad.Text",
+          "title": "لیست اسناد یک معین",
+          "raw": "لیست اسناد یک معین",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBrowseHesab8.Text",
+          "title": "مرور حساب 8 ستونی",
+          "raw": "مرور حساب 8 ستونی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmQuickNewHesab.Text",
+          "title": "نمایش درختی حساب ها",
+          "raw": "&نمایش درختی حساب ها            Ctrl+Q",
+          "shortcut": "CTRL+Q"
+        },
+        {
+          "id": "tsmUserMange.Text",
+          "title": "مدیریت کاربران",
+          "raw": "&مدیریت کاربران",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmReportAsnad.Text",
+          "title": "گزارش اسناد حسابداری",
+          "raw": "گزارش اسناد حسابداری",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmDelete.Text",
+          "title": "گزارشات حذف اسناد",
+          "raw": "گزارشات حذف اسناد",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmSamaneTejrat.Text",
+          "title": "سامانه تجارت",
+          "raw": "سامانه تجارت",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBackUp.Text",
+          "title": "تهیه نسخه پشتیبان",
+          "raw": "تهیه نسخه &پشتیبان",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTransferAsnad.Text",
+          "title": "انتقال اطلاعات",
+          "raw": "انت&قال اطلاعات",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmRptSuratHesabArzi.Text",
+          "title": "صورت حساب ارزی",
+          "raw": "صورت حساب ارزی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSuratHesabFactorPerson.Text",
+          "title": "صورت حساب فاکتور شخص",
+          "raw": "صورت حساب فاکتور شخص",
+          "shortcut": ""
+        },
+        {
+          "id": "LblVersion.Text",
+          "title": "1-9-9-5",
+          "raw": "1-9-9-5",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTaeidSefaresh.Text",
+          "title": "تایید سفارش",
+          "raw": "تایید سفارش",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBrowseHesab.Text",
+          "title": "مرور حساب ها",
+          "raw": "مرور حساب ها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmPerformanceMoin.Text",
+          "title": "گزارش عملکرد روزانه معین",
+          "raw": "گزارش عملکرد روزانه معین",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTaeidAsnad.Text",
+          "title": "تایید اسناد مالی",
+          "raw": "تایید اسناد مالی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRestore.Text",
+          "title": "برگرداندن اطلاعات نسخه پشتیبان",
+          "raw": "&برگرداندن اطلاعات نسخه پشتیبان",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmDaftarKolManual.Text",
+          "title": "دفتر کل دستی",
+          "raw": "دفتر کل دستی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmNewFilePayrollD1.Text",
+          "title": "تشکیل فایل کسر از حقوق1",
+          "raw": "تشکیل فایل کسر از حقوق1",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptSanadHSB.Text",
+          "title": "گزارش سند حسابداری",
+          "raw": "گزارش سند حسابداری",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptBakOut.Text",
+          "title": "چاپ برگشت از خروج",
+          "raw": "چاپ برگشت از خروج",
+          "shortcut": ""
+        },
+        {
+          "id": "menuItemPro16.Text",
+          "title": "تخصیص درصد خدمات دهنده",
+          "raw": "تخصیص درصد خدمات دهنده",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBudget.Text",
+          "title": "عملیات بودجه",
+          "raw": "عملیات بودجه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmShowErgaEvents.Text",
+          "title": "مشاهده ارجاعات",
+          "raw": "مشاهده ارجاعات",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmNewBudget.Text",
+          "title": "تعریف بودجه",
+          "raw": "تعریف بودجه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSaveSanadClassification.Text",
+          "title": "ثبت سند طبقه بندی شده",
+          "raw": "ثبت سند طبقه بندی شده",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmAverage.Text",
+          "title": "معدل گیری حساب",
+          "raw": "معدل گیری حساب",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmPrintCheck.Text",
+          "title": "چاپ چک بدون سند",
+          "raw": "چاپ چک &بدون سند",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmSood.Text",
+          "title": "گزارشات سود و زیان",
+          "raw": "گزارشات سود و زیان",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmAsnadPrint.Text",
+          "title": "گزارشات اسناد مالی",
+          "raw": "گزارشات اسناد مالی",
+          "shortcut": ""
+        },
+        {
+          "id": "menuItemPro18.Text",
+          "title": "نوع 2",
+          "raw": "نوع 2",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmPakhsh.Text",
+          "title": "پخش",
+          "raw": "پخش",
+          "shortcut": ""
+        },
+        {
+          "id": "panelDynamic.Text",
+          "title": "گزینه های دلخواه من",
+          "raw": "گزینه های دلخواه من",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmItems.Text",
+          "title": "تعریف آیتم ها",
+          "raw": "تعریف آیتم ها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSettingPrintFactor.Text",
+          "title": "تنظیمات چاپ فاکتور",
+          "raw": "تنظیمات &چاپ فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTarifVahed.Text",
+          "title": "تعریف واحد",
+          "raw": "تعریف &واحد",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCity.Text",
+          "title": "تعریف شهر",
+          "raw": "تعریف شه&ر",
+          "shortcut": ""
+        },
+        {
+          "id": "menuItemPro2.Text",
+          "title": "menuItemPro2",
+          "raw": "menuItemPro2",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmOldBrowseHesab8.Text",
+          "title": "مرور حساب 8 ستونی",
+          "raw": "مرور حساب 8 ستونی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmFillTTMS.Text",
+          "title": "تکمیل فایل اکسس معاملات فصلی",
+          "raw": "تکمیل فایل اکسس معاملات فصلی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptListFactorTasviye.Text",
+          "title": "لیست فاکتورها با نوع تسویه",
+          "raw": "لیست فاکتورها با نوع تسویه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBrowseHesab2.Text",
+          "title": "مرور حساب 2ستونی",
+          "raw": "مرور حساب 2ستونی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmChangeColor.Text",
+          "title": "تغییر رنگ زمینه",
+          "raw": "تغییر رنگ زمینه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSodorFactorBarname.Text",
+          "title": "صدور فاکتور بارنامه",
+          "raw": "صدور فاکتور بارنامه",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmGhoreKeshi.Text",
+          "title": "قرعه کشی حساب ها",
+          "raw": "قرعه کشی حساب ها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSupport.Text",
+          "title": "واحد بازرسی",
+          "raw": "واحد &بازرسی",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmChangePassword.Text",
+          "title": "تغییر نام کاربری و کلمه عبور کاربر جاری",
+          "raw": "ت&غییر نام کاربری و کلمه عبور کاربر جاری",
+          "shortcut": ""
+        },
+        {
+          "id": "menuItemPro9.Text",
+          "title": "menuItemPro9",
+          "raw": "menuItemPro9",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSefareshProduct.Text",
+          "title": "سفارش محصول",
+          "raw": "سفارش محصول",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmHotelManagement.Text",
+          "title": "سیستم هتل و تالار",
+          "raw": "سیستم هتل و تالار",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmViewSoratHesab.Text",
+          "title": "نمایش صورت حساب (دفتر حساب)",
+          "raw": "نمایش صورت حساب (دفتر حساب)       Ctrl+A",
+          "shortcut": "CTRL+A"
+        },
+        {
+          "id": "tsmHotelTypeFactor.Text",
+          "title": "تعریف انواع فاکتور",
+          "raw": "تعریف انواع فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmListTasviyeUsers.Text",
+          "title": "لیست تسویه کاربران",
+          "raw": "لیست تسویه کاربران",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSabtSanad.Text",
+          "title": "صدور سند",
+          "raw": "صدور سند                       Ctrl+W",
+          "shortcut": "CTRL+W"
+        },
+        {
+          "id": "tsmListEditSanad.Text",
+          "title": "لیست اسناد ویرایش شده",
+          "raw": "لیست اسناد ویرایش شده",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmcntCost_HSB.Text",
+          "title": "مرکز هزینه به ریز تفصیلی",
+          "raw": "مرکز هزینه به ریز تفصیلی",
+          "shortcut": ""
+        },
+        {
+          "id": "sideBar1.Text",
+          "title": "sideBar1",
+          "raw": "sideBar1",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmGroupItem.Text",
+          "title": "تعریف گروه های آیتم",
+          "raw": "تعریف گروه های آیتم",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmChangePerson.Text",
+          "title": "تغییر شناسه",
+          "raw": "تغییر شناسه",
+          "shortcut": ""
+        },
+        {
+          "id": "tmsMoveShOzviatSanad.Text",
+          "title": "انتقال اسناد یک شناسه به شناسه دیگر",
+          "raw": "انتقال اسناد یک شناسه به شناسه دیگر",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCreateNesbatSood.Text",
+          "title": "تعریف نسبت های فعالیت",
+          "raw": "تعریف نسبت های فعالیت",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmLogPrintFactor.Text",
+          "title": "گزارش چاپ فاکتورها",
+          "raw": "گزارش چاپ فاکتورها",
+          "shortcut": ""
+        },
+        {
+          "id": "lblPhone.Text",
+          "title": "تلفن پشتیبانی:",
+          "raw": "تلفن پشتیبانی:",
+          "shortcut": ""
+        },
+        {
+          "id": "menuStrip1.Text",
+          "title": "menuStrip1",
+          "raw": "menuStrip1",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmArz.Text",
+          "title": "تعریف ارز",
+          "raw": "تعریف ارز",
+          "shortcut": ""
+        },
+        {
+          "id": "reflectionLabel1.Text",
+          "title": "سیستم یکپارچه مالی",
+          "raw": "سیستم یکپارچه مالی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmChangeSarfasl.Text",
+          "title": "تغییر کد سرفصل",
+          "raw": "تغییر کد سرفصل",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptRizeHesabMoin.Text",
+          "title": "به ریز معین",
+          "raw": "به ریز معین          Ctrl+Alt+R",
+          "shortcut": "CTRL+A"
+        },
+        {
+          "id": "tsmBakRasidAmani.Text",
+          "title": "برگشت رسید امانی",
+          "raw": "برگشت رسید امانی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmPayrollDeduction.Text",
+          "title": "سیستم کسر از حقوق",
+          "raw": "سیستم کسر از حقوق",
+          "shortcut": ""
+        },
+        {
+          "id": "tsm_changeShenase.Text",
+          "title": "تغییر شناسه تفصیلی",
+          "raw": "تغییر شناسه تفصیلی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMotadavel.Text",
+          "title": "سفارشی کردن اعمال متداول",
+          "raw": "سفار&شی کردن اعمال متداول",
+          "shortcut": ""
+        },
+        {
+          "id": "dockContainerItem1.Text",
+          "title": "dockContainerItem1",
+          "raw": "dockContainerItem1",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmChangHesab.Text",
+          "title": "تغییر کد تفصیلی",
+          "raw": "تغییر کد تفصیلی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRestaurant.Text",
+          "title": "تعریف رستوران",
+          "raw": "تعریف رستوران",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSabtComapny.Text",
+          "title": "ثبت شرکت",
+          "raw": "&ثبت شرکت",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmHelp.Text",
+          "title": "راهنما",
+          "raw": "را&هنما",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRizeKoleMande.Text",
+          "title": "ریز کل مانده ها",
+          "raw": "ریز کل مانده ها                                    Alt+B",
+          "shortcut": "ALT+B"
+        },
+        {
+          "id": "tsmSoodDirKerd.Text",
+          "title": "محاسبه سود دیرکرد",
+          "raw": "محاسبه سود دیرکرد",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMoveAsnadHesab.Text",
+          "title": "انتقال اسناد یک حساب به حساب دیگر",
+          "raw": "انتقال اسناد یک  حساب به حساب دیگر",
+          "shortcut": ""
+        },
+        {
+          "id": "tmsRptMultiPrice.Text",
+          "title": "گزازش چند قیمتی",
+          "raw": "گزازش چند قیمتی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTraz2.Text",
+          "title": "ترازنامه 2ستونی",
+          "raw": "ترازنامه 2ستونی",
+          "shortcut": ""
+        },
+        {
+          "id": "lblPhone2.Text",
+          "title": "035-91005521",
+          "raw": "035-91005521",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmChangeSanadM.Text",
+          "title": "تغییر شماره سند مالی",
+          "raw": "تغییر شماره سند مالی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmOldBrowseHesab2.Text",
+          "title": "مرور حساب 2 ستونی",
+          "raw": "مرور حساب 2 ستونی",
+          "shortcut": ""
+        },
+        {
+          "id": "tmsRasidEnteghal.Text",
+          "title": "رسید انتقال",
+          "raw": "رسید انتقال",
+          "shortcut": ""
+        },
+        {
+          "id": "btnLock.Text",
+          "title": "خروج موقت (",
+          "raw": "خروج موقت (Shift+Esc)",
+          "shortcut": "SHIFT+E"
+        },
+        {
+          "id": "TsmRptSefareshKharid.Text",
+          "title": "گزارش سفارش ها",
+          "raw": "گزارش سفارش ها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBaseInformationToFile.Text",
+          "title": "انتقال اطلاعات پایه به فایل",
+          "raw": "انتقال اطلاعات پایه به فایل",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmReportFactor.Text",
+          "title": "گزارشات فاکتور",
+          "raw": "گزارشات فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmEditSanadmali.Text",
+          "title": "تغییر شماره سندمالی فاکتور",
+          "raw": "تغییر شماره سندمالی فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "tmsDeleteKoliFactors.Text",
+          "title": "حذف کلی فاکتور ها",
+          "raw": "حذف کلی فاکتور ها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCreateEvent.Text",
+          "title": "تعریف رخداد",
+          "raw": "تعریف رخداد",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMoveAsnad.Text",
+          "title": "عملیات انتقال",
+          "raw": "عملیات انتقال",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmGetTashkhisHesab.Text",
+          "title": "تشخیص دادن به حساب",
+          "raw": "تشخیص دادن به حساب",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmChangeFactorNum.Text",
+          "title": "تغییر شماره فاکتور",
+          "raw": "تغییر شماره فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSharhSanad.Text",
+          "title": "تعریف شرح استاندارد سند",
+          "raw": "تعریف &شرح استاندارد سند    Ctrl+Alt+C",
+          "shortcut": "CTRL+A"
+        },
+        {
+          "id": "MntPrintFactor.Text",
+          "title": "گزارش فاکتورهای چاپ شده",
+          "raw": "گزارش فاکتورهای چاپ شده",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmPosTran.Text",
+          "title": "تراکنش پوز",
+          "raw": "تراکنش پوز",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCreateNerkh.Text",
+          "title": "تعریف نرخ و پارامترها",
+          "raw": "تعریف نرخ و پارامترها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMoveSanadToSanad.Text",
+          "title": "ثبت سند انتقالی بین حسابها",
+          "raw": "ثبت سند انتقالی بین حسابها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRasidAmani.Text",
+          "title": "رسید امانی",
+          "raw": "رسید امانی",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmUserGroup.Text",
+          "title": "تعریف گروه های کاربری",
+          "raw": "تعریف گروه های &کاربری",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptCheck.Text",
+          "title": "گزارشات",
+          "raw": "گزارشات",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmListDeletedAsnad.Text",
+          "title": "لیست اسناد حذف شده",
+          "raw": "لیست اسناد حذف شده",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmDefaultColor.Text",
+          "title": "پیشفرض",
+          "raw": "پیشفرض",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmDefinationGroupHesab.Text",
+          "title": "تعریف گروه های حساب",
+          "raw": "تعریف گروه های حساب",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCreateGhestMande.Text",
+          "title": "تقسیط بندی مانده حساب",
+          "raw": "تقسیط بندی مانده حساب",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSanadTolid.Text",
+          "title": "ثبت سند تولید بدون فرمول تولید",
+          "raw": "&ثبت سند تولید بدون فرمول تولید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCreateUser.Text",
+          "title": "تعریف کاربران",
+          "raw": "تعریف &کاربران",
+          "shortcut": ""
+        },
+        {
+          "id": "menuItemPro5.Text",
+          "title": "menuItemPro5",
+          "raw": "menuItemPro5",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptHesabMasdoodi.Text",
+          "title": "گزارش حساب های مسدود شده",
+          "raw": "گزارش حساب های مسدود شده",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptRizeHesabSrfsl.Text",
+          "title": "به ریز سرفصل",
+          "raw": "به ریز سرفصل           Ctrl+Alt+T",
+          "shortcut": "CTRL+A"
+        },
+        {
+          "id": "tsmServiceGoods.Text",
+          "title": "تعریف خدمت",
+          "raw": "تعریف خدمت",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptKoleTakh.Text",
+          "title": "گزارش صورت کل تخفیف",
+          "raw": "گزارش صورت ک&ل تخفیف",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptTaraz8a.Text",
+          "title": "ترازنامه 8 ستونی",
+          "raw": "ترازنامه 8 ستونی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmReadAsnadFromFile.Text",
+          "title": "خواندن اسناد از فایل",
+          "raw": "&خواندن اسناد از فایل",
+          "shortcut": ""
+        },
+        {
+          "id": "menuItemPro10.Text",
+          "title": "menuItemPro10",
+          "raw": "menuItemPro10",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmListKoliFactor.Text",
+          "title": "گزارش کلی فاکتورها",
+          "raw": "گزارش کلی فاکتورها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmNewFilePayrollD.Text",
+          "title": "تشکیل فایل کسر از حقوق",
+          "raw": "تشکیل فایل کسر از حقوق",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptSoodZian.Text",
+          "title": "صورت حساب سود و زیان",
+          "raw": "صورت حساب  سود و زیان",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmAbout.Text",
+          "title": "درباره ما",
+          "raw": "&درباره ما",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmKoliCostProject.Text",
+          "title": "گزارش کلی مرکز هزینه و پروژه",
+          "raw": "گزارش کلی مرکز هزینه و پروژه",
+          "shortcut": ""
+        },
+        {
+          "id": "label2.Text",
+          "title": "آدرس:یزد بلوار پروفسور حسابی نرسیده به میدان عالم",
+          "raw": "آدرس:یزد بلوار پروفسور حسابی نرسیده به میدان عالم",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSaveSerial.Text",
+          "title": "ثبت سریال",
+          "raw": "&ثبت سریال",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmPrintFactors.Text",
+          "title": "چاپ دسته جمعی فاکتور",
+          "raw": "چاپ دسته جمعی فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMohaseb.Text",
+          "title": "محاسبه سود وسپرده ها",
+          "raw": "محاسبه سود وسپرده ها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptListFactor.Text",
+          "title": "لیست فاکتور ها",
+          "raw": "لیست فاکتور ها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptFactorAmalKari.Text",
+          "title": "صورت حساب حق العمل کاری",
+          "raw": "صورت حساب حق العمل کاری",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmGhorfe.Text",
+          "title": "تعریف غرفه",
+          "raw": "تعریف غرفه",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmHesab.Text",
+          "title": "گزارشات حساب",
+          "raw": "گزارشات حساب",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCreateTruck.Text",
+          "title": "مدیریت کامیون ها",
+          "raw": "مدیریت کامیون ها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmNewPayrollD.Text",
+          "title": "کسر از حقوق",
+          "raw": "کسر از حقوق",
+          "shortcut": ""
+        },
+        {
+          "id": "lblnow.Text",
+          "title": "lblnow",
+          "raw": "lblnow",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptSoodProject.Text",
+          "title": "گزارش سود و زیان پروژه",
+          "raw": "گزارش سود و زیان پروژه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmOPHesabdari.Text",
+          "title": "عملیات ویژه",
+          "raw": "&عملیات ویژه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSarrasidRozane.Text",
+          "title": "سررسید روزانه",
+          "raw": "&سررسید روزانه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptDaftarRozname.Text",
+          "title": "دفتر روزنامه",
+          "raw": "دفتر روزنامه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmListAsnadBimeName.Text",
+          "title": "لیست اسناد بیمه",
+          "raw": "لیست اسناد بیمه",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmSanad.Text",
+          "title": "مدیریت اسناد",
+          "raw": "مدیریت اسناد",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptCntCost_Project.Text",
+          "title": "گزارشات مرکز هزینه / پروژه",
+          "raw": "گزارشات مرکز هزینه / پروژه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmVorodiDaraii.Text",
+          "title": "گزارش اطلاعات ورودی نرم افزار دارایی",
+          "raw": "گزارش اطلاعات ورودی نرم افزار دارایی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTraz6.Text",
+          "title": "ترازنامه 6 ستونی",
+          "raw": "ترازنامه 6 ستونی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptForoshSal.Text",
+          "title": "گزارش لیست آمار سال",
+          "raw": "گزارش لیست آمار سال",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSanadHesabDariArz.Text",
+          "title": "چاپ سندمالی ارزی",
+          "raw": "چاپ سندمالی ارزی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTrazname.Text",
+          "title": "ترازنامه وسایر ترازها",
+          "raw": "ترازنامه وسایر ترازها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmKharidForush.Text",
+          "title": "حق العمل کاری",
+          "raw": "حق العمل کاری",
+          "shortcut": ""
+        },
+        {
+          "id": "label3.Text",
+          "title": "نرسیده به تقاطع فلسطین",
+          "raw": "نرسیده به تقاطع فلسطین",
+          "shortcut": ""
+        },
+        {
+          "id": "buttonX1.Text",
+          "title": "پشتیبانی",
+          "raw": "پشتیبانی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmFactorKhadamatShift.Text",
+          "title": "صورتحساب براساس شیفت کاری",
+          "raw": "صورتحساب براساس شیفت کاری",
+          "shortcut": ""
+        },
+        {
+          "id": "menuItemPro12.Text",
+          "title": "menuItemPro12",
+          "raw": "menuItemPro12",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmNesbatSood.Text",
+          "title": "تقسیم سود به سهام داران",
+          "raw": "تقسیم سود به سهام داران",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSahrsanadFormat.Text",
+          "title": "مدیریت شرح های سیستمی اسناد",
+          "raw": "مدیریت شرح های سیستمی اسناد",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmExelToSanadVosul.Text",
+          "title": "وصول از طریق فایل",
+          "raw": "وصول از طریق فایل",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmmovecooysanad.Text",
+          "title": "مدیریت اسناد",
+          "raw": "مدیریت اسناد",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCopyMoin.Text",
+          "title": "کپی معین های یک سرفصل",
+          "raw": "کپی معین های یک سرفصل",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmEmzaFactor.Text",
+          "title": "امضای فاکتور",
+          "raw": "امضای فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSetPriceArz.Text",
+          "title": "قیمت گذاری ارزی",
+          "raw": "قیمت گذاری ارزی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmcntcost_Srfsl.Text",
+          "title": "مرکز هزینه به ریز سرفصل",
+          "raw": "مرکز هزینه به ریز سرفصل",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMoveBeRizeMoien.Text",
+          "title": "انتقال اسناد از یک معین به معین دیگر",
+          "raw": "انتقال اسناد از یک معین به معین دیگر",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSahamDaran.Text",
+          "title": "سهامداران",
+          "raw": "سهامداران",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmUpdateFiKharid.Text",
+          "title": "بروزرسانی قیمت فاکتور",
+          "raw": "بروزرسانی قیمت فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmElectronicledger.Text",
+          "title": "دفتر کل الکترونیکی",
+          "raw": "دفتر کل الکترونیکی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmArzChange.Text",
+          "title": "تغییرات ارز",
+          "raw": "تغییرات ارز",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTransferAsnadToFile.Text",
+          "title": "انتقال اسناد به فایل",
+          "raw": "انتقال اسناد به &فایل",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmPrintDateSanad.Text",
+          "title": "چاپ اسناد یک روز",
+          "raw": "چاپ اسناد یک روز",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBarnameAction.Text",
+          "title": "عملیات بارنامه",
+          "raw": "عملیات بارنامه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmOldBrowseHesab6.Text",
+          "title": "مرور حساب 6 ستونی",
+          "raw": "مرور حساب 6 ستونی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptJabejayiKala.Text",
+          "title": "چاپ حواله جابه جایی",
+          "raw": "چاپ حواله &جابه جایی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptRizeKoleMandePerson.Text",
+          "title": "به ریز شناسه",
+          "raw": "به ریز شناسه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmListFactorAndKala_Pakhsh.Text",
+          "title": "گزارش تجمیعی فاکتورها",
+          "raw": "گزارش تجمیعی فاکتورها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmViewAlarm.Text",
+          "title": "نمایش یادآورهای امروز",
+          "raw": "نمایش &یادآورهای امروز",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmNewFilePayrollD2.Text",
+          "title": "تشکیل فایل کسر از حقوق2",
+          "raw": "تشکیل فایل کسر از حقوق2",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCreateTafzili.Text",
+          "title": "تعریف تفصیلی",
+          "raw": "تعریف &تفصیلی                        Ctrl+T",
+          "shortcut": "CTRL+T"
+        },
+        {
+          "id": "tsmMotadavel2.Text",
+          "title": "مدیریت گزینه های دلخواه من",
+          "raw": "مدیریت گزینه های دلخواه من",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCreateHesabText.Text",
+          "title": "تعریف متن یادداشت حساب",
+          "raw": "تعریف متن &یادداشت حساب",
+          "shortcut": ""
+        },
+        {
+          "id": "menuItemPro6.Text",
+          "title": "menuItemPro6",
+          "raw": "menuItemPro6",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBaseInformation.Text",
+          "title": "ورود اطلاعات پایه",
+          "raw": "&ورود اطلاعات پایه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptSumAsnadRooz.Text",
+          "title": "گزارش جمع اسناد روزها",
+          "raw": "گزارش جمع اسناد روزها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmDaftarRoozname.Text",
+          "title": "دفتر روزنامه دستی",
+          "raw": "دفتر روزنامه دستی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmColor.Text",
+          "title": "تعریف شرح رنگ",
+          "raw": "تعریف شرح رن&گ",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmDaftar.Text",
+          "title": "دفتر کل و روزنامه",
+          "raw": "دفتر کل و روزنامه",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmManageFactor.Text",
+          "title": "مدیریت فاکتور",
+          "raw": "مدیریت &فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmDaryaftVajhAuto.Text",
+          "title": "سند دریافت",
+          "raw": "سند دریافت",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMoveMoney.Text",
+          "title": "انتقال وجه",
+          "raw": "انتقال وجه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmShowMandeHesabByDarsad.Text",
+          "title": "گزارش مانده حساب شخص بر اساس درصد",
+          "raw": "گزارش مانده حساب شخص بر اساس درصد",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmDefaultSaham.Text",
+          "title": "تعریف نرخ سهم",
+          "raw": "تعریف نرخ سهم",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptRizeHesab.Text",
+          "title": "گزارشات ریز تفصیلی ها",
+          "raw": "گزارشات ریز تفصیلی ها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMasdodiHesab.Text",
+          "title": "مسدودی مانده یک حساب",
+          "raw": "مس&دودی مانده یک حساب",
+          "shortcut": ""
+        },
+        {
+          "id": "MnuHaghAmal.Text",
+          "title": "صدور فاکتور حق العمل کاری",
+          "raw": "صدور فاکتور حق العمل کاری",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMohasebBakSood.Text",
+          "title": "محاسبه سود برگشتی",
+          "raw": "محاسبه سود برگشتی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmJabejayiKalaBarcode.Text",
+          "title": "جابجایی به صورت لیستی",
+          "raw": "جابجایی به صورت لیستی",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmRptRizeHesabMoinArz.Text",
+          "title": "گزارش ریز تفصیلی به معین ارز",
+          "raw": "گزارش ریز تفصیلی به معین ارز",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmUpdateClient.Text",
+          "title": "بروزرسانی کلاینت",
+          "raw": "بروزرسانی کلاینت",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCopyHesab.Text",
+          "title": "کپی تفصیلی های یک معین",
+          "raw": "کپی تفصیلی های یک معین",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmUserPanel.Text",
+          "title": "پنل مدیریت کاربران",
+          "raw": "پنل مدیریت کاربران",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptAsnadFactor.Text",
+          "title": "گزارش اسناد فاکتور",
+          "raw": "گزارش اسناد فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "menuItemPro8.Text",
+          "title": "menuItemPro8",
+          "raw": "menuItemPro8",
+          "shortcut": ""
+        },
+        {
+          "id": "tmsHavaleEnteghal.Text",
+          "title": "حواله انتقال",
+          "raw": "حواله انتقال",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmFactorIn.Text",
+          "title": "فاکتور داخلی",
+          "raw": "فاکتور داخلی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCreateMoin.Text",
+          "title": "ایجاد معین",
+          "raw": "ایجاد &معین                             Ctrl+M",
+          "shortcut": "CTRL+M"
+        },
+        {
+          "id": "TsmMoratabZaziFactor.Text",
+          "title": "مرتب سازی شماره فاکتور",
+          "raw": "مرتب سازی شماره فاکتور",
+          "shortcut": ""
+        }
+      ]
+    },
+    "khazanehdari": {
+      "title": "سیستم خزانه‌داری، دریافت، پرداخت، چک و بانک",
+      "db_tables": [
+        "TblDaryaft",
+        "TblPardakht",
+        "TblChequeDaryafti",
+        "TblChequePardakhti",
+        "TblBank",
+        "TblSandogh"
+      ],
+      "accounting_nature": "دریافت: نقد/بانک/اسناد دریافتنی بدهکار، طرف‌حساب بستانکار | پرداخت: طرف‌حساب/هزینه بدهکار، نقد/بانک/اسناد پرداختنی بستانکار",
+      "images": [
+        "daryaft_img_1.png",
+        "daryaft_img_2.png",
+        "daryaft_img_3.png",
+        "daryaft_img_4.png",
+        "daryaft_img_5.png",
+        "daryaft_img_6.png",
+        "daryaft_img_7.png",
+        "daryaft_img_8.png",
+        "daryaft_img_9.png"
+      ],
+      "forms": [
+        {
+          "id": "TsmExportExcelST.Text",
+          "title": "دریافت اکسل های سامانه",
+          "raw": "دریافت اکسل های سامانه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmgardeshvojohnaghddoreei.Text",
+          "title": "گردش وجوه نقد دوره ای",
+          "raw": "گردش وجوه نقد دوره ای",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSaveSerialHesab.Text",
+          "title": "ثبت سریال حسابها",
+          "raw": "ثبت سریال حسابها",
+          "shortcut": ""
+        },
+        {
+          "id": "mnuInternetBank.Text",
+          "title": "تعریف حساب برای دریافت اینترنتی",
+          "raw": "تعریف حساب برای دریافت اینترنتی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmOPCheckDar.Text",
+          "title": "عملیات روی چک های دریافتی",
+          "raw": "عملیات روی چک های &دریافتی",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmPardakhtVajh.Text",
+          "title": "پرداخت وجه",
+          "raw": "پرداخت وجه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmChkDarBeTafkikBank.Text",
+          "title": "اسناد دریافتنی به ریز و تفکیک هر بانک",
+          "raw": "اسناد دریافتنی به ریز و تفکیک هر بانک",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCheckDarRasid.Text",
+          "title": "چاپ رسید چکهای دریافتی",
+          "raw": "چاپ رسید چکهای دریا&فتی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmListChekDeleted.Text",
+          "title": "لیست چک های حذف شده",
+          "raw": "لیست چک های حذف شده",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCheckParRasid.Text",
+          "title": "چاپ رسید چکهای پرداختی",
+          "raw": "چاپ رسید چکهای پردا&ختی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptTafavotCheck.Text",
+          "title": "نمایش اختلاف بین اسناددریافتنی و پرداختنی",
+          "raw": "نمایش اختلاف بین اسناددریافتنی و پرداختنی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTRBankToSystem.Text",
+          "title": "واریز فایل صورت حساب بانک به سیستم",
+          "raw": "واریز  فایل صورت حساب بانک به سیستم",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmVosolGroup.Text",
+          "title": "وصول دسته جمعی چک",
+          "raw": "وصول دسته جمعی چک",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmDaryaftVajh.Text",
+          "title": "دریافت وجه",
+          "raw": "دریافت وجه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptRizeKolMandePro.Text",
+          "title": "گزارش حساب های دریافتنی",
+          "raw": "گزارش حساب های دریافتنی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMoveSaham.Text",
+          "title": "انتقال سهام به سهام پرداختی",
+          "raw": "انتقال سهام به سهام پرداختی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSuratHesabAti.Text",
+          "title": "گردش وجوه آتی",
+          "raw": "گردش وجوه آتی",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmDaryaftVajhAvamel.Text",
+          "title": "دریافت وجه با عوامل",
+          "raw": "دریافت وجه با عوامل",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmConfigCheck.Text",
+          "title": "تنظیمات چاپ چک",
+          "raw": "&تنظیمات چاپ چک",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmSafteP.Text",
+          "title": "عملیات روی سفته پرداختی",
+          "raw": "عملیات روی سفته پرداختی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSettingFishBanki.Text",
+          "title": "تنظیمات چاپ فیش بانکی",
+          "raw": "تنظیمات چاپ فیش بانکی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmPrint_Check.Text",
+          "title": "چاپ چک",
+          "raw": "چاپ چک",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSettingBank.Text",
+          "title": "تعریف قالب فایل بانک",
+          "raw": "تعریف قالب فایل بانک",
+          "shortcut": ""
+        },
+        {
+          "id": "menuItemPro1.Text",
+          "title": "صورتحساب گردش وجوه نقد",
+          "raw": "صورتحساب گردش وجوه نقد",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmListFactorModatDar.Text",
+          "title": "لیست فاکتورها بر اساس نوع پرداخت",
+          "raw": "لیست فاکتورها بر اساس نوع پرداخت",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptRasidCheck.Text",
+          "title": "چاپ رسید چک جهت اعلام به بانک",
+          "raw": "چاپ رسید چک جهت اعلام به بانک",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmPardakhtVajhManual.Text",
+          "title": "پرداخت وجه",
+          "raw": "پرداخت وجه                     Ctrl+O",
+          "shortcut": "CTRL+O"
+        },
+        {
+          "id": "tsmAghsatVamD.Text",
+          "title": "وام پرداختنی",
+          "raw": "وام پرداختنی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmAghsatVamP.Text",
+          "title": "وام دریافتنی",
+          "raw": "وام دریافتنی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSafteD.Text",
+          "title": "عملیات روی سفته دریافتی",
+          "raw": "عملیات روی سفته دریافتی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmHesabCharh.Text",
+          "title": "نمودار مقایسه گردش حسابها",
+          "raw": "نمودار مقایسه گردش حسابها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmChkParBeTafkikBank.Text",
+          "title": "اسناد پرداختنی به ریز و تفکیک هر بانک",
+          "raw": "اسناد پرداختنی به ریز و تفکیک هر بانک",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMoghayerat.Text",
+          "title": "رفع مغایرت بانکی",
+          "raw": "رفع مغایرت بانکی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmVamD.Text",
+          "title": "عملیات روی وام دریافتی",
+          "raw": "عملیات روی وام دریافتی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMandeHesabDureManfi.Text",
+          "title": "کنترل مانده حسابها طی دوره",
+          "raw": "کنترل مانده حسابها طی دوره",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBankMoghayerat.Text",
+          "title": "مغایرت گیری اطلاعات بانک",
+          "raw": "مغایرت گیری اطلاعات بانک",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBank.Text",
+          "title": "تعریف بانک",
+          "raw": "تعریف &بانک",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmPaymentOrder.Text",
+          "title": "دستور پرداخت وجه",
+          "raw": "دستور پرداخت وجه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmNemodarDarPar.Text",
+          "title": "نمودار دریافت و پرداخت",
+          "raw": "نمودار دریافت و پرداخت",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmDaryaftVajhManual.Text",
+          "title": "دریافت وجه",
+          "raw": "دریافت وجه                       Ctrl+I",
+          "shortcut": "CTRL+I"
+        },
+        {
+          "id": "tsmTashkhisHesab.Text",
+          "title": "مغایرت گیری دستی حسابها",
+          "raw": "مغایرت گیری دستی حسابها",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRasGiriCheck.Text",
+          "title": "راس گیری چک",
+          "raw": "&راس گیری چک",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmDirkerdGhestKoliD.Text",
+          "title": "محاسبه دیرکرد اقساط وام دریافتی",
+          "raw": "محاسبه دیرکرد اقساط وام دریافتی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmDirkerdGhestKoliP.Text",
+          "title": "محاسبه دیرکرد اقساط وام پرداختی",
+          "raw": "محاسبه دیرکرد اقساط وام پرداختی",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmCheck.Text",
+          "title": "چک",
+          "raw": "&چک",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmVamP.Text",
+          "title": "عملیات روی وام پرداختی",
+          "raw": "عملیات روی وام پرداختی",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmPardakhtVajhAvamel.Text",
+          "title": "پرداخت وجه با عوامل",
+          "raw": "پرداخت وجه با عوامل",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmOPCheckPar.Text",
+          "title": "عملیات روی چک های پرداختی",
+          "raw": "عملیات روی چک های &پرداختی",
+          "shortcut": ""
+        }
+      ]
+    },
+    "amaliat_vizheh": {
+      "title": "عملیات ویژه (پایان روز، مغایرت بانکی، استهلاک و پایان سال)",
+      "db_tables": [
+        "TblBankStatement",
+        "TblDarayiSabet",
+        "TblEstelak",
+        "TblEndDayLock",
+        "TblAuditLog"
+      ],
+      "accounting_nature": "استهلاک: هزینه استهلاک بدهکار، استهلاک انباشته بستانکار | مغایرت: اقلام باز دفاتر در برابر صورتحساب بانک",
+      "images": [
+        "vijeh_img_1.png",
+        "vijeh_img_10.png",
+        "vijeh_img_11.png",
+        "vijeh_img_12.png",
+        "vijeh_img_13.png",
+        "vijeh_img_14.png",
+        "vijeh_img_15.png",
+        "vijeh_img_16.png",
+        "vijeh_img_17.png",
+        "vijeh_img_18.png",
+        "vijeh_img_19.png",
+        "vijeh_img_2.png",
+        "vijeh_img_20.png",
+        "vijeh_img_21.png",
+        "vijeh_img_22.png",
+        "vijeh_img_23.png",
+        "vijeh_img_24.png",
+        "vijeh_img_25.png",
+        "vijeh_img_26.png",
+        "vijeh_img_27.png",
+        "vijeh_img_28.png",
+        "vijeh_img_29.png",
+        "vijeh_img_3.png",
+        "vijeh_img_30.png",
+        "vijeh_img_31.png",
+        "vijeh_img_32.png",
+        "vijeh_img_4.png",
+        "vijeh_img_5.png",
+        "vijeh_img_6.png",
+        "vijeh_img_7.png",
+        "vijeh_img_8.png",
+        "vijeh_img_9.png",
+        "vizhe_image1.jpeg",
+        "vizhe_image10.png",
+        "vizhe_image11.png",
+        "vizhe_image12.png",
+        "vizhe_image13.png",
+        "vizhe_image14.png",
+        "vizhe_image15.png",
+        "vizhe_image16.png",
+        "vizhe_image17.png",
+        "vizhe_image18.png",
+        "vizhe_image19.png",
+        "vizhe_image2.png",
+        "vizhe_image20.png",
+        "vizhe_image21.png",
+        "vizhe_image22.png",
+        "vizhe_image23.png",
+        "vizhe_image24.png",
+        "vizhe_image25.png",
+        "vizhe_image26.png",
+        "vizhe_image27.png",
+        "vizhe_image28.png",
+        "vizhe_image29.png",
+        "vizhe_image3.png",
+        "vizhe_image30.png",
+        "vizhe_image31.png",
+        "vizhe_image32.png",
+        "vizhe_image33.png",
+        "vizhe_image4.png",
+        "vizhe_image5.png",
+        "vizhe_image6.PNG",
+        "vizhe_image7.png",
+        "vizhe_image8.PNG",
+        "vizhe_image9.png"
+      ],
+      "forms": [
+        {
+          "id": "tsmMerghSanad.Text",
+          "title": "ادغام اسناد",
+          "raw": "ادغام اسناد",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmPayanRooz.Text",
+          "title": "پایان روز /تائید اسناد",
+          "raw": "پایان روز /تائید اسناد",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMoghayratExcel.Text",
+          "title": "مغایرت اکسل",
+          "raw": "مغایرت اکسل",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmVarizFile.Text",
+          "title": "واریز از طریق فایل",
+          "raw": "واریز از طریق فایل",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmchangeEstelak.Text",
+          "title": "تغییرات استهلاک",
+          "raw": "تغییرات استهلاک",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmMohasebEstelak.Text",
+          "title": "محاسبه استهلاک",
+          "raw": "محاسبه استهلاک",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmVarizFileText.Text",
+          "title": "واریز از طریق فایل متن",
+          "raw": "واریز از طریق فایل متن",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptListHesab.Text",
+          "title": "لیست دارایی های استهلاک پذیر",
+          "raw": "لیست دارایی های استهلاک پذیر",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmOPPayanSal.Text",
+          "title": "عملیات پایان سال",
+          "raw": "عملیات &پایان سال",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmVarizFileExel.Text",
+          "title": "واریز از طریف فایل اکسل",
+          "raw": "واریز از طریف فایل اکسل",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmEstehlak.Text",
+          "title": "گزارشات استهلاک",
+          "raw": "گزارشات استهلاک",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmVarizSood.Text",
+          "title": "تعیین حساب جهت واریز سود",
+          "raw": "تعیین حساب جهت واریز سود",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptDarayiEstelak.Text",
+          "title": "دارایی های استهلاک پذیر",
+          "raw": "دارایی های استهلاک پذیر",
+          "shortcut": ""
+        }
+      ]
+    },
+    "tolid": {
+      "title": "سیستم تولید، فرمول ساخت (BOM) و بهای تمام‌شده",
+      "db_tables": [
+        "TblFormulTolid",
+        "TblSanadTolid",
+        "TblMavadAvalie",
+        "TblBahaTamamShode",
+        "TblDastmozdTolid"
+      ],
+      "accounting_nature": "بدهکار: کالای در جریان ساخت / کالای ساخته‌شده | بستانکار: مواد اولیه مصرفی، دستمزد مستقیم، سربار جذب‌شده",
+      "images": [
+        "tolid_img_1_1.jpeg",
+        "tolid_img_1_1.png",
+        "tolid_img_1_2.jpeg",
+        "tolid_img_1_3.jpeg",
+        "tolid_img_1_4.jpeg",
+        "tolid_img_2_5.jpeg",
+        "tolid_img_2_6.jpeg",
+        "tolid_img_2_7.jpeg",
+        "tolid_img_3_10.jpeg",
+        "tolid_img_3_8.jpeg",
+        "tolid_img_3_9.jpeg",
+        "tolid_img_4_11.jpeg",
+        "tolid_img_4_12.jpeg",
+        "tolid_img_4_13.jpeg",
+        "tolid_img_4_14.jpeg",
+        "tolid_img_5_15.jpeg",
+        "tolid_img_5_16.jpeg",
+        "tolid_img_5_17.jpeg",
+        "tolid_img_6_18.jpeg",
+        "tolid_img_6_19.jpeg",
+        "tolid_img_6_20.jpeg"
+      ],
+      "forms": [
+        {
+          "id": "tsmAvamelTolid.Text",
+          "title": "تعریف عوامل تولید",
+          "raw": "تعریف عوامل تولید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTolidSquareMeter.Text",
+          "title": "ثبت فرمول با تولید با طول و عرض",
+          "raw": "ثبت فرمول با تولید با طول و عرض",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSefaresh.Text",
+          "title": "سفارش تولید",
+          "raw": "سفارش تولید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSefareshTolid.Text",
+          "title": "ثبت سفارش تولید",
+          "raw": "ثبت سفارش تولید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRasidTolid.Text",
+          "title": "رسید تولید",
+          "raw": "رسید تولید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptBargTolid.Text",
+          "title": "چاپ برگه تولید",
+          "raw": "&چاپ برگه تولید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmFormolTolid.Text",
+          "title": "تهیه فرمول تولید",
+          "raw": "تهیه &فرمول تولید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmOPTolid.Text",
+          "title": "عملیات تولید",
+          "raw": "&عملیات تولید",
+          "shortcut": ""
+        },
+        {
+          "id": "Tsm_CopyTolid.Text",
+          "title": "کپی تولید",
+          "raw": "&کپی تولید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmGroupTolidKala.Text",
+          "title": "ثبت گروهی تولید",
+          "raw": "ثبت گروهی تولید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTahvilSefaresh.Text",
+          "title": "ثبت تحویل سفارش تولید",
+          "raw": "ثبت &تحویل سفارش تولید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRptTarikhiSefaresh.Text",
+          "title": "گزارش تاریخی سفارشات تولید",
+          "raw": "گزارش &تاریخی سفارشات تولید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmBakRasidTolid.Text",
+          "title": "برگشت رسید تولید",
+          "raw": "برگشت رسید تولید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmGetFormuls.Text",
+          "title": "گزارش فرمول تولید",
+          "raw": "گزارش فرمول تولید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmKardexAvamelTolid.Text",
+          "title": "گزارش عوامل تولید",
+          "raw": "گزارش عوامل تولید",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmFormolTolidOnline.Text",
+          "title": "تهیه فرمول تولید آنلاین",
+          "raw": "تهیه &فرمول تولید آنلاین",
+          "shortcut": ""
+        }
+      ]
+    },
+    "tashilat": {
+      "title": "سیستم وام، تسهیلات و اقساط",
+      "db_tables": [
+        "TblTashilat",
+        "TblGhest",
+        "TblVosoolGhest",
+        "TblJarimehTakhir"
+      ],
+      "accounting_nature": "وام دریافتی: بانک بدهکار، تسهیلات پرداختنی بستانکار | قسط: اصل وام و هزینه سود بدهکار، بانک بستانکار",
+      "images": [
+        "tashilat_img_1_1.png",
+        "tashilat_img_1_2.png",
+        "tashilat_img_2_1.png",
+        "tashilat_img_2_3.png",
+        "tashilat_img_2_4.png",
+        "tashilat_img_3_5.png",
+        "tashilat_img_3_6.png",
+        "tashilat_img_3_7.png",
+        "tashilat_img_4_1.png",
+        "tashilat_img_4_8.png",
+        "tashilat_img_4_9.png",
+        "tashilat_img_5_10.png",
+        "tashilat_img_6_11.png",
+        "tashilat_img_7_12.png"
+      ],
+      "forms": [
+        {
+          "id": "TsmVosoolAghsatByFile.Text",
+          "title": "وصول اقساط با فایل",
+          "raw": "وصول اقساط با فایل",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmRefreshAghsat.Text",
+          "title": "بروزرسانی اقساط",
+          "raw": "بروزرسانی اقساط",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmShowAghsatP.Text",
+          "title": "نمایش اقساط",
+          "raw": "نمایش اقساط",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmsorathesabavamel.Text",
+          "title": "صورت حساب عوامل فاکتور",
+          "raw": "صورت حساب عوامل فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmNewSuratHesabPayrollD.Text",
+          "title": "نمایش صورت حساب اقساط",
+          "raw": "نمایش صورت حساب اقساط",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmVosolAsnadBimeName.Text",
+          "title": "وصول اقساط بیمه نامه",
+          "raw": "وصول اقساط بیمه نامه",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmTashilat.Text",
+          "title": "تسهیلات",
+          "raw": "&تسهیلات",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmSoodDirkerd_Ghest.Text",
+          "title": "محاسبه سود و دیرکرد اقساط",
+          "raw": "محاسبه سود و دیرکرد اقساط",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmShowAghsatD.Text",
+          "title": "نمایش اقساط",
+          "raw": "نمایش اقساط",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmAghsateDirShodeD.Text",
+          "title": "نمایش اقساط دیرشده",
+          "raw": "نمایش اقساط دیرشده",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmFactorTasviyeAmel.Text",
+          "title": "تعریف عوامل تسویه فاکتور",
+          "raw": "تعریف عوامل تسویه فاکتور",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmAvamelFactorKhadamat.Text",
+          "title": "تعریف عوامل فاکتور خدمات",
+          "raw": "تعریف عوامل فاکتور خدمات",
+          "shortcut": ""
+        },
+        {
+          "id": "TsmVosoolGhestZirMenu.Text",
+          "title": "وصول اقساط با فایل اکسل",
+          "raw": "وصول اقساط با فایل اکسل",
+          "shortcut": ""
+        },
+        {
+          "id": "tsmAghsateDirShodeP.Text",
+          "title": "نمایش اقساط دیر شده",
+          "raw": "نمایش اقساط دیر شده",
+          "shortcut": ""
+        }
+      ]
+    }
+  },
+  "total_classified_forms": 619,
+  "total_images": 195
+}

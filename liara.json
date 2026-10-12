@@ -1,0 +1,12 @@
+{
+  "app": "sepehryar-ai",
+  "port": 8080,
+  "platform": "python",
+  "python": {
+    "version": "3.11"
+  },
+  "build": {
+    "command": "pip install --no-cache-dir -r requirements-cloud.txt"
+  },
+  "start": "python start_production.py"
+}

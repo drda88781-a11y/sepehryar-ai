@@ -1,0 +1,456 @@
+{
+  "database_name": "Sepehr_Main2_1405",
+  "chart_of_accounts": [],
+  "default_system_accounts": [
+    {
+      "id": 2,
+      "srfsl": "100",
+      "moin": "1",
+      "hsb": "",
+      "description": "حساب صندوق",
+      "person_id": 0
+    },
+    {
+      "id": 3,
+      "srfsl": "112",
+      "moin": "1",
+      "hsb": "",
+      "description": "حساب اسناد دریافتنی",
+      "person_id": 0
+    },
+    {
+      "id": 4,
+      "srfsl": "202",
+      "moin": "1",
+      "hsb": "",
+      "description": "حساب اسناد پرداختنی",
+      "person_id": 0
+    },
+    {
+      "id": 5,
+      "srfsl": "400",
+      "moin": "1",
+      "hsb": "",
+      "description": "حساب فروش",
+      "person_id": 1
+    },
+    {
+      "id": 6,
+      "srfsl": "500",
+      "moin": "1",
+      "hsb": "",
+      "description": "حساب خرید",
+      "person_id": 0
+    },
+    {
+      "id": 7,
+      "srfsl": "400",
+      "moin": "3",
+      "hsb": "",
+      "description": "حساب برگشت از فروش",
+      "person_id": 0
+    },
+    {
+      "id": 8,
+      "srfsl": "500",
+      "moin": "3",
+      "hsb": "",
+      "description": "حساب برگشت از خرید",
+      "person_id": 0
+    },
+    {
+      "id": 10,
+      "srfsl": "350",
+      "moin": "2",
+      "hsb": "",
+      "description": "حساب سودوزیان",
+      "person_id": 0
+    },
+    {
+      "id": 11,
+      "srfsl": "900",
+      "moin": "1",
+      "hsb": "",
+      "description": "حساب افتتاحیه",
+      "person_id": 0
+    },
+    {
+      "id": 12,
+      "srfsl": "900",
+      "moin": "1",
+      "hsb": "",
+      "description": "حساب اختتامیه",
+      "person_id": 0
+    },
+    {
+      "id": 13,
+      "srfsl": "117",
+      "moin": "2",
+      "hsb": "",
+      "description": "حساب موجودی پایان دوره",
+      "person_id": 0
+    }
+  ],
+  "transaction_types_tr": [
+    {
+      "id": 1,
+      "name": "پیش فاکتور",
+      "traz": 0,
+      "type": "4"
+    },
+    {
+      "id": 10,
+      "name": "بیمه نامه",
+      "traz": 0,
+      "type": "3"
+    },
+    {
+      "id": 20,
+      "name": "هتل",
+      "traz": 0,
+      "type": "2"
+    },
+    {
+      "id": 30,
+      "name": "تالار",
+      "traz": 0,
+      "type": "2"
+    },
+    {
+      "id": 100,
+      "name": "رسید انبار",
+      "traz": 100,
+      "type": ""
+    },
+    {
+      "id": 101,
+      "name": "جابجايي ورود",
+      "traz": 100,
+      "type": ""
+    },
+    {
+      "id": 102,
+      "name": "ورود از توليد",
+      "traz": 100,
+      "type": ""
+    },
+    {
+      "id": 103,
+      "name": "خرید",
+      "traz": 100,
+      "type": "1"
+    },
+    {
+      "id": 104,
+      "name": "برگشت از فروش",
+      "traz": 100,
+      "type": "1"
+    },
+    {
+      "id": 105,
+      "name": "خرید حق العمل",
+      "traz": 100,
+      "type": "1"
+    },
+    {
+      "id": 106,
+      "name": "ورود به تفکیک کالا",
+      "traz": 100,
+      "type": ""
+    },
+    {
+      "id": 107,
+      "name": "برگشت مصرف کالا",
+      "traz": 100,
+      "type": "1"
+    },
+    {
+      "id": 108,
+      "name": "برگشت حواله انبار",
+      "traz": 100,
+      "type": ""
+    },
+    {
+      "id": 110,
+      "name": "رسید انبارگردانی",
+      "traz": 100,
+      "type": ""
+    },
+    {
+      "id": 111,
+      "name": "خرید داخلی",
+      "traz": 100,
+      "type": "1"
+    },
+    {
+      "id": 112,
+      "name": "برگشت از فروش داخلی",
+      "traz": 100,
+      "type": "1"
+    },
+    {
+      "id": 113,
+      "name": "رسید امانی",
+      "traz": 100,
+      "type": ""
+    },
+    {
+      "id": 114,
+      "name": "برگشت حواله امانی",
+      "traz": 100,
+      "type": ""
+    },
+    {
+      "id": 115,
+      "name": "رسید تولید",
+      "traz": 100,
+      "type": ""
+    },
+    {
+      "id": 116,
+      "name": "برگشت حواله مصرف",
+      "traz": 100,
+      "type": ""
+    },
+    {
+      "id": 117,
+      "name": "رسید انتقال",
+      "traz": 100,
+      "type": ""
+    },
+    {
+      "id": 200,
+      "name": "حواله انبار",
+      "traz": 200,
+      "type": ""
+    },
+    {
+      "id": 201,
+      "name": "جابجايي خروج",
+      "traz": 200,
+      "type": ""
+    },
+    {
+      "id": 202,
+      "name": "خروج از توليد",
+      "traz": 200,
+      "type": ""
+    },
+    {
+      "id": 203,
+      "name": "فروش",
+      "traz": 200,
+      "type": "1"
+    },
+    {
+      "id": 204,
+      "name": "برگشت از خرید",
+      "traz": 200,
+      "type": "1"
+    },
+    {
+      "id": 205,
+      "name": "فروش حق العمل",
+      "traz": 200,
+      "type": "1"
+    },
+    {
+      "id": 206,
+      "name": "خروج به تفکیک کالا",
+      "traz": 200,
+      "type": ""
+    },
+    {
+      "id": 207,
+      "name": "مصرف کالا",
+      "traz": 200,
+      "type": "1"
+    },
+    {
+      "id": 208,
+      "name": "فاکتور خدمات",
+      "traz": 200,
+      "type": "1"
+    },
+    {
+      "id": 209,
+      "name": "برگشت رسید انبار",
+      "traz": 200,
+      "type": ""
+    },
+    {
+      "id": 210,
+      "name": "حواله انبارگردانی",
+      "traz": 200,
+      "type": ""
+    },
+    {
+      "id": 211,
+      "name": "فروش داخلی",
+      "traz": 200,
+      "type": "1"
+    },
+    {
+      "id": 212,
+      "name": "برگشت از خرید داخلی",
+      "traz": 200,
+      "type": "1"
+    },
+    {
+      "id": 213,
+      "name": "حواله امانی",
+      "traz": 200,
+      "type": ""
+    },
+    {
+      "id": 214,
+      "name": "برگشت رسید امانی",
+      "traz": 200,
+      "type": ""
+    },
+    {
+      "id": 215,
+      "name": "حواله مصرف",
+      "traz": 200,
+      "type": ""
+    },
+    {
+      "id": 216,
+      "name": "برگشت رسید تولید",
+      "traz": 200,
+      "type": ""
+    },
+    {
+      "id": 217,
+      "name": "حواله انتقال",
+      "traz": 200,
+      "type": ""
+    }
+  ],
+  "sanad_types": [
+    {
+      "id": 1,
+      "name": "معمولي"
+    },
+    {
+      "id": 2,
+      "name": "افتتاحيه"
+    },
+    {
+      "id": 3,
+      "name": "اختتاميه"
+    },
+    {
+      "id": 4,
+      "name": "سود و زيان"
+    }
+  ],
+  "warehouses": [
+    {
+      "id": 1,
+      "name": "انبار مركزي",
+      "officer": "",
+      "type": "",
+      "sarfasl": "",
+      "moin": "",
+      "hsb": ""
+    }
+  ],
+  "product_units": [
+    {
+      "id": 1,
+      "name": "عدد"
+    },
+    {
+      "id": 2,
+      "name": "كيلو"
+    },
+    {
+      "id": 3,
+      "name": "رول"
+    },
+    {
+      "id": 4,
+      "name": "دستگاه"
+    },
+    {
+      "id": 5,
+      "name": "جعبه"
+    },
+    {
+      "id": 6,
+      "name": "دست"
+    },
+    {
+      "id": 7,
+      "name": "بشكه"
+    },
+    {
+      "id": 8,
+      "name": "پالت"
+    },
+    {
+      "id": 9,
+      "name": "جفت"
+    },
+    {
+      "id": 10,
+      "name": "متر"
+    },
+    {
+      "id": 11,
+      "name": "حلقه"
+    },
+    {
+      "id": 12,
+      "name": "كارتن"
+    },
+    {
+      "id": 13,
+      "name": "حلب"
+    },
+    {
+      "id": 14,
+      "name": "قوطي"
+    },
+    {
+      "id": 15,
+      "name": "برگ"
+    },
+    {
+      "id": 16,
+      "name": "ليتر"
+    },
+    {
+      "id": 17,
+      "name": "شاخه"
+    },
+    {
+      "id": 18,
+      "name": "بسته"
+    },
+    {
+      "id": 19,
+      "name": "مترمربع"
+    },
+    {
+      "id": 20,
+      "name": "گرم"
+    }
+  ],
+  "sample_products": [],
+  "person_types_summary": {
+    "total_persons": 1539,
+    "customer_count": 370,
+    "supplier_count": 4
+  },
+  "financial_summary": {
+    "total_sanad_headers": 1,
+    "total_transactions_tr": 115,
+    "total_bed_sum": 5673732647511.0,
+    "total_bes_sum": 5673732647511.0,
+    "cheques_received": 0,
+    "cheques_paid": 0
+  },
+  "chart_of_accounts_error": "('42000', '[42000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]ORDER BY items must appear in the select list if SELECT DISTINCT is specified. (145) (SQLExecDirectW)')"
+}

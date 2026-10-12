@@ -20,13 +20,94 @@ class KnowledgeLoader:
         return hashlib.sha256(content.encode("utf-8")).hexdigest()
 
     @classmethod
+    def _extract_docx(cls, file_path: Path) -> str:
+        """Extract text and tables from Word docx into clean Markdown."""
+        try:
+            import docx
+            doc = docx.Document(str(file_path))
+            parts = []
+            for p in doc.paragraphs:
+                text = p.text.strip()
+                if not text:
+                    continue
+                sname = p.style.name if (p.style and hasattr(p.style, "name")) else ""
+                if "Heading" in sname or text.startswith(("بخش", "فصل", "1.", "2.", "3.", "4.", "5.", "6.", "7.", "8.", "9.", "10.")):
+                    parts.append(f"## {text}")
+                else:
+                    parts.append(text)
+
+            for table in doc.tables:
+                table_lines = []
+                for row_idx, row in enumerate(table.rows):
+                    cells = [c.text.strip().replace("\n", " ") for c in row.cells]
+                    row_str = "| " + " | ".join(cells) + " |"
+                    table_lines.append(row_str)
+                    if row_idx == 0:
+                        sep = "| " + " | ".join(["---"] * len(cells)) + " |"
+                        table_lines.append(sep)
+                if table_lines:
+                    parts.append("\n" + "\n".join(table_lines) + "\n")
+
+            return "\n\n".join(parts)
+        except Exception as e:
+            logger.error(f"Failed to extract docx from {file_path}: {e}")
+            return ""
+
+    @classmethod
+    def _extract_pdf(cls, file_path: Path) -> str:
+        """Extract text from PDF pages into Markdown sections."""
+        try:
+            import pymupdf
+            doc = pymupdf.open(str(file_path))
+            parts = []
+            for page_num in range(len(doc)):
+                page = doc[page_num]
+                text = page.get_text().strip()
+                if text:
+                    parts.append(f"## صفحه {page_num + 1}\n{text}")
+            return "\n\n".join(parts)
+        except Exception as e:
+            logger.error(f"Failed to extract PDF from {file_path}: {e}")
+            return ""
+
+    @classmethod
+    def _extract_pptx(cls, file_path: Path) -> str:
+        """Extract text from PowerPoint presentations into Markdown slides."""
+        try:
+            import pptx
+            prs = pptx.Presentation(str(file_path))
+            parts = []
+            for slide_num, slide in enumerate(prs.slides):
+                slide_texts = []
+                for shape in slide.shapes:
+                    if shape.has_text_frame:
+                        t = shape.text.strip()
+                        if t:
+                            slide_texts.append(t)
+                if slide_texts:
+                    parts.append(f"## اسلاید {slide_num + 1}\n" + "\n".join(slide_texts))
+            return "\n\n".join(parts)
+        except Exception as e:
+            logger.error(f"Failed to extract PPTX from {file_path}: {e}")
+            return ""
+
+    @classmethod
     def load_document(cls, file_path: Path, base_dir: Optional[Path] = None) -> Optional[KnowledgeDocument]:
-        """Load a single markdown/text file, parse title and chunks."""
+        """Load a single markdown/text/docx/pdf/pptx file, parse title and chunks."""
         try:
             if not file_path.exists() or not file_path.is_file():
                 return None
 
-            content = file_path.read_text(encoding="utf-8", errors="replace").strip()
+            ext = file_path.suffix.lower()
+            if ext == ".docx":
+                content = cls._extract_docx(file_path).strip()
+            elif ext == ".pdf":
+                content = cls._extract_pdf(file_path).strip()
+            elif ext == ".pptx":
+                content = cls._extract_pptx(file_path).strip()
+            else:
+                content = file_path.read_text(encoding="utf-8", errors="replace").strip()
+
             if not content:
                 return None
 
@@ -157,7 +238,7 @@ class KnowledgeLoader:
             return []
 
         docs: list[KnowledgeDocument] = []
-        for ext in ["*.md", "*.txt"]:
+        for ext in ["*.md", "*.txt", "*.docx", "*.pdf", "*.pptx"]:
             for f in directory_path.rglob(ext):
                 if f.is_file():
                     doc = cls.load_document(f, base_dir=directory_path)
