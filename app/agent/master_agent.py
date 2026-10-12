@@ -183,18 +183,24 @@ class MasterAgent:
                     sections.append(f"- ⚠️ {w}")
             sections.append("")
 
-        # Generated Artifacts (SP, SQL, C# Code)
-        if blackboard.generated_sp:
-            sections.append("### ۳. اسکریپت Stored Procedure سازمانی سپهریار:")
-            sections.append(f"```sql\n{blackboard.generated_sp.strip()}\n```\n")
+        # Generated Artifacts (SP, SQL, C# Code) - Only if explicitly requested
+        is_code_requested = any(w in blackboard.user_query.lower() for w in [
+            "کوئری", "کوری", "sql", "tsql", "t-sql", "select ", "stored procedure", "پروسیجر",
+            "اسکریپت", "اس پی", "sp", "دستور دیتابیس", "کد sql", "t-sql بنویس", "c#", ".net"
+        ])
 
-        if blackboard.generated_sql and not blackboard.generated_sp:
-            sections.append("### ۳. اسکریپت بهینه‌شده T-SQL:")
-            sections.append(f"```sql\n{blackboard.generated_sql.strip()}\n```\n")
+        if is_code_requested:
+            if blackboard.generated_sp:
+                sections.append("### ۳. اسکریپت Stored Procedure سازمانی سپهریار:")
+                sections.append(f"```sql\n{blackboard.generated_sp.strip()}\n```\n")
 
-        if blackboard.generated_code:
-            sections.append("### ۴. پیاده‌سازی لایه کد و اتصال نرم‌افزار (C# / .NET):")
-            sections.append(f"```csharp\n{blackboard.generated_code.strip()}\n```\n")
+            if blackboard.generated_sql and not blackboard.generated_sp:
+                sections.append("### ۳. اسکریپت بهینه‌شده T-SQL:")
+                sections.append(f"```sql\n{blackboard.generated_sql.strip()}\n```\n")
+
+            if blackboard.generated_code:
+                sections.append("### ۴. پیاده‌سازی لایه کد و اتصال نرم‌افزار (C# / .NET):")
+                sections.append(f"```csharp\n{blackboard.generated_code.strip()}\n```\n")
 
         # Critic Gatekeeper Stamp
         verdict_icon = "✅" if critic.verdict == CriticVerdict.APPROVED else ("⚠️" if critic.verdict == CriticVerdict.APPROVED_WITH_WARNINGS else "❌")

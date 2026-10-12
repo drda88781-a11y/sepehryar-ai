@@ -367,41 +367,46 @@ class AgentOrchestrator:
         intent_res = task_planner.detect_intent(clean_query)
         logger.debug(f"Detected intent: {intent_res.intent.value} (confidence={intent_res.confidence})")
 
-        # 2. Thinking Depth Routing: Deep Audit Mode triggers full Multi-Agent Master System
+        # 2. Thinking Depth Routing: Deep Audit Mode triggers full Multi-Agent Master System for technical tasks
         if thinking_mode == "deep":
-            master_res = master_agent.solve(clean_query, session_id=session_id or "default", database_name=database_name)
-            tot_dur = (time.perf_counter() - start_time) * 1000
-            steps = [f"{s.agent_role.value}: {s.stage_title}" for s in master_res.reasoning_steps]
-            if not steps:
-                steps = [
-                    "🎯 تفکیک مسئله و بررسی ابعاد نیازمندی مالی (Task Decomposition)",
-                    "🔍 کاوش عمیق در Schema Graph و نگاشت کلیدهای تفصیلی",
-                    "💡 فرضیه‌سازی استنتاجی (Beyond-KB Deductive Reasoning)",
-                    "⚙️ اعتبارسنجی تراز، کدینگ دوبل و ساخت کوئری بهینه T-SQL",
-                    "🛡️ بازرسی سخت‌گیرانه منتقد (Strict Critic Safety Audit)"
-                ]
-            if session_id:
-                chat_memory.add_message(session_id, "user", clean_query)
-                chat_memory.add_message(session_id, "assistant", master_res.solution_markdown, metadata={"duration_ms": tot_dur})
-            deep_resp = AgentResponse(
-                user_query=clean_query,
-                persian_answer=master_res.solution_markdown,
-                intent=intent_res.intent,
-                sql_plan=None,
-                sql_result=None,
-                tools_used=[],
-                sources=["master_agent/deep_audit"],
-                duration_ms=round(tot_dur, 2),
-                thinking_duration_ms=round(master_res.total_duration_ms or (tot_dur * 0.65), 2),
-                thinking_summary=f"تحلیل عمیق حسابرسی با ۷ ایجنت تخصصی ({len(steps)} مرحله)",
-                thinking_mode="deep",
-                success=True,
-                master_solution=master_res.solution_markdown,
-                critic_verdict=master_res.critic_review.verdict.value if master_res.critic_review else "APPROVED",
-                reasoning_steps=steps
-            )
-            response_cache.set(clean_query, deep_resp, database_name)
-            return deep_resp
+            is_developer_query = any(w in q_norm for w in [
+                "کوئری", "کوری", "sql", "tsql", "t-sql", "select ", "stored procedure", "پروسیجر",
+                "اسکریپت", "اس پی", "sp", "دستور دیتابیس", "کد sql", "t-sql بنویس", "deadlock", "تریگر"
+            ])
+            if is_developer_query:
+                master_res = master_agent.solve(clean_query, session_id=session_id or "default", database_name=database_name)
+                tot_dur = (time.perf_counter() - start_time) * 1000
+                steps = [f"{s.agent_role.value}: {s.stage_title}" for s in master_res.reasoning_steps]
+                if not steps:
+                    steps = [
+                        "🎯 تفکیک مسئله و بررسی ابعاد نیازمندی مالی (Task Decomposition)",
+                        "🔍 کاوش عمیق در Schema Graph و نگاشت کلیدهای تفصیلی",
+                        "💡 فرضیه‌سازی استنتاجی (Beyond-KB Deductive Reasoning)",
+                        "⚙️ اعتبارسنجی تراز، کدینگ دوبل و ساخت کوئری بهینه T-SQL",
+                        "🛡️ بازرسی سخت‌گیرانه منتقد (Strict Critic Safety Audit)"
+                    ]
+                if session_id:
+                    chat_memory.add_message(session_id, "user", clean_query)
+                    chat_memory.add_message(session_id, "assistant", master_res.solution_markdown, metadata={"duration_ms": tot_dur})
+                deep_resp = AgentResponse(
+                    user_query=clean_query,
+                    persian_answer=master_res.solution_markdown,
+                    intent=intent_res.intent,
+                    sql_plan=None,
+                    sql_result=None,
+                    tools_used=[],
+                    sources=["master_agent/deep_audit"],
+                    duration_ms=round(tot_dur, 2),
+                    thinking_duration_ms=round(master_res.total_duration_ms or (tot_dur * 0.65), 2),
+                    thinking_summary=f"تحلیل عمیق حسابرسی با ۷ ایجنت تخصصی ({len(steps)} مرحله)",
+                    thinking_mode="deep",
+                    success=True,
+                    master_solution=master_res.solution_markdown,
+                    critic_verdict=master_res.critic_review.verdict.value if master_res.critic_review else "APPROVED",
+                    reasoning_steps=steps
+                )
+                response_cache.set(clean_query, deep_resp, database_name)
+                return deep_resp
 
         # 3. Generative Smart Agent Engine (Gemini Cloud / OpenRouter / Ollama)
         from app.agent.smart_agent import smart_agent_engine
@@ -806,11 +811,25 @@ class AgentOrchestrator:
                 "title": "💡 استنتاج قیاسی فراتر از پایگاه دانش (Beyond-KB Inference)",
                 "detail": "فرضیه‌سازی تجاری، انطباق ترازهای مالی و انتخاب بهینه‌ترین مسیر حل"
             }
+            is_dev_req = any(w in q_norm for w in [
+                "کوئری", "کوری", "sql", "tsql", "t-sql", "select ", "stored procedure", "پروسیجر",
+                "اسکریپت", "اس پی", "sp", "دستور دیتابیس", "کد sql", "t-sql بنویس", "deadlock", "تریگر"
+            ])
+            audit_title = (
+                "⚙️ اعتبارسنجی T-SQL، سلامت ایندکس‌ها و امنیت تراکنش"
+                if is_dev_req else
+                "⚙️ اعتبارسنجی فرآیند مالی، کنترل مغایرت و استانداردهای حسابداری"
+            )
+            audit_detail = (
+                "اطمینان از سازگاری نوع داده‌ها، سرفصل‌های کل و معین و عدم افت کارایی"
+                if is_dev_req else
+                "انطباق با سرفصل‌های کل، معین، تفصیلی، کنترل تراز دوبل و روال استاندارد نرم‌افزار سپهریار"
+            )
             yield {
                 "type": "thinking_step",
                 "stage": "sql_audit",
-                "title": "⚙️ اعتبارسنجی T-SQL، سلامت ایندکس‌ها و امنیت تراکنش",
-                "detail": "اطمینان از سازگاری نوع داده‌ها، سرفصل‌های کل و معین و عدم افت کارایی"
+                "title": audit_title,
+                "detail": audit_detail
             }
             yield {
                 "type": "thinking_step",
@@ -820,9 +839,9 @@ class AgentOrchestrator:
             }
             steps_summary = [
                 "🎯 تجزیه عمیق مسئله به زیرمسائل مهندسی و مالی",
-                "🔍 کاوش چندلایه در Schema Graph و نگاشت کلیدها",
+                "🔍 کاوش چندلایه در پایگاه دانش و نگاشت سرفصل‌ها",
                 "💡 استنتاج قیاسی فراتر از پایگاه دانش",
-                "⚙️ اعتبارسنجی T-SQL و سلامت ایندکس‌ها",
+                audit_title,
                 "🛡️ بازرسی سخت‌گیرانه Critic Agent"
             ]
         else:

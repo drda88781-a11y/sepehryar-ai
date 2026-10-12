@@ -103,7 +103,11 @@ class SepehryarCognitiveEngine:
         action, target_table, detected_tables = cls._extract_action_and_table(q_norm)
 
         # 1. Specialized Dynamic SQL Operations (DELETE, UPDATE, INSERT) on Any Table
-        if action in ("DELETE", "UPDATE", "INSERT") and target_table:
+        # (Only if user explicitly asks for database/SQL code, NOT for UI/operator questions)
+        is_explicit_sql_query = any(w in q_norm for w in [
+            "sql", "t-sql", "کوئری", "دیتابیس", "اسکریپت", "دستور sql", "کد sql", "پروسیجر", "تراکنش"
+        ])
+        if action in ("DELETE", "UPDATE", "INSERT") and target_table and is_explicit_sql_query:
             return cls._reason_dynamic_sql_operation(query, action, target_table, q_norm)
 
         # 2. Schema Inspection & JOIN between tables

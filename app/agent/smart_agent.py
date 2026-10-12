@@ -479,10 +479,8 @@ class SmartAgentEngine:
         ])
 
         is_sql_prog = any(w in lower_q for w in [
-            "sql", "tsql", "t-sql", "کوئری", "select", "join", "cte", "window function", "row_number",
-            "dense_rank", "partition by", "stored procedure", "trigger", "index", "ایندکس", "پرفورمنس",
-            "بهینه‌سازی", "deadlock", "transaction", "having", "group by", "subquery", "pivot", "view",
-            "table", "جدول", "اسکریپت", "تابع"
+            "کوئری", "کوری", "sql", "tsql", "t-sql", "select ", "stored procedure", "پروسیجر",
+            "اسکریپت", "اس پی", "sp", "دستور دیتابیس", "کوئری بنویس", "کد sql", "t-sql بنویس"
         ])
 
         guidelines = []
@@ -498,7 +496,11 @@ class SmartAgentEngine:
             sources.append("engineering/sql_database_architecture")
             guidelines.append("""- به عنوان یک معمار ارشد پایگاه داده و متخصص T-SQL، کدهای درخواستی را به صورت تمیز، اصولی و با عملکرد بالا بنویسید.
 - کدها را در بلاک ```sql قرار داده و کامنت‌های آموزشی و واضح داخل کد درج کنید.
-- نحوه کارکرد توابع (به‌ویژه توابع تحلیلی پنجره‌ای، CTEها یا ایندکس‌ها) و نکات بهینه‌سازی را تشریح کنید.""")
+- نحوه کارکرد توابع و نکات بهینه‌سازی را تشریح کنید.""")
+        else:
+            guidelines.append("""- کاربر یک حسابدار / اپراتور نرم‌افزار است و با محیط کاربری ویندوز (منوها و فرم‌ها) کار می‌کند.
+- اکیداً و تحت هیچ شرایطی کدهای SQL، کوئری، دستورات UPDATE/DELETE یا پروسیجر دیتابیسی ننویسید!
+- کلیه مراحل را فقط از طریق منوهای نرم‌افزار، فرم‌ها، دکمه‌ها و کلیدهای میانبر سپهریار به صورت گام‌به‌گام توضیح دهید.""")
 
         is_photo_req = any(w in lower_q for w in [
             "عکس", "عکساش", "عکساشم", "عکساشو", "عکسش", "عکسشو", "عکسها", "عکس‌ها", 
@@ -573,7 +575,13 @@ class SmartAgentEngine:
             if any(w in lower_q for w in ["مدیر سیستم", "مدیریت سیستم", "کاربر", "کاربران", "دسترسی"]):
                 clean_answer = re.sub(r'!\[.*?\]\([^)]*payeh_img_4_1[^)]*\)\s*(?:\([^\)]*\))?', '', clean_answer).strip()
 
-        reason_tag = "استدلال مشاور ارشد حسابداری و T-SQL"
+        # Post-processing SQL sanitization (if user did not ask for SQL, strip unwanted SQL blocks)
+        if not is_sql_prog:
+            clean_answer = re.sub(r'```sql[\s\S]*?```', '', clean_answer).strip()
+            clean_answer = re.sub(r'(?:[۱-۹]|\d)\.\s*ویرایش مستقیم از طریق پایگاه داده[\s\S]*?(?=\n#|\n---|\Z)', '', clean_answer).strip()
+            clean_answer = re.sub(r'--\s*(?:ویرایش|حذف|اصلاح|کوئری)[\s\S]*?(?:COMMIT|ROLLBACK)\s*TRANSACTION;?', '', clean_answer).strip()
+
+        reason_tag = "تحلیل کاربردی و فرآیندی نرم‌افزار سپهریار"
         if is_accounting:
             reason_tag = "تحلیل اصول و استانداردهای حسابداری (Senior CPA)"
         elif is_sql_prog:
@@ -646,13 +654,23 @@ class SmartAgentEngine:
         ])
         photo_rule = "- کاربر درخواست عکس کرده است؛ تصویر دقیقاً متناسب را درج کنید." if is_photo_req else "- کاربر درخواست عکس نکرده است؛ مطلقاً هیچ عکس یا تگ تصویری درج نکنید."
 
+        is_sql_req = any(w in lower_q for w in [
+            "کوئری", "کوری", "sql", "tsql", "t-sql", "select ", "stored procedure", "پروسیجر",
+            "اسکریپت", "اس پی", "sp", "دستور دیتابیس", "کوئری بنویس", "کد sql", "t-sql بنویس"
+        ])
+        sql_rule = (
+            "- کاربر درخواست کد فنی T-SQL کرده است؛ کدهای دقیق T-SQL را شکیل درج کنید."
+            if is_sql_req else
+            "- کاربر یک حسابدار و اپراتور نرم‌افزار است؛ اکیداً هیچ‌گونه کد SQL، کوئری دیتابیسی، دستور UPDATE یا پروسیجر ننویسید! راهکار را ۱۰۰٪ از طریق منوها، پنجره‌ها، دکمه‌ها و کلیدهای میانبر نرم‌افزار سپهریار توضیح دهید."
+        )
+
         prompt = f"""{history_block}پرسش یا پیام فعلی کاربر:
 «{clean_query}»
 
 دستورالعمل:
 - پاسخ را سریع، کاربردی، مستقیم و بدون مقدمه‌چینی‌های زائد ارائه دهید. مستقیماً به حل مساله بپردازید.
 {photo_rule}
-- در صورت لزوم جداول مقایسه‌ای یا کدهای T-SQL را شکیل درج کنید.
+{sql_rule}
 
 زمینه و مستندات سیستم:
 {kb_context if kb_context else 'تسلط کامل به استانداردهای مالی، معماری دیتابیس و محیط سپهریار.'}"""
