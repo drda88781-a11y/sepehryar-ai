@@ -1,0 +1,19 @@
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.git/
+.gitignore
+exe full/
+pdf SEPEHRYAR/
+dist/
+dist_wpf/
+build/
+bin/
+obj/
+src_wpf/
+logs/
+*.log
+*.exe
+data/*.db
+data/exports/

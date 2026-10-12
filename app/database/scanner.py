@@ -5,7 +5,6 @@ indexes, triggers, views, stored procedures, and relationships.
 import time
 from datetime import datetime, timezone
 from typing import Optional, Any
-import pyodbc
 from app.config.settings import settings
 from app.core.audit import record_audit
 from app.core.exceptions import DatabaseScanError
@@ -129,7 +128,7 @@ class DatabaseScanner:
                 original_exception=e
             )
 
-    def _introspect_sql_server(self, conn: pyodbc.Connection, server: str, db: str) -> DatabaseSchema:
+    def _introspect_sql_server(self, conn: Any, server: str, db: str) -> DatabaseSchema:
         """Run metadata extraction queries on SQL Server catalog views."""
         schema = DatabaseSchema(
             database_name=db,

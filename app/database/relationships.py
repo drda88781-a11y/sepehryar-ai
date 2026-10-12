@@ -2,7 +2,6 @@
 Database relationships extraction (both declared SQL Server Foreign Keys and inferred heuristics).
 """
 from typing import Any
-import pyodbc
 from app.core.logger import get_logger
 from app.database.metadata import RelationshipMetadata, TableMetadata
 
@@ -25,7 +24,7 @@ ORDER BY source_table, fk_name;
 """
 
 
-def extract_declared_relationships(conn: pyodbc.Connection) -> list[RelationshipMetadata]:
+def extract_declared_relationships(conn: Any) -> list[RelationshipMetadata]:
     """Query SQL Server sys catalog for declared foreign key constraints."""
     relationships: dict[str, RelationshipMetadata] = {}
     cursor = conn.cursor()

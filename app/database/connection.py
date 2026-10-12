@@ -4,7 +4,13 @@ dual-authentication support (Windows Auth & SQL Auth), and connection testing.
 """
 from contextlib import contextmanager
 from typing import Optional, Generator, Any
-import pyodbc
+try:
+    import pyodbc
+    HAS_PYODBC = True
+except ImportError:
+    pyodbc = None  # type: ignore
+    HAS_PYODBC = False
+
 from app.config.settings import settings
 from app.core.exceptions import DatabaseConnectionError
 from app.core.logger import get_logger, scrub_credentials
@@ -54,9 +60,11 @@ class DBConnectionManager:
 
     def get_best_driver(self) -> str:
         """Find the most modern SQL Server ODBC driver installed on the Windows host."""
+        if not HAS_PYODBC:
+            return ""
         if self.cached_driver:
             return self.cached_driver
-        available = pyodbc.drivers()
+        available = pyodbc.drivers() if pyodbc else []
         # Priority list
         preferred = [
             "ODBC Driver 18 for SQL Server",
@@ -131,6 +139,9 @@ class DBConnectionManager:
         if target_srv.upper() in ("DEMO", "MOCK", "OFFLINE_DEMO"):
             return True, "اتصال به پایگاه داده دمو سپهریار (آفلاین) برقرار شد.", ["Sepehr_hesabico_1403", "Sepehr_Main_Demo"]
 
+        if not HAS_PYODBC:
+            return False, "ارتباط با SQL Server محلی در محیط ابری غیرفعال است (محیط ابری بر اساس هوش مصنوعی و بانک دانش عمل می‌کند).", []
+
         conn_str = self.build_connection_string(
             server=target_srv,
             database=target_db if target_db else "master",
@@ -170,8 +181,10 @@ class DBConnectionManager:
         auth_type: str = "windows",
         username: Optional[str] = None,
         password: Optional[str] = None,
-    ) -> Generator[pyodbc.Connection, None, None]:
+    ) -> Generator[Any, None, None]:
         """Context manager yielding active pyodbc connection."""
+        if not HAS_PYODBC or not pyodbc:
+            raise DatabaseConnectionError("ماژول pyodbc در این محیط نصب نیست.")
         conn_str = self.build_connection_string(
             server=server,
             database=database,
