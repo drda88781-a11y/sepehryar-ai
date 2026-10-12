@@ -4,7 +4,7 @@ Delivers step-by-step visual tutorials with real screenshots from the software m
 with ZERO programming code or database developer jargon.
 Also provides direct, production-grade T-SQL stored procedures and queries without filler.
 """
-from typing import Optional
+from typing import Optional, Any, Union, List, Dict
 from app.core.logger import get_logger
 
 logger = get_logger("agent.manuals_guide")
