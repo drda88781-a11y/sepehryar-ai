@@ -552,11 +552,19 @@ class SmartAgentEngine:
 
 لطفاً پاسخی فصیح، روان، فوق‌العاده باهوش، صمیمی و سریع ارائه دهید."""
 
-        res = llm_manager.generate(prompt=prompt, system_prompt=SEPEHRYAR_SYSTEM_PROMPT, max_tokens=850)
+        try:
+            res = llm_manager.generate(prompt=prompt, system_prompt=SEPEHRYAR_SYSTEM_PROMPT, max_tokens=850)
+            clean_answer = res.content
+        except Exception as ex:
+            logger.warning(f"LLM generation failed in smart agent: {ex}. Falling back to Cognitive Engine.")
+            from app.agent.cognitive_engine import cognitive_engine
+            cog_res = cognitive_engine.reason_and_solve(query)
+            clean_answer = cog_res.to_formatted_markdown()
+            res = LLMResponse(content=clean_answer, model_name="Cognitive-Engine", tokens_used=len(clean_answer.split()), duration_ms=50.0, provider="cognitive_engine")
+
         total_dur = (time.perf_counter() - start_time) * 1000
 
         # Post-processing image sanitization
-        clean_answer = res.content
         if not is_photo_req:
             # Strip any unrequested markdown images that LLM might hallucinate
             clean_answer = re.sub(r'!\[.*?\]\([^\)]+\)\s*(?:\([^\)]*\))?', '', clean_answer).strip()

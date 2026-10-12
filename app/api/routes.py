@@ -164,8 +164,19 @@ def chat_stream_endpoint(req: ChatApiRequest):
             done_data = json.dumps({"type": "done"}, ensure_ascii=False)
             yield f"data: {done_data}\n\n"
         except Exception as ex:
-            err_data = json.dumps({"type": "error", "error": str(ex)}, ensure_ascii=False)
-            yield f"data: {err_data}\n\n"
+            from app.core.logger import get_logger
+            get_logger("routes").warning(f"Streaming error: {ex}. Sending Cognitive Engine fallback.")
+            try:
+                from app.agent.cognitive_engine import cognitive_engine
+                cog_res = cognitive_engine.reason_and_solve(req.query)
+                full_text = cog_res.to_formatted_markdown()
+                token_data = json.dumps({"type": "token", "content": full_text}, ensure_ascii=False)
+                yield f"data: {token_data}\n\n"
+            except Exception as inner_ex:
+                err_data = json.dumps({"type": "error", "error": str(inner_ex)}, ensure_ascii=False)
+                yield f"data: {err_data}\n\n"
+            done_data = json.dumps({"type": "done"}, ensure_ascii=False)
+            yield f"data: {done_data}\n\n"
 
     from fastapi.responses import StreamingResponse
     return StreamingResponse(
