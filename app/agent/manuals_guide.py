@@ -18,20 +18,10 @@ class ManualsGuideEngine:
     @classmethod
     def get_user_guide_response(cls, query: str, q_norm: str) -> Optional[Any]:
         """
-        Detects if query is an operational/software-usage question.
-        Returns a SepehryarCognitiveResponse in USER_GUIDE mode (tutorials + screenshots, no code),
-        or None if not applicable.
+        Interception disabled: All operational and software questions now flow directly
+        to the Generative Smart Agent with authentic ground-truth RAG context.
         """
-        from app.agent.cognitive_engine import SepehryarCognitiveResponse, CognitiveThoughtStep
-
-        # Guard: If user explicitly asks for programming/code, do not route to user guide
-        is_programming_query = any(w in q_norm for w in [
-            "پروسیجر", "procedure", "کوئری", "query", "اسکریپت", "script", "کد نویسی", 
-            "کدنویسی", "بنویس", "توسعه", "select", "insert into", "update ", "alter ", 
-            "create procedure", "t-sql", "c#"
-        ])
-        if is_programming_query:
-            return None
+        return None
 
 
 

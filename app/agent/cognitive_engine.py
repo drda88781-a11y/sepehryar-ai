@@ -1278,29 +1278,66 @@ WHERE m.personcod > 0 AND p.Sh_ozviat IS NULL;"""
     def _reason_dynamic_synthesis(cls, query: str, q_norm: str) -> SepehryarCognitiveResponse:
         # Search knowledge base including manuals
         hits = knowledge_search_engine.search(query, limit=2)
+        is_sql_req = any(w in q_norm for w in ["sql", "کوئری", "کد", "اسکریپت", "دستور", "select", "پروسیجر", "t-sql"])
+
         if hits and hits[0].score > 0.04:
             hit = hits[0]
-            topic = f"پاسخ هوشمند معماری و مستندات سپهریار: {hit.heading or hit.doc_title}"
+            topic = f"راهنمای کاربردی سپهریار: {hit.heading or hit.doc_title}"
             analysis = hit.snippet
             gotchas = [
                 f"استناد از مستند رسمی: «{hit.doc_title}».",
-                "رعایت استانداردهای تراکنشی و قفل‌گذاری در تعامل با داده‌های این بخش.",
-                "استفاده از هینت WITH (NOLOCK) در کلیه استعلام‌های مرتبط."
+                "رعایت استانداردهای حسابداری دوبل و پیوستگی اطلاعات مالی در سپهریار."
             ]
-            sql = """-- کوئری نمونه جهت استخراج داده‌های مرتبط با این موضوع
+            if is_sql_req:
+                sql = """-- کوئری نمونه جهت استخراج داده‌های مرتبط با این موضوع
 SELECT TOP (50) * 
 FROM dbo.TR WITH (NOLOCK)
 ORDER BY DateR DESC;"""
+                script_lang = "sql"
+                mode = "ENGINEERING"
+            else:
+                sql = ""
+                script_lang = ""
+                mode = "USER_GUIDE"
+
             checklist = [
                 "تطابق رویداد با استاندارد حسابداری و رویه جاری شرکت.",
                 "کنترل صحت ثبت‌ها از طریق باجه ثبت سند (F10)."
             ]
-            return SepehryarCognitiveResponse(query, topic, analysis, gotchas, sql, "sql", checklist, [])
+            return SepehryarCognitiveResponse(query, topic, analysis, gotchas, sql, script_lang, checklist, [], mode=mode)
 
-        return cls._reason_general_architecture(query)
+        return cls._reason_general_architecture(query, q_norm)
 
     @classmethod
-    def _reason_general_architecture(cls, query: str) -> SepehryarCognitiveResponse:
+    def _reason_general_architecture(cls, query: str, q_norm: str = "") -> SepehryarCognitiveResponse:
+        is_sql_req = any(w in (q_norm or query.lower()) for w in ["sql", "کوئری", "کد", "اسکریپت", "دستور", "select", "پروسیجر", "t-sql"])
+        
+        if not is_sql_req:
+            # Clean, intelligent operational guide without robotic SQL code
+            guide_text = f"""## 💡 راهنمای هوشمند سیستم سپهریار
+
+دستیار هوشمند سپهریار آماده راهنمایی شما در کلیه فرآیندهای مالی، اپراتوری و تنظیمات سیستم است:
+
+* **ثبت و مدیریت اسناد مالی:** صدور اسناد حسابداری دوبل (Ctrl+W)، ثبت فاکتورهای خرید و فروش، اسناد تسویه و مغایرت‌گیری بانکی.
+* **خزانه و چک‌های صیادی:** ثبت دریافت/پرداخت چک، خواباندن به حساب، اعلام وصول، عودت و پیگیری وضعیت چک‌ها.
+* **انبارداری و کالاها:** تعریف کالا و خدمات، تعیین بهای تمام‌شده، حواله خروج و رسید ورود کالا، و انبارگردانی پایان دوره.
+* **حقوق و دستمزد و پرسنل:** صدور احکام، ثبت کارکرد، فیش حقوقی و دیسکت‌های پایا و بیمه تأمین اجتماعی.
+* **تسهیلات و وام‌ها:** تعریف وام‌های دریافتی، محاسبه سود دوران و وصول مکانیزه اقساط.
+
+جهت دریافت پاسخ دقیق‌تر، می‌توانید موضوع یا عملیات مدنظرتان را مطرح فرمایید."""
+            return SepehryarCognitiveResponse(
+                query=query,
+                topic="راهنمای جامع کاربری و عملیات مالی سپهریار",
+                analysis=guide_text,
+                rules_and_gotchas=["کلیه فرآیندها منطبق بر استانداردهای حسابداری و فرم‌های رسمی سپهریار می‌باشند."],
+                solution_script="",
+                script_language="",
+                validation_checklist=["انتخاب فرم مربوطه از منوهای نرم‌افزار"],
+                thinking_steps=[],
+                mode="USER_GUIDE"
+            )
+
+        # Technical developer query only if user explicitly asked for database scripts
         analysis = (
             f"پرسش شما در ارتباط با «{query}» در ساختار هسته پایگاه داده سپهریار مورد تحلیل قرار گرفت. "
             "تمامی تعاملات برنامه‌نویسی با سپهریار باید با حفظ یکپارچگی سه‌گانه TblPerson، Master و TR "
@@ -1328,7 +1365,8 @@ SELECT
             solution_script=sql,
             script_language="sql",
             validation_checklist=checklist,
-            thinking_steps=[]
+            thinking_steps=[],
+            mode="ENGINEERING"
         )
 
     @classmethod

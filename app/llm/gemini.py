@@ -24,10 +24,11 @@ except ImportError:
     HAS_PYSOCKS = False
 
 FALLBACK_MODELS = [
-    "gemini-3.5-flash-lite",
-    "gemini-flash-lite-latest",
-    "gemini-3.5-flash",
+    "gemini-3-flash-preview",
+    "gemini-3.8-flash",
+    "gemini-3.7-flash",
     "gemini-flash-latest",
+    "gemini-3.1-pro-preview",
 ]
 
 
@@ -107,12 +108,14 @@ class GeminiProvider(LLMProvider):
             return self._cached_openers
 
         openers: list[urllib.request.OpenerDirector] = []
+        # 1. Direct connection first (ultra-fast <1s if Google API reachable directly or via transparent VPN/WARP)
+        openers.append(urllib.request.build_opener())
 
-        # 1. SOCKS5 Proxy (V2Ray default 10808)
+        # 2. SOCKS5 Proxy (V2Ray default 10808)
         if HAS_PYSOCKS and self._is_port_open("127.0.0.1", 10808, timeout=0.05):
             openers.append(urllib.request.build_opener(SocksiPyHandler("127.0.0.1", 10808)))
 
-        # 2. HTTP Proxy (V2Ray 10809 or Clash 7890)
+        # 3. HTTP Proxy (V2Ray 10809 or Clash 7890)
         for port in (10809, 7890):
             if self._is_port_open("127.0.0.1", port, timeout=0.05):
                 handler = urllib.request.ProxyHandler({
@@ -121,8 +124,6 @@ class GeminiProvider(LLMProvider):
                 })
                 openers.append(urllib.request.build_opener(handler))
 
-        # 3. Direct connection
-        openers.append(urllib.request.build_opener())
         self._cached_openers = openers
         self._last_opener_check = now
         return openers

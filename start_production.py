@@ -15,6 +15,9 @@ _DEFAULT_KEY = base64.b64decode("QVEuQWI4Uk42SVFmTVNvZjRHX1VoM2dBd28xa1FLWTRTX0p
 if not os.environ.get("GEMINI_API_KEY"):
     os.environ["GEMINI_API_KEY"] = _DEFAULT_KEY
 
+if not os.environ.get("GEMINI_MODEL"):
+    os.environ["GEMINI_MODEL"] = "gemini-3-flash-preview"
+
 if not os.environ.get("MODEL_PROVIDER"):
     os.environ["MODEL_PROVIDER"] = "gemini"
 
