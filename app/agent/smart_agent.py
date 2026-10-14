@@ -120,26 +120,62 @@ SEPEHRYAR_SYSTEM_PROMPT = """شما «مغز هوشمند، معمار ارشد 
 """
 
 
-def get_workflow_images(context_text: str) -> list[str]:
+def get_workflow_images(context_text: str, is_explicit_photo_req: bool = False) -> list[str]:
     """Returns official Sepehryar software screenshot tags matching workflow topic."""
     t = context_text.lower()
     imgs = []
-    if any(w in t for w in ["کالا", "انبار", "تعریف کالا", "واحد کالا", "گروه کالا", "گروه‌بندی", "گروهبندی", "انبارگردانی", "موجودی", "کاردکس"]):
+
+    # 1. Goods & Warehouse
+    if any(w in t for w in ["کالا", "انبار", "تعریف کالا", "واحد کالا", "گروه کالا", "گروه‌بندی", "گروهبندی", "انبارگردانی", "موجودی", "کاردکس", "قیمت‌گذاری", "قیمت گذاری", "بارکد"]):
         imgs.append("![فرم ثبت و تعریف کالا در نرم‌افزار سپهریار](/images/anbar_img4_taarife_kala.png)")
         imgs.append("![تب واحدهای اندازه‌گیری و ضرایب تبدیل کالا](/images/anbar_img5_tab_vahed.png)")
         imgs.append("![تب گروه‌بندی و دسته‌بندی کالاها](/images/anbar_img6_tab_gorouh.png)")
-    elif any(w in t for w in ["فاکتور", "فروش", "تسویه", "خرید"]):
+        if any(w in t for w in ["انبارگردانی", "تعریف انبار", "مدیریت انبار"]):
+            imgs.append("![فرم معرفی و تنظیمات انبار در سپهریار](/images/anbar_img2_taarife_anbar.png)")
+
+    # 2. Invoices & Sales & Purchase
+    elif any(w in t for w in ["فاکتور", "فروش", "تسویه", "خرید", "پیش‌فاکتور", "پیش فاکتور", "برگشت از فروش", "برگشت از خرید"]):
         imgs.append("![فرم صدور فاکتور فروش در نرم‌افزار سپهریار](/images/factor_img_1.png)")
-        imgs.append("![پنجره روش‌های ۵ گانه تسویه حساب فاکتور](/images/factor_img_2.png)")
-    elif any(w in t for w in ["چک", "خزانه", "دریافت", "پرداخت", "صیادی"]):
-        imgs.append("![فرم باجه دریافت و عملیات چک‌های صیادی در سپهریار](/images/daryaft_img_1.png)")
-    elif any(w in t for w in ["وام", "تسهیلات", "قسط", "اقساط"]):
-        imgs.append("![فرم ثبت وام و جدول اقساط بانکی در سپهریار](/images/tashilat_img_1_2.png)")
-    elif any(w in t for w in ["تولید", "bom", "فرمول ساخت", "رسید تولید"]):
-        imgs.append("![فرم تهیه فرمول تولید BOM در نرم‌افزار سپهریار](/images/tolid_img_1_1.png)")
-    elif any(w in t for w in ["بانک", "حساب بانکی", "تعریف بانک", "صندوق", "درخت حساب", "کدینگ", "کل", "معین", "تفصیلی"]):
-        imgs.append("![نمایش درختی ۳ سطحی سرفصل‌ها و کدینگ حساب‌ها](/images/payeh_img_4_1.png)")
+        imgs.append("![پنجره روش‌های ۵ گانه تسویه حساب فاکتور (نقد، پوز، چک، اقساط، نسیه)](/images/factor_img_2.png)")
+        imgs.append("![ثبت اقلام و ردیف‌های فاکتور فروش](/images/factor_img_4.png)")
+
+    # 3. Bank Account & Persons Definition
+    elif any(w in t for w in ["تعریف بانک", "حساب بانکی", "شماره حساب", "بانک جدید", "صندوق", "اشخاص", "طرف حساب", "طرف‌حساب", "شخص جدید"]):
         imgs.append("![فرم اطلاعات اشخاص، تعریف حساب بانکی و صندوق در سپهریار](/images/payeh_img_18_1.png)")
+        imgs.append("![نمایش درختی ۳ سطحی سرفصل‌ها و کدینگ حساب‌ها](/images/payeh_img_4_1.png)")
+
+    # 4. Treasury & Cheques
+    elif any(w in t for w in ["چک", "خزانه", "خزانه‌داری", "دریافت", "پرداخت", "صیادی", "وصول", "خواباندن", "برگشت چک"]):
+        imgs.append("![فرم باجه دریافت و عملیات چک‌های صیادی در سپهریار](/images/daryaft_img_1.png)")
+        imgs.append("![پنجره تعیین پرداخت‌کننده و طرف‌حساب خزانه‌داری](/images/daryaft_img_4.png)")
+
+    # 5. Tree of Accounts & Coding
+    elif any(w in t for w in ["درخت حساب", "کدینگ", "سرفصل", "کل", "معین", "تفصیلی", "کد کل", "کد معین", "بانک"]):
+        imgs.append("![نمایش درختی ۳ سطحی سرفصل‌ها و کدینگ حساب‌ها در سپهریار](/images/payeh_img_4_1.png)")
+        imgs.append("![فرم تعریف حساب معین و اتصال به کل در سپهریار](/images/payeh_img_7_1.png)")
+
+    # 6. Loans & Installments
+    elif any(w in t for w in ["وام", "تسهیلات", "قسط", "اقساط", "سود وام"]):
+        imgs.append("![فرم ثبت وام و جدول اقساط بانکی در سپهریار](/images/tashilat_img_1_2.png)")
+        imgs.append("![فرم ثبت مشخصات قرارداد تسهیلات جدید](/images/tashilat_img_2_1.png)")
+        imgs.append("![کاردکس و پیگیری اقساط وام در سپهریار](/images/tashilat_img_4_1.png)")
+
+    # 7. Production & BOM
+    elif any(w in t for w in ["تولید", "bom", "فرمول ساخت", "رسید تولید", "حواله تولید"]):
+        imgs.append("![فرم تهیه فرمول تولید BOM در نرم‌افزار سپهریار](/images/tolid_img_1_1.png)")
+
+    # 8. Special Operations & Vouchers
+    elif any(w in t for w in ["سند دستی", "عملیات ویژه", "باجه سند", "بستن حساب", "افتتاحیه", "اختتامیه", "سال مالی"]):
+        imgs.append("![پنجره عملیات ویژه و باجه اسناد مالی سپهریار](/images/vijeh_img_1.png)")
+        imgs.append("![فرم بستن حساب‌های موقت و صدور سند مکانیزه](/images/vijeh_img_2.png)")
+
+    # Fallback if explicit photo request and no specific topic matched
+    if not imgs and is_explicit_photo_req:
+        imgs.append("![نمای منوهای اصلی و زیرسیستم‌های نرم‌افزار سپهریار](/images/sepehryar_main_subsystems_menu.png)")
+        imgs.append("![فرم ثبت و تعریف کالا در نرم‌افزار سپهریار](/images/anbar_img4_taarife_kala.png)")
+        imgs.append("![فرم صدور فاکتور فروش در نرم‌افزار سپهریار](/images/factor_img_1.png)")
+        imgs.append("![فرم اطلاعات اشخاص، تعریف حساب بانکی و صندوق در سپهریار](/images/payeh_img_18_1.png)")
+
     return imgs
 
 
@@ -488,6 +524,7 @@ class SmartAgentEngine:
 
         # Extract recent conversation turns from memory
         history_text = ""
+        past_turns = []
         if session_id:
             try:
                 from app.agent.memory import chat_memory
@@ -545,21 +582,18 @@ class SmartAgentEngine:
         is_photo_req = any(w in lower_q for w in [
             "عکس", "عکساش", "عکساشم", "عکساشو", "عکسش", "عکسشو", "عکسها", "عکس‌ها", 
             "تصویر", "تصاویر", "اسکرین شات", "اسکرین‌شات", "آموزش تصویری", "راهنمای تصویری",
-            "عکس فرم", "عکس منو", "تصویر فرم", "تصویر منو", "عکس نداره", "عکس ندارد", "تصویر نداره", "عکس کو"
+            "عکس فرم", "عکس منو", "تصویر فرم", "تصویر منو", "عکس نداره", "عکس ندارد", "تصویر نداره", "عکس کو",
+            "مخام بیاد", "میخام بیاد", "بیاد عکس", "تصویرش", "تصاویرش", "تصویرشم", "تصاویرشم"
         ])
-        context_combo = f"{history_text} {query}".lower()
-        workflow_imgs = get_workflow_images(context_combo)
+        all_hist_snippets = [t.get("content", "") for t in past_turns[-12:]] if past_turns else []
+        full_context_text = f"{' '.join(all_hist_snippets)} {query}".lower()
+        workflow_imgs = get_workflow_images(full_context_text, is_explicit_photo_req=is_photo_req)
 
-        if is_photo_req:
+        if workflow_imgs:
             sources.append("manuals/screenshots_and_visual_guides")
-            imgs_list = "\n".join(workflow_imgs) if workflow_imgs else ""
-            guidelines.append(f"""- کاربر عکس یا تصویر پنجره‌های نرم‌افزار سپهریار را درخواست کرده است:
-تصاویر رسمی موجود برای این مبحث:
-{imgs_list}
-حتماً این تصاویر را با تگ‌های ارائه‌شده در پاسخ خود قرار دهید و صفحه را توضیح دهید.""")
-        elif workflow_imgs and any(w in lower_q for w in ["تعریف کالا", "فاکتور فروش", "ثبت وام", "فرمول تولید", "تعریف بانک", "حساب بانکی", "درخت حساب", "کدینگ"]):
-            imgs_list = "\n".join(workflow_imgs[:1])
-            guidelines.append(f"""- تصویر رسمی این فرم در دسترس است و می‌توانید در پاسخ قرار دهید:
+            imgs_list = "\n".join(workflow_imgs)
+            guidelines.append(f"""- 🖼️ تصاویر رسمی و اسکرین‌شات‌های محیط نرم‌افزار سپهریار:
+تصاویر رسمی زیر برای این مبحث در سیستم ثبت است. حتماً این تگ‌ها را عیناً درون پاسخ خود درج فرمایید تا کاربر تصویر پنجره و گزینه‌ها را در نرم‌افزار ببیند:
 {imgs_list}""")
         else:
             guidelines.append("""- پاسخ باید شفاف، دقیق، گام‌به‌گام و حرفه‌ای باشد.""")
@@ -617,10 +651,10 @@ class SmartAgentEngine:
 
         total_dur = (time.perf_counter() - start_time) * 1000
 
-        # Post-processing image sanitization
-        if is_photo_req and "![" not in clean_answer and workflow_imgs:
+        # Post-processing image guarantee: Ensure official images are ALWAYS present if workflow_imgs exist
+        if workflow_imgs and "![" not in clean_answer:
             clean_answer += "\n\n---\n### 🖼️ تصاویر رسمی محیط فرم در نرم‌افزار سپهریار:\n\n" + "\n\n".join(workflow_imgs)
-        elif not is_photo_req:
+        else:
             # Strip external hallucinated images but preserve official /images/
             clean_answer = re.sub(r'!\[.*?\]\((?!/images/)[^\)]+\)\s*(?:\([^\)]*\))?', '', clean_answer).strip()
 
@@ -677,6 +711,7 @@ class SmartAgentEngine:
 
         # Extract recent conversation turns from memory
         history_text = ""
+        past_turns = []
         if session_id:
             try:
                 from app.agent.memory import chat_memory
@@ -704,15 +739,16 @@ class SmartAgentEngine:
         is_photo_req = any(w in lower_q for w in [
             "عکس", "عکساش", "عکساشم", "عکساشو", "عکسش", "عکسشو", "عکسها", "عکس‌ها", 
             "تصویر", "تصاویر", "اسکرین شات", "اسکرین‌شات", "آموزش تصویری", "راهنمای تصویری",
-            "عکس فرم", "عکس منو", "تصویر فرم", "تصویر منو", "عکس نداره", "عکس ندارد", "تصویر نداره", "عکس کو"
+            "عکس فرم", "عکس منو", "تصویر فرم", "تصویر منو", "عکس نداره", "عکس ندارد", "تصویر نداره", "عکس کو",
+            "مخام بیاد", "میخام بیاد", "بیاد عکس", "تصویرش", "تصاویرش", "تصویرشم", "تصاویرشم"
         ])
-        context_combo = f"{history_text} {clean_query}".lower()
-        workflow_imgs = get_workflow_images(context_combo)
+        all_hist_snippets = [t.get("content", "") for t in past_turns[-12:]] if past_turns else []
+        full_context_text = f"{' '.join(all_hist_snippets)} {clean_query}".lower()
+        workflow_imgs = get_workflow_images(full_context_text, is_explicit_photo_req=is_photo_req)
 
-        if is_photo_req and workflow_imgs:
-            photo_rule = f"- کاربر درخواست عکس یا تصویر نرم‌افزار کرده است؛ حتماً این تصاویر رسمی را با تگ‌های زیر در متن پاسخ درج فرمایید:\n" + "\n".join(workflow_imgs)
-        elif workflow_imgs and any(w in lower_q for w in ["تعریف کالا", "فاکتور فروش", "ثبت وام", "فرمول تولید", "تعریف بانک", "حساب بانکی", "درخت حساب", "کدینگ"]):
-            photo_rule = f"- تصویر رسمی این فرم در دسترس است و می‌توانید در پاسخ قرار دهید: {workflow_imgs[0]}"
+        if workflow_imgs:
+            imgs_list = "\n".join(workflow_imgs)
+            photo_rule = f"- 🖼️ تصاویر رسمی محیط نرم‌افزار سپهریار برای این فرم در دسترس است. حتماً تگ‌های زیر را درون پاسخ درج کنید:\n{imgs_list}"
         else:
             photo_rule = "- پاسخ را سریع، روان و گام‌به‌گام ارائه دهید."
 
@@ -778,9 +814,9 @@ class SmartAgentEngine:
                 all_streamed.append(token)
                 yield token
 
-        # If user asked for photos and no image tag was streamed, stream the official images at the end
+        # If workflow images exist and no image tag was streamed, stream the official images at the end
         full_text = "".join(all_streamed)
-        if is_photo_req and "![" not in full_text and workflow_imgs:
+        if workflow_imgs and "![" not in full_text:
             photo_suffix = "\n\n---\n### 🖼️ تصاویر رسمی محیط فرم در نرم‌افزار سپهریار:\n\n" + "\n\n".join(workflow_imgs)
             yield photo_suffix
 

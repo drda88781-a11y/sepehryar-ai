@@ -289,7 +289,7 @@ class AgentOrchestrator:
                 )
                 if is_general_photo_prompt:
                     from app.agent.cognitive_engine import SepehryarCognitiveResponse, CognitiveThoughtStep
-                    img_base = "file:///d:/ai%20app/knowledge_base/manuals/images"
+                    img_base = "/images"
                     showcase_md = f"""## 📸 سامانه آموزش تصویری و اسکرین‌شات‌های نرم‌افزار سپهریار
 
 بیش از **۱۹۰ تصویر و اسکرین‌شات واقعی و باکیفیت** از کلیه فرم‌ها و زیرسیستم‌های نرم‌افزار سپهریار به پایگاه دانش متصل شد! اکنون هر فرم یا عملیاتی را که بپرسید، علاوه بر توضیحات اپراتوری، تصویر کامل فرم و کلیدهای میانبر برای شما نمایش داده می‌شود:
