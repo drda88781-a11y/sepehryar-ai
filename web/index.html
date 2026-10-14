@@ -119,29 +119,12 @@
         <!-- ================= View 1: AI Chat Assistant ================= -->
         <section class="view-panel active" id="view-chat">
           <div class="chat-container">
-            
-            <!-- Quick Prompt Suggestions Bar -->
-            <div class="prompt-chips-bar">
-              <span style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">پیشنهادها:</span>
-              <button class="chip-btn" data-prompt="نحوه ثبت سند افتتاحیه در سپهریار به چه صورت است؟" onclick="window.sendPromptChip(this)">
-                📝 ثبت سند افتتاحیه
-              </button>
-              <button class="chip-btn" data-prompt="کدینگ حساب طرف‌حساب‌ها و بانک‌ها در جدول TblPerson چیست؟" onclick="window.sendPromptChip(this)">
-                🏛️ ساختار کدینگ بانک‌ها و اشخاص
-              </button>
-              <button class="chip-btn" data-prompt="کوئری کالاهای با موجودی منفی در جدول TblKala را بنویس." onclick="window.sendPromptChip(this)">
-                📦 کالاهای با موجودی منفی
-              </button>
-              <button class="chip-btn" data-prompt="چگونه مغایرت مانده حساب مشتریان با اسناد دریافتنی را استخراج کنم؟" onclick="window.sendPromptChip(this)">
-                ⚖️ تحلیل مغایرت حساب‌ها
-              </button>
-            </div>
 
             <!-- Messages Stream -->
             <div class="messages-stream" id="messagesStream">
               <!-- Welcome Initial Message -->
               <div class="message-row assistant">
-                <div class="avatar" title="هسته هوش مصنوعی سپهریار">
+                <div class="avatar" title="مربی هوشمند سپهریار">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                     <path d="M12 2L14.8 9.2L22 12L14.8 14.8L12 22L9.2 14.8L2 12L9.2 9.2L12 2Z" fill="url(#aiWelcomeGrad)"/>
                     <circle cx="12" cy="12" r="3" fill="#FFFFFF"/>
@@ -155,18 +138,20 @@
                 </div>
                 <div class="message-content">
                   <div class="message-meta">
-                    <span class="author-name">دستیار هوشمند سپهریار</span>
+                    <span class="author-name">مربی هوشمند حسابداری سپهریار</span>
                     <span>امروز</span>
                   </div>
                   <div class="message-body">
-                    <p>سلام و درود! من <strong>معمار و دستیار هوشمند مالی و دیتابیس ERP سپهریار</strong> هستم.</p>
-                    <p>می‌توانید هر سوالی در رابطه با موارد زیر بپرسید:</p>
+                    <p>سلام و درود! من <strong>مربی و راهنمای گام‌به‌گام کاربری نرم‌افزار حسابداری سپهریار</strong> هستم.</p>
+                    <p>آماده‌ام مراحل کار با منوها، پنجره‌ها و کلیدهای میانبر را گام‌به‌گام به شما آموزش دهم:</p>
                     <ul>
-                      <li>تحلیل ساختار کدینگ حسابداری (حساب‌های کل ۱۰۰، ۱۱۰، ۲۰۱ و تفصیلی‌ها)</li>
-                      <li>تولید و اجرای امن کوئری‌های SQL بر روی جداول <code>TblPerson</code>, <code>TblKala</code>, <code>TblSanad</code></li>
-                      <li>راهنمای کاربری، رفع خطاهای صدور فاکتور و اسناد حسابداری</li>
+                      <li><strong>منوی صدور فاکتور:</strong> فاکتور فروش، خرید، مرجوعی‌ها و تسویه ۵‌گانه (نقد، پوز، چک، اقساط، نسیه)</li>
+                      <li><strong>منوی دریافت و پرداخت (خزانه‌داری):</strong> چک‌های صیادی، خواباندن به بانک، وصول، برگشت و خرج چک</li>
+                      <li><strong>منوی مدیریت انبار:</strong> تعریف انبار، کالا، قیمت‌گذاری و انبارگردانی</li>
+                      <li><strong>منوی عملیات تولید:</strong> فرمول ساخت (BOM)، برآورد و رسید تولید</li>
+                      <li><strong>حسابداری و عملیات ویژه:</strong> صدور سند دستی (Ctrl+W)، تسهیلات بانکی و بستن حساب‌ها</li>
                     </ul>
-                    <p style="color: var(--accent-cyan); font-size: 0.88rem;">چگونه می‌توانم به شما کمک کنم؟</p>
+                    <p style="color: var(--accent-cyan); font-size: 0.88rem;">کدام بخش از نرم‌افزار را می‌خواهید با هم تمرین کنیم؟</p>
                   </div>
                 </div>
               </div>
