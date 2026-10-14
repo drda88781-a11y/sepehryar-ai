@@ -16,7 +16,7 @@ if not os.environ.get("GEMINI_API_KEY"):
     os.environ["GEMINI_API_KEY"] = _DEFAULT_KEY
 
 if not os.environ.get("GEMINI_MODEL"):
-    os.environ["GEMINI_MODEL"] = "gemini-3-flash-preview"
+    os.environ["GEMINI_MODEL"] = "gemini-3.1-flash-lite"
 
 if not os.environ.get("MODEL_PROVIDER"):
     os.environ["MODEL_PROVIDER"] = "gemini"

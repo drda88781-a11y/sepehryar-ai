@@ -12,7 +12,7 @@ services:
       - key: APP_ENV
         value: production
       - key: GEMINI_MODEL
-        value: gemini-3-flash-preview
+        value: gemini-3.1-flash-lite
       - key: MODEL_PROVIDER
         value: gemini
       - key: OFFLINE_STRICT

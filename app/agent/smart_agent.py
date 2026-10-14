@@ -116,6 +116,28 @@ SEPEHRYAR_SYSTEM_PROMPT = """شما «مغز هوشمند، معمار ارشد 
 """
 
 
+def get_workflow_images(context_text: str) -> list[str]:
+    """Returns official Sepehryar software screenshot tags matching workflow topic."""
+    t = context_text.lower()
+    imgs = []
+    if any(w in t for w in ["کالا", "انبار", "تعریف کالا", "واحد کالا", "گروه کالا", "گروه‌بندی", "موجودی"]):
+        imgs.append("![فرم ثبت و تعریف کالا در نرم‌افزار سپهریار](/images/anbar_img4_taarife_kala.png)")
+        imgs.append("![تب واحدهای اندازه‌گیری و ضرایب تبدیل کالا](/images/anbar_img5_tab_vahed.png)")
+        imgs.append("![تب گروه‌بندی و دسته‌بندی کالاها](/images/anbar_img6_tab_gorouh.png)")
+    elif any(w in t for w in ["فاکتور", "فروش", "تسویه", "خرید"]):
+        imgs.append("![فرم صدور فاکتور فروش در نرم‌افزار سپهریار](/images/factor_img_1.png)")
+        imgs.append("![پنجره روش‌های ۵ گانه تسویه حساب فاکتور](/images/factor_img_2.png)")
+    elif any(w in t for w in ["چک", "خزانه", "دریافت", "پرداخت", "صیادی"]):
+        imgs.append("![فرم باجه دریافت و عملیات چک‌های صیادی در سپهریار](/images/daryaft_img_1.png)")
+    elif any(w in t for w in ["وام", "تسهیلات", "قسط", "اقساط"]):
+        imgs.append("![فرم ثبت وام و جدول اقساط بانکی در سپهریار](/images/tashilat_img_1_2.png)")
+    elif any(w in t for w in ["تولید", "bom", "فرمول ساخت", "رسید تولید"]):
+        imgs.append("![فرم تهیه فرمول تولید BOM در نرم‌افزار سپهریار](/images/tolid_img_1_1.png)")
+    elif any(w in t for w in ["درخت حساب", "کدینگ", "کل", "معین", "تفصیلی"]):
+        imgs.append("![نمایش درختی ۳ سطحی سرفصل‌ها و کدینگ حساب‌ها](/images/payeh_img_4_1.png)")
+    return imgs
+
+
 class SmartAgentEngine:
     """True generative ReAct agent capable of thinking, tool-calling, and self-correcting."""
 
@@ -138,6 +160,7 @@ class SmartAgentEngine:
         """
         if not self.is_active():
             return None
+
 
         start_time = time.perf_counter()
         clean_query = query.strip()
@@ -503,34 +526,27 @@ class SmartAgentEngine:
         is_photo_req = any(w in lower_q for w in [
             "عکس", "عکساش", "عکساشم", "عکساشو", "عکسش", "عکسشو", "عکسها", "عکس‌ها", 
             "تصویر", "تصاویر", "اسکرین شات", "اسکرین‌شات", "آموزش تصویری", "راهنمای تصویری",
-            "عکس فرم", "عکس منو", "تصویر فرم", "تصویر منو"
+            "عکس فرم", "عکس منو", "تصویر فرم", "تصویر منو", "عکس نداره", "عکس ندارد", "تصویر نداره", "عکس کو"
         ])
+        context_combo = f"{history_text} {query}".lower()
+        workflow_imgs = get_workflow_images(context_combo)
+
         if is_photo_req:
             sources.append("manuals/screenshots_and_visual_guides")
-            # Load dynamically captured screenshots from ui_catalog.json
-            dyn_images_str = ""
-            cat_path = Path("D:/ai app/knowledge_base/manuals/images/ui_catalog.json")
-            if cat_path.exists():
-                try:
-                    with open(cat_path, "r", encoding="utf-8") as f:
-                        uicat = json.load(f)
-                        if uicat:
-                            dyn_lines = [f"  * {v.get('title')}: `{v.get('tag')}`" for v in uicat.values() if v.get('tag')]
-                            if dyn_lines:
-                                dyn_images_str = "\nتصاویر جدید ثبت‌شده توسط کاربر با F9:\n" + "\n".join(dyn_lines)
-                except Exception:
-                    pass
-
-            guidelines.append(f"""- کاربر صراحتاً عکس، اسکرین‌شات یا راهنمای تصویری فرم‌های نرم‌افزار را خواسته است.
-- صرفاً تصاویر ۱۰۰٪ منطبق با موضوع درخواست کاربر را با تگ ![عنوان](file:///d:/ai%20app/knowledge_base/manuals/images/...) درج کنید.{dyn_images_str}
-- اگر برای موضوع درخواستی تصویری وجود ندارد، به هیچ وجه تصویر بی‌ارتباط (مانند درخت حساب‌ها) درج نکنید.""")
+            imgs_list = "\n".join(workflow_imgs) if workflow_imgs else ""
+            guidelines.append(f"""- کاربر عکس یا تصویر پنجره‌های نرم‌افزار سپهریار را درخواست کرده است:
+تصاویر رسمی موجود برای این مبحث:
+{imgs_list}
+حتماً این تصاویر را با تگ‌های ارائه‌شده در پاسخ خود قرار دهید و صفحه را توضیح دهید.""")
+        elif workflow_imgs and any(w in lower_q for w in ["تعریف کالا", "فاکتور فروش", "ثبت وام", "فرمول تولید"]):
+            imgs_list = "\n".join(workflow_imgs[:1])
+            guidelines.append(f"""- تصویر رسمی این فرم در دسترس است و می‌توانید در پاسخ قرار دهید:
+{imgs_list}""")
         else:
-            guidelines.append("""- کاربر در این سوال درخواست عکس نکرده است. به هیچ وجه هیچ تگ تصویری (![...](...)) در متن پاسخ درج نکنید.
-- پاسخ باید صرفاً متنی، دقیق، گام‌به‌گام و حرفه‌ای باشد.
-- اکیداً از قرار دادن تصویر درختی حساب‌ها (payeh_img_4_1.png) برای موضوعات غیرمرتبط مانند «مدیریت سیستم»، «کاربران»، «دسترسی‌ها» یا «تنظیمات» خودداری کنید.""")
+            guidelines.append("""- پاسخ باید شفاف، دقیق، گام‌به‌گام و حرفه‌ای باشد.""")
 
         # Enhanced follow-up and conversational continuity
-        is_followup = any(w in lower_q for w in ["بعدش", "چرا", "سندش", "چطور", "منظورم", "این", "آن", "اون", "خب", "دیگه چی", "پلنت چیه", "چکار کنم"])
+        is_followup = any(w in lower_q for w in ["بعدش", "چرا", "سندش", "چطور", "منظورم", "این", "آن", "اون", "خب", "دیگه چی", "پلنت چیه", "چکار کنم", "عکس"])
         if is_followup and history_text:
             guidelines.append("""- این پیام یک پیگیری یا پرسش تکمیلی در ادامه پیام‌های قبلی است.
 - به تاریخچه گفت‌وگوی اخیر کاملاً مسلط باشید و پاسخ را منسجم و پیوسته با سوالات قبلی کاربر ادامه دهید.
@@ -583,13 +599,11 @@ class SmartAgentEngine:
         total_dur = (time.perf_counter() - start_time) * 1000
 
         # Post-processing image sanitization
-        if not is_photo_req:
-            # Strip any unrequested markdown images that LLM might hallucinate
-            clean_answer = re.sub(r'!\[.*?\]\([^\)]+\)\s*(?:\([^\)]*\))?', '', clean_answer).strip()
-        else:
-            # If user asked for photos, strip mismatched payeh_img_4_1 on user/system mgmt topics
-            if any(w in lower_q for w in ["مدیر سیستم", "مدیریت سیستم", "کاربر", "کاربران", "دسترسی"]):
-                clean_answer = re.sub(r'!\[.*?\]\([^)]*payeh_img_4_1[^)]*\)\s*(?:\([^\)]*\))?', '', clean_answer).strip()
+        if is_photo_req and "![" not in clean_answer and workflow_imgs:
+            clean_answer += "\n\n---\n### 🖼️ تصاویر رسمی محیط فرم در نرم‌افزار سپهریار:\n\n" + "\n\n".join(workflow_imgs)
+        elif not is_photo_req:
+            # Strip external hallucinated images but preserve official /images/
+            clean_answer = re.sub(r'!\[.*?\]\((?!/images/)[^\)]+\)\s*(?:\([^\)]*\))?', '', clean_answer).strip()
 
         # Post-processing SQL and table sanitization (if user did not ask for SQL, strip unwanted SQL blocks & table names)
         if not is_sql_prog:
@@ -671,9 +685,17 @@ class SmartAgentEngine:
         is_photo_req = any(w in lower_q for w in [
             "عکس", "عکساش", "عکساشم", "عکساشو", "عکسش", "عکسشو", "عکسها", "عکس‌ها", 
             "تصویر", "تصاویر", "اسکرین شات", "اسکرین‌شات", "آموزش تصویری", "راهنمای تصویری",
-            "عکس فرم", "عکس منو", "تصویر فرم", "تصویر منو"
+            "عکس فرم", "عکس منو", "تصویر فرم", "تصویر منو", "عکس نداره", "عکس ندارد", "تصویر نداره", "عکس کو"
         ])
-        photo_rule = "- کاربر درخواست عکس کرده است؛ تصویر دقیقاً متناسب را درج کنید." if is_photo_req else "- کاربر درخواست عکس نکرده است؛ مطلقاً هیچ عکس یا تگ تصویری درج نکنید."
+        context_combo = f"{history_text} {clean_query}".lower()
+        workflow_imgs = get_workflow_images(context_combo)
+
+        if is_photo_req and workflow_imgs:
+            photo_rule = f"- کاربر درخواست عکس یا تصویر نرم‌افزار کرده است؛ حتماً این تصاویر رسمی را با تگ‌های زیر در متن پاسخ درج فرمایید:\n" + "\n".join(workflow_imgs)
+        elif workflow_imgs and any(w in lower_q for w in ["تعریف کالا", "فاکتور فروش", "ثبت وام", "فرمول تولید"]):
+            photo_rule = f"- تصویر رسمی این فرم در دسترس است و می‌توانید در پاسخ قرار دهید: {workflow_imgs[0]}"
+        else:
+            photo_rule = "- پاسخ را سریع، روان و گام‌به‌گام ارائه دهید."
 
         is_sql_req = any(w in lower_q for w in [
             "کوئری", "کوری", "sql", "tsql", "t-sql", "select ", "stored procedure", "پروسیجر",
@@ -699,6 +721,7 @@ class SmartAgentEngine:
 
         lead_buffer = ""
         is_past_header = False
+        all_streamed = []
 
         for token in llm_manager.stream_generate(
             prompt=prompt,
@@ -712,18 +735,29 @@ class SmartAgentEngine:
                     m = re.search(r'[\*\.\s]*\n+([\u0600-\u06FF\d#].*)', lead_buffer, re.DOTALL)
                     if m:
                         is_past_header = True
-                        yield m.group(1)
+                        chunk = m.group(1)
+                        all_streamed.append(chunk)
+                        yield chunk
                     continue
                 elif re.search(r'[\u0600-\u06FF]', lead_buffer):
                     is_past_header = True
                     clean_lead = re.sub(r'^[A-Za-z\s\.\*\-\?:]+', '', lead_buffer).strip()
                     if clean_lead:
+                        all_streamed.append(clean_lead)
                         yield clean_lead
                 elif len(lead_buffer) > 150:
                     is_past_header = True
+                    all_streamed.append(lead_buffer)
                     yield lead_buffer
             else:
+                all_streamed.append(token)
                 yield token
+
+        # If user asked for photos and no image tag was streamed, stream the official images at the end
+        full_text = "".join(all_streamed)
+        if is_photo_req and "![" not in full_text and workflow_imgs:
+            photo_suffix = "\n\n---\n### 🖼️ تصاویر رسمی محیط فرم در نرم‌افزار سپهریار:\n\n" + "\n\n".join(workflow_imgs)
+            yield photo_suffix
 
 
 smart_agent_engine = SmartAgentEngine()

@@ -42,7 +42,7 @@ class LocalEngineProvider(LLMProvider):
     def _synthesize_response(self, query: str) -> str:
         from app.agent.cognitive_engine import cognitive_engine
         # Extract user query if wrapped in prompt template
-        match = re.search(r"پرسش یا پیام فعلی کاربر:\s*«([\s\S]*?)»", query)
+        match = re.search(r"پرسش(?:\s+یا\s+پیام\s+فعلی)?\s+کاربر:\s*«([\s\S]*?)»", query)
         actual_query = match.group(1).strip() if match else query
         cog_res = cognitive_engine.reason_and_solve(actual_query)
         return cog_res.to_formatted_markdown()
