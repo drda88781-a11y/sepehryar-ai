@@ -629,115 +629,32 @@ class SepehryarApp {
     }
 
     const initialThinkingHtml = `
-      <div class="thinking-accordion open" id="${accordionId}">
-        <button type="button" class="thinking-summary-btn" onclick="window.toggleThinking('${accordionId}')">
-          <div class="thinking-summary-left">
-            <span class="thinking-summary-icon">${initialModeIcon}</span>
-            <span class="thinking-summary-title" id="${titleTextId}">${initialModeTitle}</span>
-          </div>
-          <div class="thinking-summary-right">
-            <span class="thinking-steps-chip" id="${stepsChipId}">۰ مرحله</span>
-            <span class="thinking-time-chip" id="${timerId}">⏱️ ۰.۰ ثانیه</span>
-            <span class="thinking-chevron">▼</span>
-          </div>
-        </button>
-
-        <div class="thinking-details-content">
-          <div class="thinking-wave-container" id="${waveId}" style="margin-bottom: 12px;">
-            <div class="wave-bars">
-              <div class="bar bar-1"></div>
-              <div class="bar bar-2"></div>
-              <div class="bar bar-3"></div>
-              <div class="bar bar-4"></div>
-              <div class="bar bar-5"></div>
-              <div class="bar bar-6"></div>
-              <div class="bar bar-7"></div>
-            </div>
-            <div class="thinking-subtext" id="${subtextId}">
-              ${initialSubtext}
-            </div>
-          </div>
-
-          <div class="thinking-steps-timeline" id="${timelineId}">
-            <!-- Dynamic thinking steps streamed here -->
-          </div>
-        </div>
+      <div id="${accordionId}" class="thinking-loader-simple" style="display: flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.88rem; padding: 6px 0;">
+        <span style="display:inline-block; animation: pulse 1.2s infinite; color: var(--accent-cyan);">✍️</span>
+        <span id="${subtextId}">در حال تدوین آموزش گام‌به‌گام...</span>
       </div>
-
       <div class="message-answer-stream" id="${answerContainerId}"></div>
     `;
 
     this.appendMessage('assistant', initialThinkingHtml, loadingId);
 
-    // Live Timer
     const startTime = Date.now();
     let thinkingCompleted = false;
-    let recordedThinkingSec = '0.0';
-    let stepsCount = 0;
-    const recordedSteps = [];
 
-    const timerInterval = setInterval(() => {
-      if (thinkingCompleted) return;
-      const elapsedSec = ((Date.now() - startTime) / 1000).toFixed(1);
-      const timerEl = document.getElementById(timerId);
-      if (timerEl) {
-        timerEl.textContent = `⏱️ ${toPersianDigits(elapsedSec)} ثانیه`;
-      }
-    }, 100);
-
-    const markThinkingDone = (customDurationSec = null) => {
+    const markThinkingDone = () => {
       if (thinkingCompleted) return;
       thinkingCompleted = true;
-      clearInterval(timerInterval);
-
-      recordedThinkingSec = customDurationSec || ((Date.now() - startTime) / 1000).toFixed(1);
-
-      const titleEl = document.getElementById(titleTextId);
-      const timerEl = document.getElementById(timerId);
-      const waveEl = document.getElementById(waveId);
-      const accordionEl = document.getElementById(accordionId);
-
-      if (titleEl) {
-        titleEl.textContent = `مشاهده فرآیند تفکر و استدلال (${modeBadgeLabel})`;
-      }
-      if (timerEl) {
-        timerEl.textContent = `⏱️ ${toPersianDigits(recordedThinkingSec)} ثانیه`;
-      }
-      if (waveEl) {
-        waveEl.style.display = 'none';
-      }
-      // Collapse accordion smoothly once answer begins streaming
-      if (accordionEl && accordionEl.classList.contains('open')) {
-        accordionEl.classList.remove('open');
+      const loaderEl = document.getElementById(accordionId);
+      if (loaderEl) {
+        loaderEl.style.display = 'none';
       }
     };
 
     const addThinkingStep = (stepObj) => {
-      stepsCount++;
-      const title = stepObj.title || 'گام استنتاجی';
-      const detail = stepObj.detail || '';
-      recordedSteps.push({ title, detail });
-
-      const stepsChipEl = document.getElementById(stepsChipId);
-      if (stepsChipEl) {
-        stepsChipEl.textContent = `${toPersianDigits(stepsCount)} مرحله`;
-      }
-
+      // Optional minimal step subtext
       const subtextEl = document.getElementById(subtextId);
-      if (subtextEl && detail) {
-        subtextEl.textContent = detail;
-      }
-
-      const timelineEl = document.getElementById(timelineId);
-      if (timelineEl) {
-        const itemEl = document.createElement('div');
-        itemEl.className = 'timeline-step-item';
-        itemEl.innerHTML = `
-          <div class="timeline-step-node active"></div>
-          <div class="timeline-step-title">${title}</div>
-          ${detail ? `<div class="timeline-step-detail">${detail}</div>` : ''}
-        `;
-        timelineEl.appendChild(itemEl);
+      if (subtextEl && stepObj.detail) {
+        subtextEl.textContent = stepObj.detail;
       }
     };
 
@@ -745,6 +662,7 @@ class SepehryarApp {
     let renderAnimationFrame = null;
 
     const doRenderProgressive = () => {
+      markThinkingDone();
       const ansEl = document.getElementById(answerContainerId);
       if (!ansEl) return;
       ansEl.innerHTML = `
@@ -757,19 +675,12 @@ class SepehryarApp {
     };
 
     const finishResponse = () => {
-      clearInterval(timerInterval);
       markThinkingDone();
       if (renderAnimationFrame) cancelAnimationFrame(renderAnimationFrame);
 
-      const totalTimeSec = ((Date.now() - startTime) / 1000).toFixed(1);
       const ansEl = document.getElementById(answerContainerId);
       if (ansEl) {
         ansEl.innerHTML = `
-          <div class="response-telemetry-badge">
-            <span class="telemetry-chip time">⏱️ زمان کل: ${toPersianDigits(totalTimeSec)} ثانیه (تفکر: ${toPersianDigits(recordedThinkingSec)} ثانیه)</span>
-            <span class="telemetry-chip steps">⚡ ${toPersianDigits(stepsCount || recordedSteps.length || 1)} مرحله استنتاج</span>
-            <span class="telemetry-chip mode" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #E2E8F0;">${modeBadgeLabel}</span>
-          </div>
           <div class="rendered-answer fade-in-reveal">
             ${renderMarkdown(accumulatedText || 'پاسخی دریافت نشد.')}
           </div>
@@ -839,13 +750,12 @@ class SepehryarApp {
         finishResponse();
       }
     } catch (err) {
-      clearInterval(timerInterval);
       markThinkingDone();
       const ansEl = document.getElementById(answerContainerId);
       if (ansEl) {
         ansEl.innerHTML = `
           <div style="color: var(--accent-rose); font-weight: 600; padding: 8px 0;">
-            ⚠️ خطا در پردازش: ${err.message}
+            ⚠️ خطا در برقراری ارتباط: ${err.message}
           </div>
         `;
       }
@@ -880,7 +790,7 @@ class SepehryarApp {
     `;
 
     const avatarIcon = role === 'user' ? userAvatarSvg : aiAvatarSvg;
-    const authorName = role === 'user' ? 'شما' : 'هسته هوشمند سپهریار';
+    const authorName = role === 'user' ? 'شما' : 'مربی هوشمند سپهریار';
 
     row.innerHTML = `
       <div class="avatar" title="${authorName}">${avatarIcon}</div>

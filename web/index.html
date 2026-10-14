@@ -20,54 +20,35 @@
   <div class="app-container">
     
     <!-- Top Global Header -->
+    <!-- Top Global Header -->
     <header class="app-header">
       <div class="brand-section">
-        <div class="brand-logo" id="brandLogo" title="سپهریار AI Enterprise">
+        <div class="brand-logo" id="brandLogo" title="مربی هوشمند سپهریار">
           <img src="images/logo_badge_dark.png?v=10" alt="لوگوی سپهریار" class="brand-logo-img">
         </div>
         <div class="brand-info">
-          <h1>سپهریار AI Enterprise</h1>
+          <h1>مربی هوشمند سپهریار</h1>
+          <span style="font-size: 0.76rem; color: var(--accent-cyan); font-weight: 500;">راهنمای گام‌به‌گام و جامع کاربری نرم‌افزار حسابداری</span>
         </div>
-        <span class="brand-badge">نسخه ۰.۱.۰</span>
       </div>
 
-      <!-- Center: Floating Spotlight Launcher -->
+      <!-- Center: Quick Search Trigger -->
       <div class="header-center">
-        <div class="spotlight-trigger" id="spotlightTrigger" title="باز کردن نوار جستجوی سریع هوشمند">
+        <div class="spotlight-trigger" id="spotlightTrigger" title="جستجوی سریع آموزش منوها">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <span>پرسش از دستیار یا جستجوی سریع...</span>
+          <span>آموزش کدام منو یا فرآیند را می‌خواهید؟...</span>
           <kbd>Ctrl + Space</kbd>
         </div>
       </div>
 
       <!-- Right Header Actions -->
       <div class="header-actions">
-        <div class="db-selector-badge">
-          <span>دیتابیس:</span>
-          <select id="dbSelector">
-            <option value="Sepehr_Main2_1405" selected>Sepehr_Main2_1405</option>
-            <option value="Sepehr_hesabico_1403">Sepehr_hesabico_1403</option>
-            <option value="DEMO">دیتابیس شبیه‌ساز (DEMO)</option>
-          </select>
-        </div>
-
-        <!-- Database Connect/Disconnect Toggle Button -->
-        <button id="btnDbToggle" class="btn-db-toggle disconnected" title="اتصال یا قطع ارتباط با دیتابیس">
-          <span class="db-toggle-icon">⚡</span>
-          <span id="dbToggleText">اتصال به دیتابیس</span>
-        </button>
-
         <button id="btnCompanyInfo" class="btn-company-info" onclick="window.openCompanyModal()" title="مشخصات، اطلاعات تماس و ساعات پشتیبانی شرکت سپهریار">
-          <span>🏢 پشتیبانی شرکت</span>
+          <span>🏢 پشتیبانی و تماس با شرکت</span>
         </button>
-
-        <div class="status-pill disconnected" id="systemStatusPill" title="وضعیت ارتباط پایگاه داده">
-          <div class="status-dot"></div>
-          <span id="systemStatusText">دیتابیس: غیرفعال (پیش‌فرض)</span>
-        </div>
       </div>
     </header>
 
@@ -76,26 +57,14 @@
       
       <!-- Vertical Sidebar Navigation -->
       <aside class="app-sidebar">
-        <nav style="display: flex; flex-direction: column; gap: 6px;">
+        <nav style="display: flex; flex-direction: column; gap: 8px;">
           <a class="nav-item active" data-tab="chat" onclick="window.switchAppTab('chat')" style="cursor: pointer;">
             <span class="nav-icon">💬</span>
-            <span>گفت‌وگو با دستیار</span>
-          </a>
-          <a class="nav-item" data-tab="sql" onclick="window.switchAppTab('sql')" style="cursor: pointer;">
-            <span class="nav-icon">🔌</span>
-            <span>کاوشگر داده و SQL</span>
-          </a>
-          <a class="nav-item" data-tab="reports" onclick="window.switchAppTab('reports')" style="cursor: pointer;">
-            <span class="nav-icon">📊</span>
-            <span>کاتالوگ گزارشات مالی</span>
-          </a>
-          <a class="nav-item" data-tab="health" onclick="window.switchAppTab('health')" style="cursor: pointer;">
-            <span class="nav-icon">⚙️</span>
-            <span>پایش سلامت و سرویس</span>
+            <span>میز آموزش و گفت‌وگو</span>
           </a>
           <a class="nav-item" onclick="window.openCompanyModal()" style="cursor: pointer;" title="اطلاعات تماس، مدیریت و پشتیبانی شرکت سپهریار">
             <span class="nav-icon">📞</span>
-            <span>تماس و پشتیبانی</span>
+            <span>تماس و پشتیبانی شرکت</span>
           </a>
         </nav>
 
@@ -103,11 +72,10 @@
         <div class="sidebar-footer">
           <div class="engine-card">
             <div class="engine-card-header">
-              <span class="engine-name">Google Gemini Flash</span>
-              <span class="engine-stat">0MB RAM</span>
+              <span class="engine-name">آموزش نرم‌افزار سپهریار</span>
             </div>
             <div class="engine-desc">
-              موتور هوش ابری پرسرعت متصل به ساختار سرفصل‌های استاندارد و دیتابیس سپهریار.
+              پاسخگویی سریع به سوالات صدور فاکتور، خزانه‌داری، چک‌های صیادی، انبارداری و اسناد مالی.
             </div>
           </div>
         </div>
@@ -142,16 +110,16 @@
                     <span>امروز</span>
                   </div>
                   <div class="message-body">
-                    <p>سلام و درود! من <strong>مربی و راهنمای گام‌به‌گام کاربری نرم‌افزار حسابداری سپهریار</strong> هستم.</p>
-                    <p>آماده‌ام مراحل کار با منوها، پنجره‌ها و کلیدهای میانبر را گام‌به‌گام به شما آموزش دهم:</p>
+                    <p>سلام و درود! من <strong>مربی و راهنمای گام‌به‌گام کاربری نرم‌افزار حسابداری سپهریار</strong> هستم. 🌸</p>
+                    <p>هر سوالی در مورد نحوه کار با منوها و ثبت رویدادها دارید بفرمایید تا مرحله‌به‌مرحله به شما آموزش دهم:</p>
                     <ul>
-                      <li><strong>منوی صدور فاکتور:</strong> فاکتور فروش، خرید، مرجوعی‌ها و تسویه ۵‌گانه (نقد، پوز، چک، اقساط، نسیه)</li>
-                      <li><strong>منوی دریافت و پرداخت (خزانه‌داری):</strong> چک‌های صیادی، خواباندن به بانک، وصول، برگشت و خرج چک</li>
-                      <li><strong>منوی مدیریت انبار:</strong> تعریف انبار، کالا، قیمت‌گذاری و انبارگردانی</li>
-                      <li><strong>منوی عملیات تولید:</strong> فرمول ساخت (BOM)، برآورد و رسید تولید</li>
-                      <li><strong>حسابداری و عملیات ویژه:</strong> صدور سند دستی (Ctrl+W)، تسهیلات بانکی و بستن حساب‌ها</li>
+                      <li><strong>منوی صدور فاکتور:</strong> فاکتور فروش، فاکتور خرید، مرجوعی‌ها و روش‌های تسویه (نقد، پوز، چک، اقساط، نسیه)</li>
+                      <li><strong>منوی دریافت و پرداخت (خزانه‌داری):</strong> خواباندن چک به بانک، وصول، برگشت و خرج چک</li>
+                      <li><strong>منوی مدیریت انبار:</strong> تعریف انبار، ثبت کالا، ضرایب تبدیل، قیمت‌گذاری و انبارگردانی</li>
+                      <li><strong>منوی عملیات تولید:</strong> تعریف عوامل تولید، فرمول ساخت (BOM)، برآورد و ثبت رسید تولید</li>
+                      <li><strong>حسابداری و عملیات ویژه:</strong> ثبت سند دستی دوبل (Ctrl+W)، تسهیلات بانکی و بستن حساب‌ها</li>
                     </ul>
-                    <p style="color: var(--accent-cyan); font-size: 0.88rem;">کدام بخش از نرم‌افزار را می‌خواهید با هم تمرین کنیم؟</p>
+                    <p style="color: var(--accent-cyan); font-size: 0.88rem; margin-top: 10px;">آموزش کدام بخش را مایلید شروع کنیم؟</p>
                   </div>
                 </div>
               </div>
@@ -159,30 +127,11 @@
 
             <!-- Chat Input Area -->
             <div class="chat-input-bar">
-              <!-- Thinking Mode Depth Controls -->
-              <div class="thinking-mode-toolbar">
-                <div class="mode-selector-group" id="thinkingModeSelector" title="انتخاب عمق و دقت پردازش هوش مصنوعی">
-                  <span class="mode-indicator-label">عمق تفکر:</span>
-                  <button type="button" class="mode-pill-btn" data-mode="fast" onclick="window.setThinkingMode('fast')" title="پاسخ مستقیم و سریع (<۱ ثانیه)">
-                    <span class="mode-icon">⚡</span>
-                    <span class="mode-text">سریع</span>
-                  </button>
-                  <button type="button" class="mode-pill-btn active" data-mode="balanced" onclick="window.setThinkingMode('balanced')" title="تعادل استاندارد بین سرعت و تفکر (~۲ ثانیه)">
-                    <span class="mode-icon">🧠</span>
-                    <span class="mode-text">متعادل</span>
-                  </button>
-                  <button type="button" class="mode-pill-btn" data-mode="deep" onclick="window.setThinkingMode('deep')" title="حسابرسی عمیق با ۷ ایجنت تخصصی و استنتاج جامع (~۴ ثانیه)">
-                    <span class="mode-icon">🔬</span>
-                    <span class="mode-text">حسابرسی عمیق</span>
-                  </button>
-                </div>
-              </div>
-
               <div class="input-box-wrapper">
                 <textarea 
                   id="chatInput" 
                   class="chat-textarea" 
-                  placeholder="پرسش خود را درباره حسابداری، گزارشات یا دیتابیس بنویسید (Enter برای ارسال)..."
+                  placeholder="سوال خود را درباره کار با نرم‌افزار سپهریار بنویسید (مثلاً: نحوه صدور فاکتور فروش، تعریف کالا، چک)..."
                   rows="1"
                 ></textarea>
                 <button id="btnSend" class="btn-send" onclick="window.sendChatMessage()" title="ارسال پیام">
@@ -191,221 +140,6 @@
                     <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                   </svg>
                 </button>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        <!-- ================= View 2: SQL & Live Data Explorer ================= -->
-        <section class="view-panel" id="view-sql">
-          <div class="explorer-container">
-            
-            <!-- SQL Editor Card -->
-            <div class="editor-card">
-              <div class="card-title-bar">
-                <h2>
-                  <span>⚡</span>
-                  <span>ویرایشگر و مجری امن دستورات SQL</span>
-                </h2>
-                <select class="sql-presets-select" id="sqlPresets">
-                  <option value="">-- الگوهای آماده کوئری سپهریار --</option>
-                  <option value="SELECT TOP 50 Code, Name, Famil, Mobile, Type, Etebar FROM TblPerson ORDER BY Code ASC">لیست اشخاص و طرف‌حساب‌ها (TblPerson)</option>
-                  <option value="SELECT TOP 50 IDKala, CodeKala, NameKala, Mande, Bprice FROM TblKala WHERE Mande < 0 ORDER BY Mande ASC">کالاهای موجودی منفی (TblKala)</option>
-                  <option value="SELECT TOP 50 SanadNo, Tarikh, Jam, Sharh FROM TblSanad ORDER BY SanadNo DESC">آخرین اسناد حسابداری صادر شده (TblSanad)</option>
-                  <option value="SELECT TOP 50 Code, Name, Famil FROM TblPerson WHERE Type = 4">حساب‌های بانکی تعریف‌شده (Type=4)</option>
-                </select>
-              </div>
-
-              <textarea 
-                id="sqlEditor" 
-                class="sql-editor-textarea" 
-                placeholder="SELECT TOP 50 ... FROM TblPerson WHERE ..."
-              >SELECT TOP 50 Code, Name, Famil, Mobile, Type, Etebar FROM TblPerson ORDER BY Code ASC</textarea>
-
-              <div class="editor-actions">
-                <button id="btnExecuteSql" class="btn-execute-sql">
-                  <span>⚡ اجرای کوئری امن (F5)</span>
-                </button>
-                <div class="safety-badge">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  </svg>
-                  <span>محافظت سخت‌گیرانه Read-Only فعال است (بدون ریسک تغییر اطلاعات)</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Results Grid Card -->
-            <div class="results-card">
-              <div class="results-header">
-                <div class="results-stats">
-                  <div class="stat-tag">تعداد رکوردها: <strong id="totalRowsCount">۰</strong></div>
-                  <div class="stat-tag">زمان اجرا: <strong id="executionTime">۰ ms</strong></div>
-                </div>
-                <button id="btnExportCsv" class="btn-export-csv" disabled>
-                  📥 دریافت خروجی اکسل / CSV
-                </button>
-              </div>
-
-              <div class="table-wrapper">
-                <table class="data-table" id="resultsTable">
-                  <thead id="tableHeader"></thead>
-                  <tbody id="tableBody">
-                    <tr>
-                      <td colspan="100%" style="text-align: center; color: var(--text-muted); padding: 40px;">
-                        جهت مشاهده اطلاعات، روی دکمه «اجرای کوئری امن» کلیک کنید.
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        <!-- ================= View 3: Financial Reports Catalog ================= -->
-        <section class="view-panel" id="view-reports">
-          <div class="reports-container">
-            <div>
-              <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 6px;">کاتالوگ پروسیجرهای گزارش‌گیری سپهریار</h2>
-              <p style="color: var(--text-secondary); font-size: 0.88rem;">مجموعه رویه‌های ذخیره‌شده (Stored Procedures) استاندارد تولید گزارشات مالی، انبار و حسابداری.</p>
-            </div>
-
-            <div class="catalog-grid">
-              <!-- Report 1 -->
-              <div class="report-card">
-                <div>
-                  <div class="report-header">
-                    <div class="report-icon">📦</div>
-                    <div class="report-info">
-                      <h3>گزارش منفی کالا و کاردکس</h3>
-                      <span class="report-category">انبارداری و لجستیک</span>
-                    </div>
-                  </div>
-                  <p class="report-desc" style="margin-top: 12px;">
-                    استخراج کالاهایی که موجودی انبار آن‌ها به دلیل کسری یا اشتباه در فاکتورهای فروش زیر صفر رفته است.
-                  </p>
-                </div>
-                <div class="report-footer">
-                  <span class="report-sp-name">_ssp_listmanfikala</span>
-                  <button class="btn-run-report" onclick="window.app.runCodeInSqlTab('EXEC _ssp_listmanfikala')">اجرا</button>
-                </div>
-              </div>
-
-              <!-- Report 2 -->
-              <div class="report-card">
-                <div>
-                  <div class="report-header">
-                    <div class="report-icon">💰</div>
-                    <div class="report-info">
-                      <h3>گردش سود و زیان دوره‌ای</h3>
-                      <span class="report-category">صورت‌های مالی</span>
-                    </div>
-                  </div>
-                  <p class="report-desc" style="margin-top: 12px;">
-                    محاسبه درآمد حاصل از فروش، بهای تمام‌شده کالای فروش‌رفته و سود ناخالص عملیاتی.
-                  </p>
-                </div>
-                <div class="report-footer">
-                  <span class="report-sp-name">_ssp_gardeshsood</span>
-                  <button class="btn-run-report" onclick="window.app.runCodeInSqlTab('EXEC _ssp_gardeshsood')">اجرا</button>
-                </div>
-              </div>
-
-              <!-- Report 3 -->
-              <div class="report-card">
-                <div>
-                  <div class="report-header">
-                    <div class="report-icon">⚖️</div>
-                    <div class="report-info">
-                      <h3>مغایرت‌های تعدیل و شمارش انبار</h3>
-                      <span class="report-category">انبارگردانی</span>
-                    </div>
-                  </div>
-                  <p class="report-desc" style="margin-top: 12px;">
-                    بررسی اختلاف مقادیر شمارش‌شده فیزیکی با مانده کارتکس دیتابیس به همراه تعیین مبلغ ریالی اختلاف.
-                  </p>
-                </div>
-                <div class="report-footer">
-                  <span class="report-sp-name">_ssp_moghayeratanbar</span>
-                  <button class="btn-run-report" onclick="window.app.runCodeInSqlTab('EXEC _ssp_moghayeratanbar')">اجرا</button>
-                </div>
-              </div>
-
-              <!-- Report 4 -->
-              <div class="report-card">
-                <div>
-                  <div class="report-header">
-                    <div class="report-icon">⚠️</div>
-                    <div class="report-info">
-                      <h3>فاکتورهای نامتعادل و تکراری</h3>
-                      <span class="report-category">ممیزی و کنترلی</span>
-                    </div>
-                  </div>
-                  <p class="report-desc" style="margin-top: 12px;">
-                    شناسایی خطاهای اپراتوری در فاکتورهای دارای مغایرت بین جمع ردیف‌ها و سربرگ، و شماره‌های تکراری.
-                  </p>
-                </div>
-                <div class="report-footer">
-                  <span class="report-sp-name">_ssp_factornotaraz</span>
-                  <button class="btn-run-report" onclick="window.app.runCodeInSqlTab('EXEC _ssp_factornotaraz')">اجرا</button>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        <!-- ================= View 4: System Health & Diagnostics ================= -->
-        <section class="view-panel" id="view-health">
-          <div class="health-container">
-            <div>
-              <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 6px;">وضعیت سلامت سرویس و ارتباط با سرور</h2>
-              <p style="color: var(--text-secondary); font-size: 0.88rem;">پایش بلادرنگ اتصالات SQL Server، وضعیت موتور هوش مصنوعی و امنیت سیستم.</p>
-            </div>
-
-            <!-- KPI Metric Cards -->
-            <div class="kpi-row">
-              <div class="kpi-card">
-                <div class="kpi-icon cyan">🗄️</div>
-                <div class="kpi-info">
-                  <h4>پایگاه داده SQL Server</h4>
-                  <div class="kpi-value" style="color: var(--accent-cyan);">SEPEHRYAR2019</div>
-                </div>
-              </div>
-
-              <div class="kpi-card">
-                <div class="kpi-icon emerald">⚡</div>
-                <div class="kpi-info">
-                  <h4>موتور هوش مصنوعی</h4>
-                  <div class="kpi-value" style="color: var(--accent-emerald);">Gemini Flash (ابری)</div>
-                </div>
-              </div>
-
-              <div class="kpi-card">
-                <div class="kpi-icon amber">🌐</div>
-                <div class="kpi-info">
-                  <h4>آدرس وب‌سرویس</h4>
-                  <div class="kpi-value" style="direction: ltr; text-align: right;">127.0.0.1:8765</div>
-                </div>
-              </div>
-
-              <div class="kpi-card">
-                <div class="kpi-icon indigo">🛡️</div>
-                <div class="kpi-info">
-                  <h4>امنیت داده‌ها</h4>
-                  <div class="kpi-value">Safe Read-Only</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Detailed Checks List -->
-            <div class="checks-card">
-              <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 16px;">آیتم‌های بررسی سلامت سیستمی:</h3>
-              <div id="healthChecksList">
-                <div style="color: var(--text-muted); font-size: 0.85rem;">در حال دریافت اطلاعات مانیتورینگ...</div>
               </div>
             </div>
 
@@ -495,19 +229,19 @@
         <span class="spotlight-esc-hint">Esc</span>
       </div>
       <div class="spotlight-results">
-        <div class="spotlight-item selected" onclick="window.app.chatInput.value='نحوه ثبت سند افتتاحیه در سپهریار چیست؟'; window.app.handleSendMessage(); window.app.closeSpotlight();">
-          <span>📝</span>
-          <span>راهنمای ثبت سند افتتاحیه سال مالی جدید</span>
-          <span class="spotlight-item-badge">سند</span>
+        <div class="spotlight-item selected" onclick="window.app.chatInput.value='مراحل صدور فاکتور فروش و روش‌های تسویه حساب در سپهریار چیست؟'; window.app.handleSendMessage(); window.app.closeSpotlight();">
+          <span>🧾</span>
+          <span>آموزش صدور فاکتور فروش و تسویه حساب</span>
+          <span class="spotlight-item-badge">فاکتور</span>
         </div>
-        <div class="spotlight-item" onclick="window.app.runCodeInSqlTab('SELECT TOP 50 * FROM TblPerson'); window.app.closeSpotlight();">
-          <span>👥</span>
-          <span>مشاهده ۵۰ طرف‌حساب و مشتری در دیتابیس</span>
-          <span class="spotlight-item-badge">کوئری</span>
+        <div class="spotlight-item" onclick="window.app.chatInput.value='چگونه چک صیادی را در منوی خزانه‌داری به بانک بخوابانم و وصول کنم؟'; window.app.handleSendMessage(); window.app.closeSpotlight();">
+          <span>🏦</span>
+          <span>آموزش خواباندن و وصول چک صیادی</span>
+          <span class="spotlight-item-badge">چک</span>
         </div>
-        <div class="spotlight-item" onclick="window.app.runCodeInSqlTab('SELECT TOP 50 * FROM TblKala WHERE Mande < 0'); window.app.closeSpotlight();">
+        <div class="spotlight-item" onclick="window.app.chatInput.value='نحوه تعریف کالا و قیمت‌گذاری در منوی مدیریت انبار چیست؟'; window.app.handleSendMessage(); window.app.closeSpotlight();">
           <span>📦</span>
-          <span>لیست کالاهای دارای موجودی منفی در انبار</span>
+          <span>آموزش تعریف کالا و واحدهای انبار</span>
           <span class="spotlight-item-badge">انبار</span>
         </div>
       </div>
@@ -515,7 +249,7 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/api.js?v=25"></script>
-  <script src="js/app.js?v=25"></script>
+  <script src="js/api.js?v=30"></script>
+  <script src="js/app.js?v=30"></script>
 </body>
 </html>

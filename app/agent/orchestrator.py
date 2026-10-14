@@ -125,7 +125,7 @@ class AgentOrchestrator:
         greetings = ["سلام", "درود", "صبح بخیر", "عصر بخیر", "شب بخیر", "خسته نباشید", "خسته نباشی", "روز بخیر", "چطوری", "خوبی", "سلام علیکم", "احوال شما", "hi", "hello"]
         clean_words = q_norm.split()
         if any(q_norm == g or q_norm.startswith(g + " ") or q_norm.startswith(g + "!") or q_norm.startswith(g + "،") for g in greetings) and len(clean_words) <= 5:
-            greeting_ans = "سلام و درود بر شما! 🌸\n\nمن دستیار هوشمند و مشاور ارشد سیستم مالی و ERP سپهریار هستم.\n\nچه کمکی در زمینه اطلاعات مالی، صدور فاکتور، اسناد حسابداری، وام و تسهیلات، بهای تمام‌شده، کدینگ حساب‌ها یا گزارشات دیتابیس از من ساخته است؟"
+            greeting_ans = "سلام و درود بر شما! 🌸\n\nمن **مربی هوشمند و راهنمای کاربری نرم‌افزار حسابداری سپهریار** هستم.\n\nچه مبحثی از آموزش نرم‌افزار (مانند صدور فاکتور و روش‌های تسویه، عملیات چک و خزانه‌داری، مدیریت انبار و کالا، عملیات تولید یا اسناد مالی) را مایلید با هم مرور کنیم؟"
             total_duration = (time.perf_counter() - start_time) * 1000
             if session_id:
                 chat_memory.add_message(session_id, "user", clean_query)
@@ -778,116 +778,10 @@ class AgentOrchestrator:
             yield full_res.persian_answer
             return
 
-        # Configure Thinking Steps according to mode
-        t_think_start = time.perf_counter()
+        # Direct fast generative streaming via Smart Agent Engine (Ultra-low latency <1s)
+        from app.agent.smart_agent import smart_agent_engine
         intent_res = task_planner.detect_intent(clean_query)
 
-        if thinking_mode == "fast":
-            # Fast Mode: Ultra-lightweight thinking step
-            yield {
-                "type": "thinking_step",
-                "stage": "fast",
-                "title": "⚡ تحلیل فوق‌سریع و مستقیم (Fast Mode)",
-                "detail": f"پردازش فوری برای قصد: {intent_res.intent.value} بدون تاخیر استدلال"
-            }
-            steps_summary = ["تحلیل فوق‌سریع و استخراج مستقیم پاسخ"]
-        elif thinking_mode == "deep":
-            # Deep Audit Mode: 5 Comprehensive Engineering & Financial Audit Steps
-            yield {
-                "type": "thinking_step",
-                "stage": "decompose",
-                "title": "🎯 تجزیه عمیق مسئله به زیرمسائل مهندسی و مالی (Task Decomposer)",
-                "detail": f"تشخیص مقصود: {intent_res.intent.value} با ضریب اطمینان {int(intent_res.confidence * 100)}%"
-            }
-            yield {
-                "type": "thinking_step",
-                "stage": "schema_deep",
-                "title": "🔍 کاوش چندلایه در Schema Graph و نگاشت کلیدهای تفصیلی",
-                "detail": "بررسی روابط جداول TblPerson, Master, TR, TblKala و ساختار کدینگ دوبل"
-            }
-            yield {
-                "type": "thinking_step",
-                "stage": "deduction_deep",
-                "title": "💡 استنتاج قیاسی فراتر از پایگاه دانش (Beyond-KB Inference)",
-                "detail": "فرضیه‌سازی تجاری، انطباق ترازهای مالی و انتخاب بهینه‌ترین مسیر حل"
-            }
-            is_dev_req = any(w in q_norm for w in [
-                "کوئری", "کوری", "sql", "tsql", "t-sql", "select ", "stored procedure", "پروسیجر",
-                "اسکریپت", "اس پی", "sp", "دستور دیتابیس", "کد sql", "t-sql بنویس", "deadlock", "تریگر"
-            ])
-            audit_title = (
-                "⚙️ اعتبارسنجی T-SQL، سلامت ایندکس‌ها و امنیت تراکنش"
-                if is_dev_req else
-                "⚙️ اعتبارسنجی فرآیند مالی، کنترل مغایرت و استانداردهای حسابداری"
-            )
-            audit_detail = (
-                "اطمینان از سازگاری نوع داده‌ها، سرفصل‌های کل و معین و عدم افت کارایی"
-                if is_dev_req else
-                "انطباق با سرفصل‌های کل، معین، تفصیلی، کنترل تراز دوبل و روال استاندارد نرم‌افزار سپهریار"
-            )
-            yield {
-                "type": "thinking_step",
-                "stage": "sql_audit",
-                "title": audit_title,
-                "detail": audit_detail
-            }
-            yield {
-                "type": "thinking_step",
-                "stage": "critic_audit",
-                "title": "🛡️ بازرسی سخت‌گیرانه Critic Agent و تاییدیه قطعی امنیت",
-                "detail": "تایید نهایی عدم مغایرت، درستی محاسبات و انطباق با استانداردهای سپهریار"
-            }
-            steps_summary = [
-                "🎯 تجزیه عمیق مسئله به زیرمسائل مهندسی و مالی",
-                "🔍 کاوش چندلایه در پایگاه دانش و نگاشت سرفصل‌ها",
-                "💡 استنتاج قیاسی فراتر از پایگاه دانش",
-                audit_title,
-                "🛡️ بازرسی سخت‌گیرانه Critic Agent"
-            ]
-        else:
-            # Balanced Mode: Standard 4 steps
-            yield {
-                "type": "thinking_step",
-                "stage": "intent",
-                "title": f"🎯 تشخیص مقصود: {intent_res.intent.value}",
-                "detail": f"تحلیل معنایی پرسش با ضریب اطمینان {int(intent_res.confidence * 100)}%"
-            }
-            yield {
-                "type": "thinking_step",
-                "stage": "schema",
-                "title": "🔍 انطباق با پایگاه داده و Schema Graph",
-                "detail": "بررسی روابط کلیدهای اصلی/خارجی، کدینگ حساب‌ها و جداول هدف"
-            }
-            yield {
-                "type": "thinking_step",
-                "stage": "deduction",
-                "title": "💡 استنتاج قیاسی و فرمول‌بندی راهکار",
-                "detail": "ارزیابی فرضیه‌ها، ترازهای مالی و انتخاب بهینه‌ترین مسیر حل مسئله"
-            }
-            yield {
-                "type": "thinking_step",
-                "stage": "critic",
-                "title": "🛡️ بازرسی کیفی و تاییدیه امنیت Critic Agent",
-                "detail": "تایید عدم تناقض، سلامت داده‌ها و انطباق با استانداردهای مالی"
-            }
-            steps_summary = [
-                f"🎯 تشخیص مقصود: {intent_res.intent.value} ({int(intent_res.confidence * 100)}%)",
-                "🔍 انطباق با پایگاه داده و نگاشت جداول در Schema Graph",
-                "💡 استنتاج قیاسی و استخراج استانداردهای مالی سپهریار",
-                "🛡️ اعتبارسنجی امنیتی Critic Agent"
-            ]
-
-        think_dur = round((time.perf_counter() - t_think_start) * 1000, 1)
-
-        yield {
-            "type": "thinking_done",
-            "duration_ms": think_dur,
-            "summary": f"تحلیل در حالت {thinking_mode} ({len(steps_summary)} مرحله)",
-            "steps": steps_summary
-        }
-
-        # Generative Streaming via LLM Engine
-        from app.agent.smart_agent import smart_agent_engine
         if smart_agent_engine.is_active():
             collected_chunks = []
             for token in smart_agent_engine.stream_process(
@@ -910,11 +804,11 @@ class AgentOrchestrator:
                     persian_answer=full_answer,
                     intent=intent_res.intent,
                     duration_ms=round(dur, 2),
-                    thinking_duration_ms=think_dur,
-                    thinking_summary=f"تحلیل عمیق در {len(steps_summary)} مرحله",
+                    thinking_duration_ms=10.0,
+                    thinking_summary="آموزش گام‌به‌گام کاربری سپهریار",
                     success=True,
                     sources=["knowledge_base/indexed_manuals"],
-                    reasoning_steps=steps_summary
+                    reasoning_steps=["آموزش گام‌به‌گام کاربری سپهریار"]
                 )
                 response_cache.set(clean_query, synced_resp, database_name)
             return
