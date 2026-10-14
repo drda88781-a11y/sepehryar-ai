@@ -26,7 +26,6 @@ except ImportError:
 FALLBACK_MODELS = [
     "gemini-3.1-flash-lite",
     "gemini-flash-latest",
-    "gemini-3-flash-preview",
     "gemini-3.7-flash",
 ]
 
