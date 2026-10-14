@@ -690,18 +690,40 @@ class SmartAgentEngine:
 
 دستورالعمل:
 - پاسخ را سریع، کاربردی، مستقیم و بدون مقدمه‌چینی‌های زائد ارائه دهید. مستقیماً به حل مساله بپردازید.
+- اکیداً هیچ کلمه، چک‌لیست، ارزیابی، تاییدیه یا یادداشت انگلیسی (مانند Yes, No, Checklist, Smart, Direct, Preamble) تولید نکنید. پاسخ باید ۱۰۰٪ به زبان فارسی و با شروع مستقیم از راهنمای گام‌به‌گام کاربری باشد.
 {photo_rule}
 {sql_rule}
 
 زمینه و مستندات سیستم:
 {kb_context if kb_context else 'تسلط کامل به استانداردهای مالی، معماری دیتابیس و محیط سپهریار.'}"""
 
+        lead_buffer = ""
+        is_past_header = False
+
         for token in llm_manager.stream_generate(
             prompt=prompt,
             system_prompt=SEPEHRYAR_SYSTEM_PROMPT,
             max_tokens=850
         ):
-            yield token
+            if not is_past_header:
+                lead_buffer += token
+                # Filter out model self-evaluation checklist if present
+                if any(k in lead_buffer.lower() for k in ["smart, direct", "no preamble", "no sql", "correct menu"]):
+                    m = re.search(r'[\*\.\s]*\n+([\u0600-\u06FF\d#].*)', lead_buffer, re.DOTALL)
+                    if m:
+                        is_past_header = True
+                        yield m.group(1)
+                    continue
+                elif re.search(r'[\u0600-\u06FF]', lead_buffer):
+                    is_past_header = True
+                    clean_lead = re.sub(r'^[A-Za-z\s\.\*\-\?:]+', '', lead_buffer).strip()
+                    if clean_lead:
+                        yield clean_lead
+                elif len(lead_buffer) > 150:
+                    is_past_header = True
+                    yield lead_buffer
+            else:
+                yield token
 
 
 smart_agent_engine = SmartAgentEngine()

@@ -151,6 +151,7 @@ class GeminiProvider(LLMProvider):
             "generationConfig": {
                 "temperature": temperature,
                 "maxOutputTokens": max_tokens,
+                "thinkingConfig": {"thinkingBudget": 0}
             }
         }
 
@@ -187,7 +188,7 @@ class GeminiProvider(LLMProvider):
                     content = ""
                     if candidates:
                         parts = candidates[0].get("content", {}).get("parts", [])
-                        content = "".join([p.get("text", "") for p in parts]).strip()
+                        content = "".join([p.get("text", "") for p in parts if "text" in p and not p.get("thought")]).strip()
 
                     duration = (time.perf_counter() - start) * 1000
                     tokens_used = resp_json.get("usageMetadata", {}).get("totalTokenCount", len(content.split()))
@@ -239,6 +240,7 @@ class GeminiProvider(LLMProvider):
             "generationConfig": {
                 "temperature": temperature,
                 "maxOutputTokens": max_tokens,
+                "thinkingConfig": {"thinkingBudget": 0}
             }
         }
         if system_prompt:
@@ -271,7 +273,7 @@ class GeminiProvider(LLMProvider):
                                     candidates = data.get("candidates", [])
                                     if candidates:
                                         parts = candidates[0].get("content", {}).get("parts", [])
-                                        chunk_text = "".join([p.get("text", "") for p in parts if "text" in p])
+                                        chunk_text = "".join([p.get("text", "") for p in parts if "text" in p and not p.get("thought")])
                                         if chunk_text:
                                             yield chunk_text
                                 except Exception:

@@ -222,7 +222,9 @@ function escapeHtml(str) {
 // Simple robust Markdown to HTML parser
 function renderMarkdown(md) {
   if (!md) return '';
-  let html = md;
+  // Strip any leading English checklist/scratchpad leaked from LLM
+  let html = md.replace(/^[\s\.\*\-]*(?:smart|direct|no preamble|no sql|correct menu)[\s\S]*?\*\s*/i, '');
+  html = html.replace(/^(?:[\s\.\*\-]*(?:smart|direct|no preamble|no sql|correct menu|yes|no|\?)+[\s\.\*\-:]*)+/i, '');
 
   // 1. Stash Code blocks ```lang ... ``` before HTML escaping to prevent mangling <, >, quotes
   const codeBlocks = [];
