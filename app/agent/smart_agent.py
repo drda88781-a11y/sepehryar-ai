@@ -120,7 +120,7 @@ def get_workflow_images(context_text: str) -> list[str]:
     """Returns official Sepehryar software screenshot tags matching workflow topic."""
     t = context_text.lower()
     imgs = []
-    if any(w in t for w in ["کالا", "انبار", "تعریف کالا", "واحد کالا", "گروه کالا", "گروه‌بندی", "موجودی"]):
+    if any(w in t for w in ["کالا", "انبار", "تعریف کالا", "واحد کالا", "گروه کالا", "گروه‌بندی", "گروهبندی", "انبارگردانی", "موجودی", "کاردکس"]):
         imgs.append("![فرم ثبت و تعریف کالا در نرم‌افزار سپهریار](/images/anbar_img4_taarife_kala.png)")
         imgs.append("![تب واحدهای اندازه‌گیری و ضرایب تبدیل کالا](/images/anbar_img5_tab_vahed.png)")
         imgs.append("![تب گروه‌بندی و دسته‌بندی کالاها](/images/anbar_img6_tab_gorouh.png)")
@@ -218,42 +218,52 @@ class SmartAgentEngine:
                 reasoning_steps=["پاسخ فوری به پیام احوال‌پرسی کاربر"]
             )
 
-        # Determine if query requires running a SQL query ON LOCAL COMPANY DATABASE
-        is_instructional_or_expert = any(w in lower_q for w in [
+        # Determine if user is asking for photos or visual walkthrough
+        is_photo_req = any(w in lower_q for w in [
+            "عکس", "عکساش", "عکساشم", "عکساشو", "عکسش", "عکسشو", "عکسها", "عکس‌ها", 
+            "تصویر", "تصاویر", "اسکرین شات", "اسکرین‌شات", "آموزش تصویری", "راهنمای تصویری",
+            "عکس فرم", "عکس منو", "تصویر فرم", "تصویر منو", "عکس نداره", "عکس ندارد", "تصویر نداره", "عکس کو"
+        ])
+
+        # Determine if query is instructional, training, visual, or workflow guidance
+        is_instructional_or_expert = is_photo_req or any(w in lower_q for w in [
             "چطور", "چگونه", "چطوری", "چجوری", "نحوه", "روش", "فرمول", "مفهوم", "تفاوت", "فرق", "مقایسه",
             "توضیح بده", "آموزش", "یاد بده", "مثال", "اصول حسابداری", "استاندارد", "ثبت سند", "ثبت دوبل",
             "سندش چیه", "ثبتش چیه", "استهلاک", "کوئری بنویس", "کد بنویس", "اسکریپت بنویس", "دستور بنویس",
             "اسکریپت بده", "کد بده", "کوئری بده", "دستور بده", "اسکریپت", "اسکریپتش",
             "پاک کنم", "حذف کنم", "ریست کنم", "خالی کنم",
             "sql بنویس", "کوئری sql", "توابع", "window function", "cte", "recursive", "join چیست", "اینمپ",
-            "چیست", "چیه", "تعریف"
+            "چیست", "چیه", "تعریف", "سوالی", "سوال", "راهنما", "کار با", "برنامه", "نرم افزار", "نرم‌افزار",
+            "سپهریار", "منو", "فرم", "پنجره", "کلید", "مسیر", "مراحل", "گام", "گروهبندی", "گروه‌بندی", "انبارگردانی"
         ])
 
         data_fetch_verbs = ["بیار", "بده", "نشون بده", "نمایش بده", "استخراج کن", "چقدره", "چقدر است", "چند تاست"]
         is_explicit_data_fetch = any(w in lower_q for w in data_fetch_verbs) and not is_instructional_or_expert
 
-        is_sql_intent = (intent == UserIntent.DATABASE_QUERY or is_explicit_data_fetch) and not is_instructional_or_expert
+        is_sql_intent = (intent == UserIntent.DATABASE_QUERY or is_explicit_data_fetch) and not is_instructional_or_expert and not is_photo_req
 
         if is_sql_intent:
             from app.database.connection import db_connection_manager
             is_mock_or_demo = (database_name and database_name.upper() in ("DEMO", "MOCK")) or (settings.sql_server.upper() in ("DEMO", "MOCK"))
             if not db_connection_manager.is_connection_active() and not is_mock_or_demo:
-                return self._handle_disconnected_state(
+                has_explicit_data_demand = any(w in lower_q for w in ["کوئری", "دیتابیس", "پایگاه داده", "جدول", "استخراج"])
+                if has_explicit_data_demand:
+                    return self._handle_disconnected_state(
+                        query=clean_query,
+                        database_name=database_name,
+                        start_time=start_time
+                    )
+            else:
+                resp = self._handle_data_query(
                     query=clean_query,
                     database_name=database_name,
-                    start_time=start_time
+                    tools_log=tools_log,
+                    sources=sources,
+                    start_time=start_time,
+                    session_id=session_id
                 )
-
-            resp = self._handle_data_query(
-                query=clean_query,
-                database_name=database_name,
-                tools_log=tools_log,
-                sources=sources,
-                start_time=start_time,
-                session_id=session_id
-            )
-            if resp:
-                return resp
+                if resp:
+                    return resp
 
         # General / Architecture / Coding reasoning
         return self._handle_knowledge_reasoning(

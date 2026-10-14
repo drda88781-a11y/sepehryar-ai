@@ -753,15 +753,20 @@ class AgentOrchestrator:
             yield full_res.persian_answer
             return
 
-        # Fast path: Visual Tutorials / Photos
+        # Direct fast generative streaming via Smart Agent Engine (Ultra-low latency <1s)
+        from app.agent.smart_agent import smart_agent_engine
+        intent_res = task_planner.detect_intent(clean_query)
+
+        # Fast path: Visual Tutorials / Photos offline fallback if real LLM is not active
         from app.agent.manuals_guide import manuals_guide_engine
         is_photo_request = any(w in q_norm for w in [
             "عکس", "عکساش", "عکساشم", "عکساشو", "عکسش", "عکسشو", "عکسها", "عکس‌ها",
             "تصویر", "تصاویر", "اسکرین شات", "اسکرین‌شات", "آموزش تصویری", "راهنمای تصویری",
             "راهنمای کاربری", "راهنمای اپراتوری", "عکس فرم", "عکس منو", 
-            "تصویر فرم", "تصویر منو", "راهنمای نرم افزار", "راهنمای سپهریار"
+            "تصویر فرم", "تصویر منو", "راهنمای نرم افزار", "راهنمای سپهریار",
+            "عکس نداره", "عکس ندارد", "تصویر نداره", "عکس کو"
         ])
-        if is_photo_request:
+        if is_photo_request and not smart_agent_engine.is_active():
             full_res = self.process_query(clean_query, session_id, database_name, thinking_mode=thinking_mode)
             yield {
                 "type": "thinking_step",
@@ -777,10 +782,6 @@ class AgentOrchestrator:
             }
             yield full_res.persian_answer
             return
-
-        # Direct fast generative streaming via Smart Agent Engine (Ultra-low latency <1s)
-        from app.agent.smart_agent import smart_agent_engine
-        intent_res = task_planner.detect_intent(clean_query)
 
         if smart_agent_engine.is_active():
             collected_chunks = []
